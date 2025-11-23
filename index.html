@@ -190,21 +190,35 @@ footer{
   box-shadow: var(--shadow);
 }
 
-.pricing-img {
-  width: 100%;
-  border-radius: 14px;
-  overflow: hidden;
-  display: flex;
-  justify-content: center;
+.pricing-heading {
+  margin-top: 25px;
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--accent);
 }
 
-.pricing-img img {
+.pricing-table {
   width: 100%;
-  height: auto;
-  border-radius: 14px;
-  object-fit: cover;
+  border-collapse: collapse;
+  margin-top: 10px;
+  font-size: 16px;
 }
 
+.pricing-table th,
+.pricing-table td {
+  padding: 12px 10px;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.pricing-table th {
+  text-align: left;
+  font-weight: 700;
+  color: #fff;
+}
+
+.pricing-table td {
+  opacity: 0.9;
+}
 
 
 /* Certificates - stacked cards (responsive) */
@@ -322,12 +336,12 @@ footer{
     <h2 class="section-title">Projects I Have Created</h2>
 
     <div class="projects-grid">
-      <a href="https://www.breka.ca/" target="_blank" class="proj">
+      <a href="https://yashveer-makeup-artist-sample-site.netlify.app/" target="_blank" class="proj">
         <div class="img">🍞</div>
         <div>
-          <h3>Breka Bakery & Café</h3>
+          <h3>MakeUp Artist Studio Portfolio Sample</h3>
           <p>
-            A warm digital café experience designed to make visitors crave every scroll.
+            A warm digital online makeup experience designed to make females crave every scroll.
           </p>
         </div>
       </a>
@@ -342,12 +356,12 @@ footer{
         </div>
       </a>
 
-      <a href="https://astrotalk.store/" target="_blank" class="proj">
+      <a href="https://www.myadvertisingfolio.com/" target="_blank" class="proj">
         <div class="img">✨</div>
         <div>
-          <h3>Astrotalk Store</h3>
+          <h3>Rohit Mukherjee's Portfolio</h3>
           <p>
-            A clean + mystical e-commerce experience guided by the stars.
+            A story peddler who survives curiosity. Also an advertising copywriter.
           </p>
         </div>
       </a>
@@ -369,8 +383,8 @@ footer{
 
 
 <article style="margin-bottom:18px">
-<h3>Breka Bakery & Café</h3>
-<p class="bio">Breka isn’t just a bakery. It’s the kind of place where mornings sneak up on you with a croissant in one hand and a latte in the other, and suddenly life doesn’t feel so complicated. I built their digital presence with the same kind of precision I use when I decide whether to save someone or leave them to their chaos. Every pixel, every hover effect, every image of a pastry was chosen to make you pause, maybe drool a little, and feel like this café has been your secret obsession all along. The site tells the story of warmth and indulgence, of aroma and anticipation, but it also whispers something a little darker—the kind of sophistication you don’t expect from a bakery. It’s not just bread; it’s attention to detail, patience, and style baked right in. I wanted users to linger, to scroll just a little longer, to realize that a place this beautiful online probably tastes even better offline. And if they don’t—well, that’s their loss, but they’ll remember it, because Breka doesn’t let go easily.</p>
+<h3>Make Up Studio Sample Site</h3>
+<p class="bio">This makeup site wasn’t created to just showcase products—it was built to pull you in the way a perfect swatch catches light at exactly the right angle. It’s the kind of place where colors feel like emotions you forgot you had, and every shade dares you to imagine a different version of yourself. I crafted its digital presence with the same intent I use when choosing between subtlety and chaos: precision, mood, and a little bit of drama. Every gradient, every transition, every close-up of pigment and texture was chosen to make you stop scrolling and think, “Okay… I need this.” The site tells a story of beauty that isn’t soft or polite—it’s bold, intentional, and addictive. It whispers about transformation, confidence, and the quiet power of a perfectly drawn line. I wanted users to linger, to hover over palettes they didn’t know they wanted, to feel that quiet thrill of indulgence. And if they leave without trying anything, that’s fine—because the site stays with them. It doesn’t let go easily. Beauty rarely does.</p>
 </article>
 
 
@@ -381,8 +395,8 @@ footer{
 
 
 <article style="margin-bottom:18px">
-<h3>Astrotalk Store</h3>
-<p class="bio">Astrotalk is more than gemstones, Rudraksha, and spiritual jewelry. It’s an experience, a nudge from the universe saying maybe, just maybe, you’re about to discover something extraordinary. Crafting their website was like curating a constellation—you place each element where it shines, creating connections that feel inevitable. I made sure the visuals felt like magic without being cheesy, like you stumbled into a treasure chest and the stars themselves were winking at you. Users can explore, shop, and get a sense of destiny while still knowing exactly what they’re buying. It’s playful, intriguing, and a little dangerous—the kind of allure that makes you come back and see what else the universe might have in store.</p>
+<h3>Rohit Mukherjee's Portfolio</h3>
+<p class="bio">Rohit Mukherjee doesn’t just write copy; he spins stories the way most people breathe, and trust me, that’s saying something. Seventeen years in advertising have turned him into the kind of storyteller who can make even the most ordinary brand feel dangerously interesting. His portfolio is a trail of TVCs that shift behavior, digital ideas that spark chaos in all the right ways, and campaigns that slip under your skin before you notice. Now a Creative Director leading entire teams, he crafts narratives with precision, wit, and that quiet bite only experience can sharpen. This site isn’t just his work on display; it’s proof that curiosity didn’t kill him. It made him better. And if you’re smart, you’ll stick around—stories like his don’t come by often.</p>
 </article>
 
 
@@ -436,10 +450,44 @@ footer{
 <section class="card pricing-card">
   <h2 class="section-title">Pricing / Services 💼</h2>
 
-  <p style="font-size:18px;font-weight:700;margin-top:10px;">
-    Price: 123456789 Rs.
-  </p>
+  <!-- Website Development -->
+  <h3 class="pricing-heading">🌐 Website Development</h3>
+  <table class="pricing-table">
+    <tr><th>Service</th><th>Price</th></tr>
+    <tr><td>Portfolio / Personal / Resume Website (1 Page)</td><td>₹2,999 – ₹5,999</td></tr>
+    <tr><td>Business / Salon / Coaching / Cafe (1–5 sections)</td><td>₹6,999 – ₹11,999</td></tr>
+    <tr><td>Full Website (Multi-page)</td><td>₹14,999 – ₹39,999</td></tr>
+    <tr><td>Shopify E-Commerce Store</td><td>₹19,999 – ₹49,999</td></tr>
+  </table>
+
+  <!-- Python Training -->
+  <h3 class="pricing-heading">🐍 Python Tutoring (Beginner → Job Ready)</h3>
+  <table class="pricing-table">
+    <tr><th>Program</th><th>Price</th></tr>
+    <tr><td>Python Beginner Course (30 Days)</td><td>₹3,499</td></tr>
+    <tr><td>Advanced + Projects (45 Days)</td><td>₹5,999</td></tr>
+    <tr><td>Job Ready / Internship-Level (60 Days)</td><td>₹9,999</td></tr>
+  </table>
+
+  <!-- Copywriting -->
+  <h3 class="pricing-heading">✍️ Copywriting</h3>
+  <table class="pricing-table">
+    <tr><th>Service</th><th>Price</th></tr>
+    <tr><td>Social Media Captions (10 posts)</td><td>₹999</td></tr>
+    <tr><td>Website Copy (one page)</td><td>₹2,499</td></tr>
+    <tr><td>Email Copywriting (5 emails)</td><td>₹1,499</td></tr>
+  </table>
+
+  <!-- Graphic Design -->
+  <h3 class="pricing-heading">🎨 Graphic Designing</h3>
+  <table class="pricing-table">
+    <tr><th>Service</th><th>Price</th></tr>
+    <tr><td>Logo Design</td><td>₹1,999</td></tr>
+    <tr><td>Business Card / Menu / Poster Design</td><td>₹799 – ₹1,499</td></tr>
+    <tr><td>Social Media Post Package (20 posts)</td><td>₹2,499 – ₹3,999</td></tr>
+  </table>
 </section>
+
 
 
 
@@ -464,6 +512,7 @@ footer{
 
 </body>
 </html>
+
 
 
 
