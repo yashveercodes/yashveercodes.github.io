@@ -3,322 +3,410 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Yashveer Singh Rajpoot — Cinematic Portfolio</title>
-  <meta name="description" content="Cinematic & premium portfolio — web design, UI/UX, branding, and 3D visuals." />
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600;700;900&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+  <title>Yashveer Singh Rajpoot — Developer & Designer</title>
+  <meta name="description" content="Cinematic glassmorphism portfolio — full stack web developer, Python tutor, UI/UX and visual designer." />
+  <meta name="author" content="Yashveer Singh Rajpoot">
+  <link rel="icon" href="https://ik.imagekit.io/yashveer/1.jpg?updatedAt=1763307833364" />
+  <!-- Fonts & Icons -->
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600;700;900&family=Sora:wght@400;600;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
   <style>
+    /* ================= RESET & BASE ================= */
     :root{
-      --bg:#060609;
-      --bg-2:#0d0d11;
-      --card:#0f1115;
+      --bg-1:#050507;
+      --bg-2:#0b0b0d;
+      --glass: rgba(255,255,255,0.04);
+      --glass-2: rgba(255,255,255,0.06);
+      --accent-blue:#00A6FF;
+      --accent-purple:#7B4BFF;
+      --accent-cyan:#15E4FF;
       --muted:#bfc7d1;
-      --white:#eef2f6;
-      --accent-blue:#00a6ff;
-      --accent-purple:#7b4bff;
-      --accent-cyan:#15e4ff;
-      --glass: rgba(255,255,255,0.03);
-      --glass-strong: rgba(255,255,255,0.05);
+      --text:#eef2f6;
       --radius:16px;
-      --maxw:1200px;
+      --container:1200px;
     }
-    /* Reset & base */
     *{box-sizing:border-box;margin:0;padding:0}
     html,body{height:100%}
     body{
-      font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-      background: radial-gradient( circle at 10% 10%, rgba(10,10,12,0.6), transparent 8% ),
-                  radial-gradient( circle at 90% 90%, rgba(15,8,30,0.6), transparent 10% ),
-                  var(--bg);
-      color:var(--white);
+      font-family:Inter, "Sora", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      background:
+        radial-gradient(800px 300px at 10% 10%, rgba(123,75,255,0.06), transparent 8%),
+        radial-gradient(600px 300px at 90% 90%, rgba(0,166,255,0.06), transparent 6%),
+        linear-gradient(180deg,var(--bg-1),var(--bg-2));
+      color:var(--text);
       -webkit-font-smoothing:antialiased;
       -moz-osx-font-smoothing:grayscale;
-      line-height:1.45;
-      transition:background 0.4s ease, color 0.25s ease;
+      line-height:1.5;
+      overflow-x:hidden;
     }
-    a{color:inherit}
-    .wrap{max-width:var(--maxw);margin:0 auto;padding:48px 20px;display:flex;flex-direction:column;gap:64px}
-    header{display:flex;justify-content:space-between;align-items:center;gap:20px}
-    .brand{display:flex;gap:14px;align-items:center}
-    .brand .logo{
-      width:48px;height:48px;border-radius:10px;background:linear-gradient(135deg,var(--accent-purple),var(--accent-blue));
-      display:flex;align-items:center;justify-content:center;font-weight:700;color:white;font-family: "Space Grotesk", sans-serif;
-      box-shadow:0 6px 30px rgba(0,0,0,0.6), 0 0 30px rgba(123,75,255,0.06) inset;
-    }
-    .brand h1{font-family:"Space Grotesk",sans-serif;font-weight:700;font-size:1.05rem;letter-spacing:0.2px}
-    nav{display:flex;gap:18px;align-items:center}
-    nav a{padding:10px 12px;border-radius:10px;color:var(--muted);font-weight:600;text-decoration:none;transition:all .18s}
-    nav a:hover{color:var(--white);transform:translateY(-2px)}
-    .theme-toggle{display:inline-flex;align-items:center;gap:8px;padding:8px 10px;background:var(--glass);border-radius:12px}
-    .theme-toggle button{background:transparent;border:0;color:var(--muted);font-weight:600;cursor:pointer}
+    a{color:inherit;text-decoration:none}
+    img{display:block;max-width:100%}
+    .container{max-width:var(--container);margin:0 auto;padding:36px 20px;display:flex;flex-direction:column;gap:56px}
 
-    /* HERO */
+    /* ================= NAV / HEADER (Glassy) ================= */
+    header{
+      display:flex;align-items:center;justify-content:space-between;gap:20px;padding:18px;border-radius:18px;
+      position:sticky;top:18px;z-index:60;
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      border:1px solid rgba(255,255,255,0.04);
+      backdrop-filter: blur(10px) saturate(120%);
+      box-shadow: 0 10px 40px rgba(0,0,0,0.6);
+    }
+    .brand{
+      display:flex;align-items:center;gap:14px;
+    }
+    .pfp{
+      width:56px;height:56px;border-radius:14px;overflow:hidden;border:1px solid rgba(255,255,255,0.06);
+      background:linear-gradient(135deg,var(--accent-purple),var(--accent-blue));
+      display:flex;align-items:center;justify-content:center;
+    }
+    .pfp img{width:100%;height:100%;object-fit:cover;border-radius:12px}
+    .brand h1{font-family:"Space Grotesk",sans-serif;font-size:1.05rem;margin-bottom:2px}
+    .brand p{font-size:0.9rem;color:var(--muted);margin:0}
+    nav{display:flex;align-items:center;gap:20px}
+    .nav-links{display:flex;gap:18px;align-items:center}
+    .nav-links a{color:var(--muted);padding:8px 12px;border-radius:10px;font-weight:600}
+    .nav-links a:hover{color:var(--text);transform:translateY(-3px)}
+    /* mobile menu button */
+    .menu-btn{display:none;background:transparent;border:1px solid rgba(255,255,255,0.04);padding:8px;border-radius:10px;color:var(--muted);cursor:pointer}
+
+    /* ================= HERO ================= */
     .hero{
-      min-height:72vh;display:grid;grid-template-columns:1fr 380px;gap:40px;align-items:center;
-      position:relative;
+      display:grid;grid-template-columns:1fr 360px;gap:36px;align-items:center;
+      padding:40px;border-radius:18px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      border:1px solid rgba(255,255,255,0.04);backdrop-filter: blur(8px) saturate(120%);
     }
-    .hero-left{max-width:720px}
-    .eyebrow{color:var(--accent-cyan);font-weight:600;margin-bottom:18px}
-    .hero-title{font-family:"Space Grotesk",sans-serif;font-weight:900;font-size:clamp(2.2rem,6vw,4.2rem);line-height:0.95;letter-spacing:-2px;margin-bottom:18px;text-shadow:0 6px 40px rgba(0,0,0,0.7)}
-    .hero-title .glow{
-      display:inline-block;padding:10px 8px;border-radius:8px;background:linear-gradient(90deg, rgba(0,166,255,0.06), rgba(123,75,255,0.06));
-      box-shadow:0 10px 50px rgba(123,75,255,0.06);
+    .hero-left .eyebrow{color:var(--accent-cyan);font-weight:700;margin-bottom:14px}
+    .hero-title{font-family:"Space Grotesk";font-weight:900;font-size:clamp(2rem,6vw,3.8rem);line-height:0.95;margin-bottom:16px;letter-spacing:-1px}
+    .hero-title .gloss{
+      display:inline-block;padding:6px 10px;border-radius:10px;background:linear-gradient(90deg, rgba(123,75,255,0.08), rgba(0,166,255,0.06));
+      box-shadow:0 20px 80px rgba(123,75,255,0.04) inset;
     }
-    .hero-sub{color:var(--muted);font-size:1.05rem;margin-bottom:24px}
-    .cta-row{display:flex;gap:16px;align-items:center}
+    .hero-sub{color:var(--muted);font-size:1rem;max-width:60ch;margin-bottom:18px}
+    .cta-row{display:flex;gap:12px;align-items:center}
     .btn{
-      display:inline-flex;align-items:center;gap:10px;padding:12px 18px;border-radius:12px;font-weight:700;border:0;cursor:pointer;
-      background:linear-gradient(90deg,var(--accent-purple),var(--accent-blue));color:white;box-shadow:0 10px 30px rgba(123,75,255,0.12);
-      transition:transform .18s;
+      display:inline-flex;align-items:center;gap:10px;padding:12px 16px;border-radius:12px;border:0;font-weight:700;cursor:pointer;
+      background:linear-gradient(90deg,var(--accent-purple),var(--accent-blue));color:#04121a;box-shadow:0 12px 40px rgba(123,75,255,0.08);
     }
-    .btn.secondary{background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--white)}
-    .btn:hover{transform:translateY(-4px)}
-    .hero-feat{margin-top:28px;display:flex;gap:14px;flex-wrap:wrap}
-    .chip{background:linear-gradient(90deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:8px 12px;border-radius:999px;color:var(--muted);font-weight:600}
+    .btn.ghost{background:transparent;color:var(--text);border:1px solid rgba(255,255,255,0.06)}
+    .skill-chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}
+    .chip{padding:8px 12px;border-radius:999px;background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);color:var(--muted);font-weight:600}
 
     /* right card */
-    .card-right{background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);padding:22px;border-radius:20px;box-shadow:0 10px 40px rgba(0,0,0,0.6);backdrop-filter: blur(6px)}
-    .card-right h3{font-family:"Space Grotesk";font-size:1.05rem;margin-bottom:8px}
-    .card-right p{color:var(--muted);font-size:0.96rem;margin-bottom:12px}
-    .contact-btn{display:inline-flex;gap:10px;padding:10px 14px;border-radius:12px;background:linear-gradient(90deg,var(--accent-cyan),var(--accent-blue));color:#04121a;font-weight:700}
+    .hero-right{padding:18px;border-radius:14px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));border:1px solid rgba(255,255,255,0.04)}
+    .hero-right h3{font-family:"Space Grotesk";margin-bottom:8px}
+    .hero-right p{color:var(--muted);margin-bottom:14px}
+    .hero-right .mini{display:flex;flex-direction:column;gap:8px}
+    .hero-right .mini a{display:inline-block;padding:10px 12px;border-radius:10px;background:linear-gradient(90deg,var(--accent-cyan),var(--accent-blue));color:#04121a;font-weight:700}
 
-    /* services */
-    .section{padding:18px;background:transparent;border-radius:14px}
-    .section-title{font-family:"Space Grotesk";font-size:1.25rem;margin-bottom:18px}
-    .services-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
-    .service{
-      background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
-      padding:20px;border-radius:14px;border:1px solid rgba(255,255,255,0.03);display:flex;gap:14px;align-items:flex-start;
-      transition:transform .18s,box-shadow .18s;
-    }
-    .service:hover{transform:translateY(-6px);box-shadow:0 18px 50px rgba(0,0,0,0.6)}
-    .service .icon{width:56px;height:56px;border-radius:12px;background:linear-gradient(135deg,var(--accent-purple),var(--accent-blue));display:flex;align-items:center;justify-content:center;font-size:1.25rem}
-    .service h4{font-size:1rem;margin-bottom:6px}
-    .service p{color:var(--muted);font-size:.95rem}
-
-    /* featured projects */
-    .projects-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:12px}
-    .proj{
-      background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));border-radius:14px;padding:12px;border:1px solid rgba(255,255,255,0.03);
-      overflow:hidden;position:relative;transition:transform .22s,box-shadow .22s;
-    }
-    .proj:hover{transform:translateY(-8px);box-shadow:0 30px 80px rgba(7,6,12,0.7)}
-    .proj .thumb{height:180px;background-size:cover;background-position:center;border-radius:10px;margin-bottom:12px;filter:grayscale(10%);transition:transform .35s}
-    .proj h3{font-family:"Space Grotesk";font-size:1.02rem;margin-bottom:6px}
-    .proj p{color:var(--muted);font-size:.92rem}
-
-    /* cinematic gallery */
-    .gallery{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:8px}
-    .gitem{height:150px;border-radius:12px;background-size:cover;background-position:center;position:relative;overflow:hidden;cursor:pointer;transition:transform .28s,box-shadow .28s}
-    .gitem::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent,rgba(0,0,0,0.35));opacity:0;transition:opacity .25s}
-    .gitem:hover{transform:translateY(-8px);box-shadow:0 30px 50px rgba(0,0,0,0.6)}
-    .gitem:hover::after{opacity:1}
-
-    /* process */
-    .process{display:flex;gap:18px;align-items:stretch;flex-wrap:wrap}
-    .step{flex:1;min-width:200px;padding:20px;border-radius:12px;background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.005));border:1px solid rgba(255,255,255,0.03)}
-    .step h4{font-family:"Space Grotesk";margin-bottom:6px}
-    .step p{color:var(--muted);font-size:.95rem}
-
-    /* about */
-    .about{display:grid;grid-template-columns: 280px 1fr;gap:28px;align-items:center}
-    .portrait{width:260px;height:360px;border-radius:16px;background-size:cover;background-position:center;box-shadow:0 20px 50px rgba(0,0,0,0.7);border:1px solid rgba(255,255,255,0.04)}
-    .about .meta{color:var(--muted)}
-    .kpis{display:flex;gap:18px;margin-top:20px;flex-wrap:wrap}
-    .kpi{padding:12px 16px;border-radius:12px;background:linear-gradient(90deg, rgba(255,255,255,0.02), transparent);font-weight:700}
-
-    /* final CTA */
-    .final-cta{padding:48px;border-radius:18px;background:linear-gradient(180deg, rgba(10,10,12,0.6), rgba(20,10,30,0.2));text-align:center}
-    .final-cta h2{font-family:"Space Grotesk";font-size:1.6rem;margin-bottom:12px}
-    .final-cta p{color:var(--muted);margin-bottom:18px}
-
-    /* contact form */
-    .contact-wrap{display:grid;grid-template-columns:1fr 360px;gap:18px}
-    form input, form textarea, .fakeform input{
-      width:100%;padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:var(--white);
-      resize:none;font-size:0.95rem;
-    }
-    form button{padding:12px 16px;border-radius:10px;border:0;background:linear-gradient(90deg,var(--accent-blue),var(--accent-purple));color:#04121a;font-weight:700}
-    .form-card{padding:18px;border-radius:12px;background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);border:1px solid rgba(255,255,255,0.03)}
-    .project-preview{height:300px;border-radius:12px;background-size:cover;background-position:center;box-shadow:inset 0 60px 100px rgba(0,0,0,0.45)}
-
-    footer{padding:28px 0;color:var(--muted);text-align:center}
+    /* ================= SERVICES ================= */
+    .section{padding:20px;border-radius:14px;background:transparent}
+    .section-title{font-family:"Space Grotesk";font-size:1.2rem;margin-bottom:14px}
+    .services-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+    .service-card{padding:16px;border-radius:12px;background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);border:1px solid rgba(255,255,255,0.03);display:flex;gap:12px;align-items:flex-start}
+    .service-icon{width:56px;height:56px;border-radius:12px;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,var(--accent-purple),var(--accent-blue));font-size:1.2rem}
+    .service-card h4{margin-bottom:6px}
+    .service-card p{color:var(--muted);font-size:.95rem}
 
     /* small screens */
-    @media(max-width:1000px){
+    @media (max-width:980px){
       .hero{grid-template-columns:1fr}
-      .services-grid{grid-template-columns:repeat(2,1fr)}
-      .projects-grid{grid-template-columns:repeat(2,1fr)}
-      .gallery{grid-template-columns:repeat(2,1fr)}
-      .about{grid-template-columns:1fr}
-      .contact-wrap{grid-template-columns:1fr}
+      .menu-btn{display:inline-flex}
+      .nav-links{display:none}
+      header{padding:14px}
     }
     @media(max-width:560px){
+      .container{padding:20px}
+      .brand h1{font-size:0.98rem}
+      .hero{padding:20px;gap:20px}
+      .hero-title{font-size:2rem}
       .services-grid{grid-template-columns:1fr}
-      .projects-grid{grid-template-columns:1fr}
-      .hero-title{font-size:2.2rem}
     }
 
-    /* subtle entrance animations */
-    [data-anim] {opacity:0;transform:translateY(18px);transition:opacity .6s ease, transform .6s ease}
+    /* subtle animations */
+    [data-anim]{opacity:0;transform:translateY(18px);transition:opacity .6s ease, transform .6s ease}
     [data-anim].is-visible{opacity:1;transform:none}
-
-    /* reduce motion */
-    @media (prefers-reduced-motion: reduce){
-      *{transition:none!important;animation:none!important}
-    }
+    @media (prefers-reduced-motion: reduce){ *{transition:none!important} }
   </style>
 </head>
 <body>
-  <div class="wrap">
-    <header>
+  <div class="container">
+    <!-- NAV / HEADER -->
+    <header role="banner" aria-label="Primary">
       <div class="brand">
-        <div class="logo">YR</div>
+        <div class="pfp" title="Yashveer">
+          <img src="https://ik.imagekit.io/yashveer/1.jpg?updatedAt=1763307833364" alt="Profile photo of Yashveer Singh Rajpoot">
+        </div>
         <div>
           <h1>Yashveer Singh Rajpoot</h1>
-          <div style="color:var(--muted);font-size:.92rem">Developer • Designer • Learner</div>
+          <p>Full Stack Web Developer • Python • UI/UX • Writer</p>
         </div>
       </div>
 
-      <nav aria-label="Primary">
-        <a href="#work">Work</a>
-        <a href="#services">Services</a>
-        <a href="#about">About</a>
-        <a href="#contact" class="secondary">Contact</a>
-        <span class="theme-toggle" title="Toggle theme">
-          <button id="themeBtn" aria-pressed="false"><i class="fa-solid fa-moon"></i></button>
-        </span>
+      <nav role="navigation" aria-label="Main navigation">
+        <div class="nav-links" id="navLinks">
+          <a href="#work" data-link>Work</a>
+          <a href="#services" data-link>Services</a>
+          <a href="#about" data-link>About</a>
+          <a href="#contact" data-link>Contact</a>
+          <a href="https://www.instagram.com/yashveer.codes/" target="_blank" rel="noopener noreferrer" class="btn ghost" style="padding:8px 12px">@yashveer.codes</a>
+        </div>
+        <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="mobileMenu" aria-label="Open menu">
+          <i class="fa-solid fa-bars"></i>
+        </button>
       </nav>
     </header>
 
+    <!-- MOBILE DROPDOWN -->
+    <div id="mobileMenu" style="display:none;margin-top:8px;border-radius:12px;padding:12px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));border:1px solid rgba(255,255,255,0.04)">
+      <a href="#work" data-link style="display:block;padding:12px;border-radius:8px;color:var(--muted)">Work</a>
+      <a href="#services" data-link style="display:block;padding:12px;border-radius:8px;color:var(--muted)">Services</a>
+      <a href="#about" data-link style="display:block;padding:12px;border-radius:8px;color:var(--muted)">About</a>
+      <a href="#contact" data-link style="display:block;padding:12px;border-radius:8px;color:var(--muted)">Contact</a>
+    </div>
+
     <!-- HERO -->
-    <section class="hero" id="home">
+    <section class="hero" id="home" aria-labelledby="heroTitle">
       <div class="hero-left" data-anim>
-        <div class="eyebrow">Design • UI/UX • Branding • 3D</div>
-        <h2 class="hero-title">
-          <span class="glow">I TURN IDEAS</span><br> INTO EXPERIENCES
+        <div class="eyebrow">Full Stack • Python • UI/UX • Writing</div>
+        <h2 id="heroTitle" class="hero-title">
+          <span class="gloss">I TURN IDEAS</span><br> INTO PRODUCTS & EXPERIENCES
         </h2>
-        <p class="hero-sub">I combine cinematic visuals with clean product thinking — building memorable websites, brand identities, and UI experiences that perform.</p>
+        <p class="hero-sub">I build responsive websites, teach Python & web development, and craft clean UI/UX with a focus on performance and clarity. I also deliver copy & content that helps products connect with people.</p>
+
         <div class="cta-row">
-          <a href="#work" class="btn" aria-label="View portfolio">View Portfolio</a>
-          <a href="#contact" class="btn secondary" aria-label="Contact me">Let's talk</a>
+          <a class="btn" href="#work" id="viewWorkBtn">View Portfolio</a>
+          <a class="btn ghost" href="https://www.instagram.com/yashveer.codes/" target="_blank" rel="noopener noreferrer">Talk to me</a>
         </div>
 
-        <div class="hero-feat" aria-hidden="true">
-          <div class="chip">Enterprise Dashboards</div>
-          <div class="chip">Mobile UX</div>
-          <div class="chip">Brand Identity</div>
-          <div class="chip">3D Product Visuals</div>
+        <div class="skill-chips" aria-hidden="true">
+          <span class="chip">Full Stack Web Development</span>
+          <span class="chip">Python Tutoring</span>
+          <span class="chip">HTML • CSS • JS</span>
+          <span class="chip">UI / UX Design</span>
+          <span class="chip">Copywriting & Content</span>
         </div>
       </div>
 
-      <aside class="card-right" data-anim>
-        <h3>Available for work</h3>
-        <p>Open to freelance projects, collaborations, and part-time roles. Based in India — remote friendly.</p>
-        <a class="contact-btn" href="mailto:hello@yashveer.example">📩 Contact</a>
-        <div style="height:18px"></div>
-        <div style="font-weight:700;color:var(--muted)">Quick Links</div>
-        <div style="display:flex;gap:8px;margin-top:12px;flex-wrap:wrap">
-          <a href="#work" style="padding:8px 12px;background:rgba(255,255,255,0.03);border-radius:10px">Portfolio</a>
-          <a href="#services" style="padding:8px 12px;background:rgba(255,255,255,0.03);border-radius:10px">Services</a>
-          <a href="#contact" style="padding:8px 12px;background:rgba(255,255,255,0.03);border-radius:10px">Contact</a>
+      <aside class="hero-right" data-anim>
+        <h3>Teaching & Tutoring</h3>
+        <p>Daily 40-minute live Python and Web Development classes over Zoom. Demo classes available — book through Instagram.</p>
+        <div class="mini">
+          <a class="btn" href="https://www.instagram.com/yashveer.codes/" target="_blank" rel="noopener noreferrer">Book Demo Class on Instagram</a>
+          <a class="btn ghost" href="#pricing">See Pricing</a>
         </div>
       </aside>
     </section>
 
     <!-- SERVICES -->
     <section id="services" class="section" data-anim>
-      <div class="section-title">What I do</div>
-      <div class="services-grid" role="list">
-        <div class="service" role="listitem">
-          <div class="icon"><i class="fa-solid fa-display"></i></div>
+      <div class="section-title">Services</div>
+      <div class="services-grid">
+        <div class="service-card">
+          <div class="service-icon"><i class="fa-solid fa-code"></i></div>
           <div>
-            <h4>Website & Product Design</h4>
-            <p>Create modern, responsive websites and product interfaces with pixel-level craft and performance in mind.</p>
+            <h4>Full Stack Development</h4>
+            <p>Custom, responsive websites and webapps using modern stacks. Focused on performance, accessibility and maintainable code.</p>
           </div>
         </div>
-        <div class="service" role="listitem">
-          <div class="icon"><i class="fa-solid fa-pencil-ruler"></i></div>
+
+        <div class="service-card">
+          <div class="service-icon"><i class="fa-solid fa-python"></i></div>
           <div>
-            <h4>UI / UX</h4>
-            <p>From flows to prototypes — intuitive experiences that guide users to action and delight at every touchpoint.</p>
+            <h4>Python Tutoring</h4>
+            <p>Daily tutoring tailored to your pace: from fundamentals to projects (Flask/Django). Hands-on, project-focused lessons.</p>
           </div>
         </div>
-        <div class="service" role="listitem">
-          <div class="icon"><i class="fa-solid fa-swatchbook"></i></div>
+
+        <div class="service-card">
+          <div class="service-icon"><i class="fa-solid fa-paint-brush"></i></div>
           <div>
-            <h4>Brand Identity</h4>
-            <p>Brand systems, logo marks, and visual language that scale across digital and physical products.</p>
+            <h4>UI / UX Design</h4>
+            <p>UX-first design process, wireframes, visual design, and prototypes to ship polished interfaces that users love.</p>
           </div>
         </div>
-        <div class="service" role="listitem">
-          <div class="icon"><i class="fa-solid fa-cube"></i></div>
+
+        <div class="service-card">
+          <div class="service-icon"><i class="fa-solid fa-pen-fancy"></i></div>
           <div>
-            <h4>3D & Motion</h4>
-            <p>Hero visuals, product renderings, and subtle motion to add depth and premium presence to your designs.</p>
+            <h4>Copy & Content</h4>
+            <p>Website copy, captions, and content strategy — clear messaging that converts and matches your brand voice.</p>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- FEATURED PROJECTS -->
+
+    <!-- FEATURED WORK -->
     <section id="work" class="section" data-anim>
       <div class="section-title">Featured Work</div>
-      <div class="projects-grid" role="list">
-        <article class="proj" role="listitem" tabindex="0" data-proj='{"title":"Enterprise Dashboard","desc":"Complex data visualisation & admin UX","img":"https://images.unsplash.com/photo-1556157382-97eda2d62296?q=80&w=1400&auto=format&fit=crop&ixlib=rb-4.0.3&s=9c3d3bb9b0c4f4e945a5f3e6bd8b9a2b"}'>
-          <div class="thumb" style="background-image:url('https://images.unsplash.com/photo-1556157382-97eda2d62296?q=80&w=1400&auto=format&fit=crop&ixlib=rb-4.0.3&s=9c3d3bb9b0c4f4e945a5f3e6bd8b9a2b')"></div>
-          <h3>Enterprise Dashboard</h3>
-          <p>Analytics-first UI for teams to monitor and act on data, with compact components and clear visual hierarchy.</p>
+
+      <!-- Projects grid -->
+      <div class="projects-grid" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:18px">
+        <!-- Project 1 -->
+        <article class="proj" tabindex="0" data-proj='{"title":"Rohit Mukherjee Portfolio","link":"https://www.myadvertisingfolio.com/","img":"","slug":"rohit"}' style="padding:18px;border-radius:14px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));border:1px solid rgba(255,255,255,0.04)">
+          <div style="height:160px;border-radius:10px;display:flex;align-items:center;justify-content:center;background:linear-gradient(120deg,#111216, #16161a);color:var(--muted);font-weight:700;font-family:Space Grotesk">
+            <div style="text-align:center">
+              <div style="font-size:20px;color:var(--accent-purple);margin-bottom:6px">Rohit Mukherjee</div>
+              <div style="font-size:13px">Advertising Portfolio</div>
+            </div>
+          </div>
+          <h3 style="margin-top:12px">Rohit Mukherjee Portfolio</h3>
+          <p style="color:var(--muted)">A storytelling-focused portfolio for an advertising creative.</p>
+
+          <!-- 3 long paragraphs -->
+          <div style="margin-top:12px;color:var(--muted);font-size:0.96rem;line-height:1.6">
+            <p>Rohit's portfolio is a crafted storytelling experience that places narrative above noise. The design emphasizes a sequence of moments — hero imagery, detailed case study pages, and supporting process write-ups — that invite visitors to follow the creative journey. Each section in the portfolio was refined to balance strong visuals with readable typography, ensuring the work itself remains the star while the layout supports clarity and pace.</p>
+
+            <p>The project required designing a modular system that would scale with different campaigns and deliverables. I created reusable layout blocks to showcase print, digital, and campaign case studies while keeping the load times and responsiveness tightly optimized. Visual hierarchy was tuned for both desktop and mobile visitors, ensuring the emotional impact translates across devices.</p>
+
+            <p>To communicate Rohit’s creative practice, I focused on custom typography scale, subtle animated reveals, and an editorial-like grid system. The result is a confident portfolio that feels like a magazine feature — connective, directional, and focused on the narrative of each project rather than a flat gallery of images.</p>
+
+            <div style="margin-top:12px"><a class="btn" href="https://www.myadvertisingfolio.com/" target="_blank" rel="noopener noreferrer">Visit Project</a></div>
+          </div>
         </article>
 
-        <article class="proj" role="listitem" tabindex="0" data-proj='{"title":"Delivery App UX","desc":"Mobile-first ordering experience","img":"https://images.unsplash.com/photo-1567016527390-3f6d3b3f0f2b?q=80&w=1400&auto=format&fit=crop&ixlib=rb-4.0.3&s=3f05d1c9d3c5d6d0aea8b8b1b0cc6c44"}'>
-          <div class="thumb" style="background-image:url('https://images.unsplash.com/photo-1567016527390-3f6d3b3f0f2b?q=80&w=1400&auto=format&fit=crop&ixlib=rb-4.0.3&s=3f05d1c9d3c5d6d0aea8b8b1b0cc6c44')"></div>
-          <h3>Delivery App</h3>
-          <p>Streamlined checkout flow and delightful micro-interactions for daily users.</p>
+        <!-- Project 2 -->
+        <article class="proj" tabindex="0" data-proj='{"title":"Amisha — Design Portfolio","link":"https://amisha-graphic-designer.yashvsr2010.workers.dev/","img":"","slug":"amisha"}' style="padding:18px;border-radius:14px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));border:1px solid rgba(255,255,255,0.04)">
+          <div style="height:160px;border-radius:10px;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,var(--accent-blue),var(--accent-purple));color:#04121a;font-weight:700">
+            <div style="text-align:center">
+              <div style="font-size:20px;color:#04121a;margin-bottom:6px">Amisha</div>
+              <div style="font-size:13px;color:#061016">Graphic Design Portfolio</div>
+            </div>
+          </div>
+
+          <h3 style="margin-top:12px">Amisha — Design Portfolio</h3>
+          <p style="color:var(--muted)">A clean, expressive portfolio for a graphic designer.</p>
+
+          <div style="margin-top:12px;color:var(--muted);font-size:0.96rem;line-height:1.6">
+            <p>Amisha’s portfolio project is rooted in showcasing visual craft and process. I designed a restrained interface where large imagery and precise spacing take center stage, allowing each piece of work to breathe. The layout supports multiple formats — editorial images, brand systems, and small interactive prototypes — while maintaining a single coherent voice.</p>
+
+            <p>Attention to detail was crucial: color swatches, typographic treatments, and contextual notes accompany each piece. I implemented a lightweight CMS-friendly structure so the portfolio can be expanded without breaking the visual rhythm. The interactions were intentionally subtle — tilt effects, soft fades, and context-aware captions that enhance, not distract.</p>
+
+            <p>The end result is an expressive portfolio that reads as a curated exhibition of Amisha's best work. The design gives editors and clients a focused view into the creative thinking and execution behind each project, encouraging higher-quality leads and confident presentations.</p>
+
+            <div style="margin-top:12px"><a class="btn" href="https://amisha-graphic-designer.yashvsr2010.workers.dev/" target="_blank" rel="noopener noreferrer">Visit Project</a></div>
+          </div>
         </article>
 
-        <article class="proj" role="listitem" tabindex="0" data-proj='{"title":"Brand & Packaging","desc":"Identity system and packaging design","img":"https://images.unsplash.com/photo-1545239351-1141bd82e8a6?q=80&w=1400&auto=format&fit=crop&ixlib=rb-4.0.3&s=3c6f4bf8a316b3c550f8bb8a6f7a2b9a"}'>
-          <div class="thumb" style="background-image:url('https://images.unsplash.com/photo-1545239351-1141bd82e8a6?q=80&w=1400&auto=format&fit=crop&ixlib=rb-4.0.3&s=3c6f4bf8a316b3c550f8bb8a6f7a2b9a')"></div>
-          <h3>Brand & Packaging</h3>
-          <p>Strategic identity and tactile packaging that speaks luxury and craft.</p>
+        <!-- Project 3 -->
+        <article class="proj" tabindex="0" data-proj='{"title":"MakeUp Artist Sample Site","link":"https://yashveer-makeup-artist-sample-site.netlify.app/","img":"","slug":"makeup"}' style="padding:18px;border-radius:14px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));border:1px solid rgba(255,255,255,0.04)">
+          <div style="height:160px;border-radius:10px;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#ff7fb5,#d47bff);color:#04121a;font-weight:700">
+            <div style="text-align:center">
+              <div style="font-size:20px;color:#04121a;margin-bottom:6px">MakeUp Artist</div>
+              <div style="font-size:13px;color:#04121a">Portfolio Sample</div>
+            </div>
+          </div>
+
+          <h3 style="margin-top:12px">MakeUp Artist Sample Site</h3>
+          <p style="color:var(--muted)">A soft, aesthetic portfolio designed for beauty professionals.</p>
+
+          <div style="margin-top:12px;color:var(--muted);font-size:0.96rem;line-height:1.6">
+            <p>This makeup portfolio is built around delicate rhythm and tactile visual language: soft gradients, carefully chosen imagery, and an emphasis on detail that communicates luxury and approachability. The design supports high-resolution photography while preserving fast load times through optimized assets and considered layout choices.</p>
+
+            <p>I structured the case study to highlight services, pricing, and a gallery of looks. The goal was to convert browsers into clients by showcasing before/after imagery, a clear services list, and a straightforward booking CTA. The design intentionally balances editorial imagery and clear information hierarchy.</p>
+
+            <p>Micro-interactions were added to enhance the sensory feel: hover scales on portfolio items, gentle fades on overlays, and a refined typography scale tuned for mobile and desktop. The outcome is a site that feels like a boutique experience — soft, memorable, and effective at driving bookings.</p>
+
+            <div style="margin-top:12px"><a class="btn" href="https://yashveer-makeup-artist-sample-site.netlify.app/" target="_blank" rel="noopener noreferrer">Visit Project</a></div>
+          </div>
         </article>
       </div>
 
+      <!-- See all / more -->
       <div style="margin-top:18px;text-align:center">
-        <a href="#work" class="btn">See more case studies</a>
+        <a class="btn ghost" href="#" onclick="alert('Add more case studies or link to full portfolio');return false">See more case studies</a>
       </div>
     </section>
 
-    <!-- CINEMATIC GALLERY -->
+    <!-- CINEMATIC / VISUAL GALLERY -->
     <section class="section" data-anim>
       <div class="section-title">Visual Gallery</div>
-      <div class="gallery" role="list">
-        <div class="gitem" tabindex="0" style="background-image:url('https://images.unsplash.com/photo-1526378724416-6b7f4b8ed9d1?q=80&w=1400&auto=format&fit=crop&ixlib=rb-4.0.3&s=2b9a5b6998df6f6f6e8f1f7f6b3c2b3a')"></div>
-        <div class="gitem" tabindex="0" style="background-image:url('https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=1400&auto=format&fit=crop&ixlib=rb-4.0.3&s=12b9a5c6d3a4e5f6a7b8c9d0f1e2a3b4')"></div>
-        <div class="gitem" tabindex="0" style="background-image:url('https://images.unsplash.com/photo-1487014679447-9f8336841d58?q=80&w=1400&auto=format&fit=crop&ixlib=rb-4.0.3&s=7a8b9c0d1e2f3a4b5c6d7e8f9a0b1c2d')"></div>
-        <div class="gitem" tabindex="0" style="background-image:url('https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=1400&auto=format&fit=crop&ixlib=rb-4.0.3&s=8b9c0d1e2f3a4b5c6d7e8f9a0b1c2d3e')"></div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px;margin-top:12px">
+        <div style="height:140px;border-radius:12px;background:linear-gradient(120deg,#0b0b0f,#121217);display:flex;align-items:center;justify-content:center;color:var(--muted)">3D Mockup</div>
+        <div style="height:140px;border-radius:12px;background:linear-gradient(120deg,#0b0b0f,#121217);display:flex;align-items:center;justify-content:center;color:var(--muted)">Brand Exploration</div>
+        <div style="height:140px;border-radius:12px;background:linear-gradient(120deg,#0b0b0f,#121217);display:flex;align-items:center;justify-content:center;color:var(--muted)">UI Concepts</div>
+        <div style="height:140px;border-radius:12px;background:linear-gradient(120deg,#0b0b0f,#121217);display:flex;align-items:center;justify-content:center;color:var(--muted)">Motion Stills</div>
       </div>
     </section>
 
-    <!-- PROCESS -->
+    <!-- CERTIFICATES -->
     <section class="section" data-anim>
-      <div class="section-title">Process</div>
-      <div class="process">
-        <div class="step">
-          <h4>Discovery</h4>
-          <p>We define goals, users, and metrics. Align on timeline and success criteria.</p>
+      <div class="section-title">Certificates</div>
+      <div class="cert-grid" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;margin-top:12px">
+        <article class="cert-card" style="padding:14px;border-radius:12px;background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);border:1px solid rgba(255,255,255,0.03)">
+          <img src="https://ik.imagekit.io/yashveer/1.png?updatedAt=1763388038277" alt="Social Media certificate" style="border-radius:8px;margin-bottom:10px">
+          <div class="cert-meta"><h4 style="margin:0 0 6px 0">Social Media Management</h4><p style="color:var(--muted)">Training in managing and planning content.</p></div>
+        </article>
+
+        <article class="cert-card" style="padding:14px;border-radius:12px;background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);border:1px solid rgba(255,255,255,0.03)">
+          <img src="https://ik.imagekit.io/yashveer/2.png?updatedAt=1763388082989" alt="Copywriting certificate" style="border-radius:8px;margin-bottom:10px">
+          <div class="cert-meta"><h4 style="margin:0 0 6px 0">Copywriting</h4><p style="color:var(--muted)">Learning persuasive writing and messaging.</p></div>
+        </article>
+
+        <article class="cert-card" style="padding:14px;border-radius:12px;background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);border:1px solid rgba(255,255,255,0.03)">
+          <img src="https://ik.imagekit.io/yashveer/4.png?updatedAt=1763388818509" alt="Python certificate" style="border-radius:8px;margin-bottom:10px">
+          <div class="cert-meta"><h4 style="margin:0 0 6px 0">Python</h4><p style="color:var(--muted)">Foundational Python programming skills.</p></div>
+        </article>
+
+        <article class="cert-card" style="padding:14px;border-radius:12px;background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);border:1px solid rgba(255,255,255,0.03)">
+          <img src="https://ik.imagekit.io/yashveer/3.png?updatedAt=1763388716213" alt="Full-Stack certificate" style="border-radius:8px;margin-bottom:10px">
+          <div class="cert-meta"><h4 style="margin:0 0 6px 0">Full-Stack Web Development</h4><p style="color:var(--muted)">Hands-on training in modern web tools.</p></div>
+        </article>
+      </div>
+    </section>
+
+    <!-- PRICING -->
+    <section id="pricing" class="section" data-anim>
+      <div class="section-title">Pricing & Why Choose Us</div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px">
+        <div style="padding:18px;border-radius:12px;background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);border:1px solid rgba(255,255,255,0.03)">
+          <h4>Why Choose Us?</h4>
+          <ul style="color:var(--muted);line-height:1.7;margin-top:8px">
+            <li><strong>Personalized Attention:</strong> Whether it's web development, Python, or graphic design, we tailor our services to your specific needs.</li>
+            <li><strong>Real-World Experience:</strong> With hands-on projects and a focus on industry skills, you'll be ready for real-world applications.</li>
+            <li><strong>Affordable & Transparent Pricing:</strong> No hidden fees – what you see is what you get.</li>
+          </ul>
         </div>
-        <div class="step">
-          <h4>Design</h4>
-          <p>Wireframes → visual design → interactive prototype. Focus on clarity and delight.</p>
+
+        <div style="padding:18px;border-radius:12px;background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);border:1px solid rgba(255,255,255,0.03)">
+          <h4>Website Development</h4>
+          <table style="width:100%;border-collapse:collapse;color:var(--muted);margin-top:8px">
+            <tr><td>Single Page Portfolio</td><td style="text-align:right">₹4,999</td></tr>
+            <tr><td>Small Business Website</td><td style="text-align:right">₹9,999</td></tr>
+            <tr><td>Multi-Page Website</td><td style="text-align:right">₹19,999</td></tr>
+            <tr><td>Shopify Store</td><td style="text-align:right">₹29,999</td></tr>
+          </table>
         </div>
-        <div class="step">
-          <h4>Refine</h4>
-          <p>Iterate with feedback, polish motion and micro-interactions, prepare handoff assets.</p>
+
+        <div style="padding:18px;border-radius:12px;background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);border:1px solid rgba(255,255,255,0.03)">
+          <h4>Python Tutoring</h4>
+          <table style="width:100%;border-collapse:collapse;color:var(--muted);margin-top:8px">
+            <tr><td>Beginner (30 Days)</td><td style="text-align:right">₹3,499</td></tr>
+            <tr><td>Advanced + Projects (45 Days)</td><td style="text-align:right">₹5,999</td></tr>
+            <tr><td>Internship-Ready (60 Days)</td><td style="text-align:right">₹9,999</td></tr>
+          </table>
         </div>
-        <div class="step">
-          <h4>Deliver</h4>
-          <p>Final assets, documentation, and support for a smooth launch and future growth.</p>
+
+        <div style="padding:18px;border-radius:12px;background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);border:1px solid rgba(255,255,255,0.03)">
+          <h4>Web Development Tutoring</h4>
+          <table style="width:100%;border-collapse:collapse;color:var(--muted);margin-top:8px">
+            <tr><td>Beginner (30 Days)</td><td style="text-align:right">₹4,499</td></tr>
+            <tr><td>Intermediate (45 Days)</td><td style="text-align:right">₹7,999</td></tr>
+            <tr><td>Advanced + Projects (60 Days)</td><td style="text-align:right">₹12,999</td></tr>
+            <tr><td>Internship-Ready (90 Days)</td><td style="text-align:right">₹19,999</td></tr>
+          </table>
+        </div>
+
+        <div style="padding:18px;border-radius:12px;background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);border:1px solid rgba(255,255,255,0.03)">
+          <h4>Graphic Design & Writing</h4>
+          <table style="width:100%;border-collapse:collapse;color:var(--muted);margin-top:8px">
+            <tr><td>Logo Design</td><td style="text-align:right">₹2,499</td></tr>
+            <tr><td>Basic Social Media Pack</td><td style="text-align:right">₹3,499</td></tr>
+            <tr><td>Captions (10 Posts)</td><td style="text-align:right">₹1,499</td></tr>
+            <tr><td>Full Social Media Pack (20 Posts + Captions)</td><td style="text-align:right">₹5,999</td></tr>
+            <tr><td>Custom Graphics</td><td style="text-align:right">₹4,499</td></tr>
+          </table>
         </div>
       </div>
     </section>
@@ -326,167 +414,200 @@
     <!-- ABOUT -->
     <section id="about" class="section" data-anim>
       <div class="section-title">About</div>
-      <div class="about">
-        <div class="portrait" style="background-image:url('https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&s=1f2c3d4e5f6a7b8c9d0e1f2a3b4c5d6e')" aria-hidden="true"></div>
+      <div style="display:grid;grid-template-columns:260px 1fr;gap:18px;align-items:start">
+        <div style="border-radius:14px;overflow:hidden;border:1px solid rgba(255,255,255,0.04);background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent)">
+          <img src="https://ik.imagekit.io/yashveer/1.jpg?updatedAt=1763307833364" alt="Yashveer portrait" style="width:100%;height:100%;object-fit:cover;display:block">
+        </div>
         <div>
-          <h3 style="font-family:Space Grotesk, sans-serif">Hi — I’m Yashveer</h3>
-          <p class="meta">I design digital products and visuals with a focus on craft, clarity, and cinematic presentation. I love solving complex problems through simple, beautiful interfaces.</p>
+          <h3 style="font-family:Space Grotesk, sans-serif;margin-bottom:6px">Hi — I’m Yashveer</h3>
+          <p style="color:var(--muted);max-width:66ch">I’m a Full Stack Web Developer who builds responsive, accessible websites and teaches Python and web development online. I love turning complex problems into simple, helpful solutions through clean code and thoughtful design. Outside of coding I write copy and content that helps products speak clearly to users.</p>
 
-          <div class="kpis">
-            <div class="kpi">4+ years design</div>
-            <div class="kpi">16+ Projects shipped</div>
-            <div class="kpi">32+ Clients</div>
-            <div class="kpi">8+ Awards & Certificates</div>
+          <div style="display:flex;gap:12px;margin-top:12px;flex-wrap:wrap">
+            <div style="padding:10px 12px;border-radius:12px;background:linear-gradient(90deg, rgba(255,255,255,0.02), transparent);font-weight:700">4+ years experience</div>
+            <div style="padding:10px 12px;border-radius:12px;background:linear-gradient(90deg, rgba(255,255,255,0.02), transparent);font-weight:700">16+ Projects</div>
+            <div style="padding:10px 12px;border-radius:12px;background:linear-gradient(90deg, rgba(255,255,255,0.02), transparent);font-weight:700">32+ Clients</div>
           </div>
 
-          <div style="margin-top:18px">
-            <a class="btn" href="#contact">Hire me</a>
-            <a class="btn secondary" href="#" style="margin-left:10px">Download CV</a>
+          <div style="margin-top:16px">
+            <a class="btn" href="https://www.instagram.com/yashveer.codes/" target="_blank" rel="noopener noreferrer">Talk to me</a>
+            <a class="btn ghost" href="https://www.instagram.com/yashveer.codes/" target="_blank" rel="noopener noreferrer" style="margin-left:10px">Start a conversation</a>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- CONTACT -->
+    <!-- CONTACT (Simplified as requested: Talk to me (Instagram) + quick socials) -->
     <section id="contact" class="section" data-anim>
-      <div class="section-title">Let's connect</div>
-      <div class="contact-wrap">
-        <form class="form-card" id="contactForm" onsubmit="return false" aria-label="Contact form">
-          <label for="name" style="color:var(--muted);font-weight:600">Your name</label>
-          <input id="name" name="name" placeholder="E.g. Aisha Khan" required>
-
-          <label for="email" style="color:var(--muted);font-weight:600;margin-top:10px">Email</label>
-          <input id="email" name="email" placeholder="you@domain.com" type="email" required>
-
-          <label for="message" style="color:var(--muted);font-weight:600;margin-top:10px">Message</label>
-          <textarea id="message" name="message" rows="6" placeholder="Tell me about your project..." required></textarea>
-
-          <div style="margin-top:12px;display:flex;gap:10px;align-items:center">
-            <button id="sendBtn" class="btn" type="submit">Send message</button>
-            <div id="formStatus" style="color:var(--muted);font-weight:600"></div>
+      <div class="section-title">Contact</div>
+      <div style="display:grid;grid-template-columns:1fr 320px;gap:18px;align-items:start">
+        <div style="padding:18px;border-radius:12px;background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);border:1px solid rgba(255,255,255,0.03)">
+          <h4>Let's work together</h4>
+          <p style="color:var(--muted)">If you have a project, want tutoring, or a quick question — DM me on Instagram or use the button below to open a chat.</p>
+          <div style="margin-top:12px">
+            <a class="btn" href="https://www.instagram.com/yashveer.codes/" target="_blank" rel="noopener noreferrer">Talk to me — @yashveer.codes</a>
           </div>
-        </form>
 
-        <div class="project-preview" style="background-image:url('https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3&s=3b4c5d6e7f8a9b0c1d2e3f4a5b6c7d8e')" aria-hidden="true"></div>
+          <div style="margin-top:18px;color:var(--muted);font-size:.95rem">
+            <strong>Email:</strong> hello@yashveer.example (optional) <br>
+            <strong>Availability:</strong> Daily 40-min tutoring sessions on Zoom (book via Instagram).
+          </div>
+        </div>
+
+        <aside style="padding:18px;border-radius:12px;background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);border:1px solid rgba(255,255,255,0.03);min-height:180px">
+          <h4>Quick Links</h4>
+          <div style="display:flex;flex-direction:column;gap:8px;margin-top:8px">
+            <a href="#work" data-link style="color:var(--muted)">Work</a>
+            <a href="#services" data-link style="color:var(--muted)">Services</a>
+            <a href="#about" data-link style="color:var(--muted)">About</a>
+            <a href="#pricing" data-link style="color:var(--muted)">Pricing</a>
+          </div>
+
+          <div style="margin-top:16px">
+            <div style="color:var(--muted);margin-bottom:8px">Follow</div>
+            <div style="display:flex;gap:8px">
+              <a href="https://www.instagram.com/yashveer.codes/" target="_blank" rel="noopener noreferrer" style="display:inline-flex;align-items:center;gap:8px;padding:8px 10px;border-radius:10px;background:linear-gradient(90deg,var(--accent-purple),var(--accent-blue));color:#04121a;font-weight:700"><i class="fa-brands fa-instagram"></i> Instagram</a>
+              <a href="https://www.linkedin.com/in/yashvsr8/" target="_blank" rel="noopener noreferrer" style="display:inline-flex;align-items:center;gap:8px;padding:8px 10px;border-radius:10px;background:rgba(255,255,255,0.03);color:var(--muted);font-weight:700"><i class="fa-brands fa-linkedin"></i> LinkedIn</a>
+            </div>
+          </div>
+        </aside>
       </div>
     </section>
 
     <!-- FINAL CTA -->
-    <section class="final-cta" data-anim>
-      <h2>Let's create something memorable.</h2>
-      <p>Available for freelance and contract roles. I design websites, brand systems, and product experiences.</p>
-      <a class="btn" href="mailto:hello@yashveer.example">Start a conversation</a>
+    <section class="section" data-anim>
+      <div style="padding:28px;border-radius:12px;text-align:center;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));border:1px solid rgba(255,255,255,0.03)">
+        <h2 style="font-family:Space Grotesk;margin-bottom:8px">Let's create something memorable</h2>
+        <p style="color:var(--muted);margin-bottom:14px">Available for freelance & contract work, tutoring, and collaboration.</p>
+        <a class="btn" href="https://www.instagram.com/yashveer.codes/" target="_blank" rel="noopener noreferrer">Start a conversation</a>
+      </div>
     </section>
 
-    <footer>
+    <footer style="padding:26px 0;text-align:center;color:var(--muted);font-size:.95rem">
       © <span id="year"></span> Yashveer Singh Rajpoot — handcrafted portfolio.
     </footer>
   </div>
 
+  <!-- ================ SCRIPTS ================ -->
   <script>
-    // progressive reveal on scroll
+    // --- Utilities: small smooth scroll function with custom duration
+    function smoothScrollTo(targetY = 0, duration = 650){
+      const startY = window.scrollY || window.pageYOffset;
+      const diff = targetY - startY;
+      let start;
+      window.requestAnimationFrame(function step(timestamp){
+        if (!start) start = timestamp;
+        const time = timestamp - start;
+        const t = Math.min(1, time / duration);
+        // easeInOutCubic
+        const eased = t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+        window.scrollTo(0, Math.round(startY + diff * eased));
+        if (time < duration) window.requestAnimationFrame(step);
+      });
+    }
+
+    // --- Navigation & mobile menu behavior
+    (function(){
+      const menuBtn = document.getElementById('menuBtn');
+      const mobileMenu = document.getElementById('mobileMenu');
+      menuBtn && menuBtn.addEventListener('click', ()=>{
+        const expanded = menuBtn.getAttribute('aria-expanded') === 'true';
+        menuBtn.setAttribute('aria-expanded', (!expanded).toString());
+        if(!expanded){
+          mobileMenu.style.display = 'block';
+          menuBtn.innerHTML = '<i class="fa-solid fa-xmark"></i>';
+        } else {
+          mobileMenu.style.display = 'none';
+          menuBtn.innerHTML = '<i class="fa-solid fa-bars"></i>';
+        }
+      });
+
+      // nav link smooth scrolling
+      document.querySelectorAll('[data-link]').forEach(a=>{
+        a.addEventListener('click', function(e){
+          e.preventDefault();
+          const href = this.getAttribute('href');
+          const id = href && href.startsWith('#') ? href.slice(1) : null;
+          if(id){
+            const el = document.getElementById(id);
+            if(el){
+              const rect = el.getBoundingClientRect();
+              const targetY = window.scrollY + rect.top - 28; // offset
+              smoothScrollTo(targetY, 700);
+            }
+          } else if(href && href !== '#'){
+            window.open(href, '_blank');
+          }
+          // hide mobile menu if open
+          if(window.innerWidth <= 980 && mobileMenu.style.display === 'block'){
+            mobileMenu.style.display = 'none';
+            if(menuBtn){
+              menuBtn.innerHTML = '<i class="fa-solid fa-bars"></i>';
+              menuBtn.setAttribute('aria-expanded', 'false');
+            }
+          }
+        });
+      });
+
+      // viewWorkBtn scroll
+      document.getElementById('viewWorkBtn') && document.getElementById('viewWorkBtn').addEventListener('click', function(e){
+        e.preventDefault();
+        const el = document.getElementById('work');
+        if(el){
+          const rect = el.getBoundingClientRect();
+          smoothScrollTo(window.scrollY + rect.top - 28, 800);
+        }
+      });
+    })();
+
+    // --- Intersection observer for reveal animations
     (function(){
       const els = document.querySelectorAll('[data-anim]');
       const obs = new IntersectionObserver((entries)=>{
-        entries.forEach(e=>{
-          if(e.isIntersecting) e.target.classList.add('is-visible');
+        entries.forEach(en=>{
+          if(en.isIntersecting) en.target.classList.add('is-visible');
         });
-      }, {threshold: 0.15});
-      els.forEach(el => obs.observe(el));
-      // year
-      document.getElementById('year').textContent = new Date().getFullYear();
+      },{threshold:0.12});
+      els.forEach(e=>obs.observe(e));
+      // show header quickly
+      document.querySelectorAll('header, .hero, .section').forEach(el=>el.classList.add('is-visible'));
     })();
 
-    // theme toggle (light/dark) — stores preference
+    // --- Year update
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // --- Project preview modal (keyboard accessible)
     (function(){
-      const btn = document.getElementById('themeBtn');
-      const body = document.body;
-      const saved = localStorage.getItem('yv_theme');
-      if(saved === 'light') body.style.background = '#f5f7fa', body.style.color = '#061016';
-      let isLight = saved === 'light';
-      function updateBtn(){
-        btn.innerHTML = isLight ? '<i class="fa-solid fa-sun"></i>' : '<i class="fa-solid fa-moon"></i>';
-        btn.setAttribute('aria-pressed', isLight ? 'true' : 'false');
-      }
-      updateBtn();
-      btn.addEventListener('click', ()=>{
-        isLight = !isLight;
-        if(isLight){
-          body.style.background = 'linear-gradient(180deg,#f4f6fa,#eef3fb)';
-          body.style.color = '#061016';
-          document.querySelectorAll('.card-right, .service, .proj, .gitem, .form-card, .final-cta').forEach(el=>{
-            el.style.background = 'linear-gradient(180deg, rgba(255,255,255,0.92), rgba(255,255,255,0.98))';
-            el.style.color = '#061016';
-            el.style.border = '1px solid rgba(12,12,12,0.03)';
-          });
-        } else {
-          location.reload(); // Reload to restore original dark gradients quickly
-        }
-        localStorage.setItem('yv_theme', isLight ? 'light' : 'dark');
-        updateBtn();
+      document.querySelectorAll('.proj').forEach(proj=>{
+        proj.addEventListener('click', ()=> openModal(proj));
+        proj.addEventListener('keydown', e=>{ if(e.key === 'Enter' || e.key === ' ') openModal(proj) });
       });
-    })();
-
-    // simple contact form behavior (no backend) — will open mailto as fallback
-    (function(){
-      const form = document.getElementById('contactForm');
-      const btn = document.getElementById('sendBtn');
-      const status = document.getElementById('formStatus');
-
-      function validateEmail(email){
-        return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-      }
-
-      btn.addEventListener('click', ()=>{
-        const name = form.name.value.trim();
-        const email = form.email.value.trim();
-        const msg = form.message.value.trim();
-        if(!name || !email || !msg){ status.textContent = "Please fill all fields."; return; }
-        if(!validateEmail(email)){ status.textContent = "Please enter a valid email."; return; }
-        // Compose mailto fallback
-        const subject = encodeURIComponent("Project enquiry from " + name);
-        const body = encodeURIComponent("Name: " + name + "\nEmail: " + email + "\n\nMessage:\n" + msg);
-        const mailto = "mailto:hello@yashveer.example?subject=" + subject + "&body=" + body;
-        status.textContent = "Opening email client...";
-        // small delay for UX
-        setTimeout(()=> window.location.href = mailto, 600);
-      });
-    })();
-
-    // quick project modal preview (keyboard accessible)
-    (function(){
-      const projects = document.querySelectorAll('.proj');
-      projects.forEach(p=>{
-        p.addEventListener('click', ()=> openPreview(p));
-        p.addEventListener('keydown', e=> { if(e.key === 'Enter' || e.key === ' ') openPreview(p) });
-      });
-      function openPreview(p){
+      function openModal(proj){
         let data;
-        try{ data = JSON.parse(p.getAttribute('data-proj')); } catch(e){ data = null; }
+        try{ data = JSON.parse(proj.getAttribute('data-proj')); } catch(e){ data = { title: proj.querySelector('h3')?.textContent || 'Project', desc: '', img: '' }; }
         const modal = document.createElement('div');
-        modal.style.position = 'fixed';modal.style.inset='0';modal.style.zIndex=9999;
+        modal.style.position='fixed';modal.style.inset='0';modal.style.zIndex=9999;
         modal.style.display='flex';modal.style.alignItems='center';modal.style.justifyContent='center';
-        modal.style.backdropFilter='blur(6px)';modal.style.background='linear-gradient(0deg, rgba(0,0,0,0.6), rgba(0,0,0,0.6))';
+        modal.style.background='linear-gradient(0deg, rgba(0,0,0,0.6), rgba(0,0,0,0.6))';modal.style.backdropFilter='blur(6px)';
         modal.innerHTML = `
-          <div role="dialog" aria-modal="true" style="width:min(900px,95%);border-radius:14px;overflow:hidden;background:linear-gradient(180deg,#09090c,#0e0e12);box-shadow:0 30px 120px rgba(0,0,0,0.8);">
-            <div style="display:grid;grid-template-columns:1fr 380px;gap:0;">
-              <div style="padding:18px;">
-                <h3 style="font-family:Space Grotesk;margin-bottom:6px">${data?.title || 'Project'}</h3>
+          <div role="dialog" aria-modal="true" style="width:min(920px,96%);border-radius:14px;overflow:hidden;background:linear-gradient(180deg,#09090c,#0e0e12);box-shadow:0 30px 120px rgba(0,0,0,0.8);">
+            <div style="display:grid;grid-template-columns:1fr 360px;gap:0">
+              <div style="padding:22px;">
+                <h3 style="font-family:Space Grotesk;margin-bottom:8px">${data?.title || ''}</h3>
                 <p style="color:var(--muted);margin-bottom:12px">${data?.desc || ''}</p>
-                <p style="color:var(--muted);font-size:.95rem">This is a preview modal. Add full case study links and images for production.</p>
-                <div style="margin-top:18px"><a class="btn" href="#">View case study</a></div>
+                <p style="color:var(--muted);line-height:1.6">This is a preview modal. For full case studies and downloadable assets, link to project pages. You can replace this preview with images, videos or slides to create a full presentation.</p>
+                <div style="margin-top:16px"><a class="btn" href="${data?.link || '#'}" target="_blank" rel="noopener noreferrer">Open project</a></div>
               </div>
               <div style="padding:12px;">
-                <div style="height:100%;border-radius:8px;background-image:url('${data?.img || ''}');background-size:cover;background-position:center"></div>
+                <div style="height:100%;border-radius:8px;background:${data?.img ? 'url('+data.img+') center/cover' : 'linear-gradient(135deg,var(--accent-blue),var(--accent-purple))'}"></div>
               </div>
             </div>
-            <div style="padding:12px;text-align:right;">
-              <button id="closeModal" style="padding:8px 12px;border-radius:8px;background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--muted);cursor:pointer">Close</button>
+            <div style="padding:12px;text-align:right;background:linear-gradient(180deg,rgba(255,255,255,0.01),transparent)">
+              <button id="closeModalBtn" style="padding:10px 12px;border-radius:10px;border:1px solid rgba(255,255,255,0.06);background:transparent;color:var(--muted);cursor:pointer">Close</button>
             </div>
           </div>
         `;
         document.body.appendChild(modal);
-        document.getElementById('closeModal').addEventListener('click', ()=> modal.remove());
+        document.getElementById('closeModalBtn').addEventListener('click', ()=> modal.remove());
         modal.addEventListener('click', (e)=> { if(e.target === modal) modal.remove(); });
       }
     })();
