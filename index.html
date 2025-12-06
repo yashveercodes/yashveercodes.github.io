@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Yashveer Singh Rajpoot – Portfolio</title>
+<title>Yashveer Singh Rajpoot</title>
 
 <style>
 /* ----------------------------------------------
@@ -173,6 +173,65 @@ PROJECT CARDS
     font-weight: 600;
 }
 
+
+/* ----------------------------------------------
+SKILLS GRID
+---------------------------------------------- */
+
+
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 20px;
+  padding: 20px;
+  justify-items: center;
+}
+
+.skill-card {
+  width: 160px;
+  height: 160px;
+  backdrop-filter: blur(8px);
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 22px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition: 0.25s ease;
+  cursor: pointer;
+}
+
+.skill-card:hover {
+  background: black;
+  transform: scale(1.07);
+}
+
+.skill-icon {
+  width: 65px;
+  height: 65px;
+  object-fit: contain;
+  margin-bottom: 12px;
+  transition: 0.25s ease;
+  filter: brightness(0) invert(1);
+}
+
+.skill-card:hover .skill-icon {
+  transform: scale(1.12);
+}
+
+.skill-name {
+  font-size: 1rem;
+  color: white;
+  font-weight: 500;
+  letter-spacing: .5px;
+  transition: 0.25s ease;
+}
+
+.skill-card:hover .skill-name {
+  transform: scale(1.12);
+}
+
 /* ----------------------------------------------
 CERTIFICATES
 ---------------------------------------------- */
@@ -319,24 +378,133 @@ RESPONSIVE
 
 <!-- ABOUT -->
 <section id="about" class="fade-in">
-    <h2 class="section-title">About Me</h2>
-    <p>
-        I'm Yashveer, a passionate developer and creative designer dedicated to building clean, modern, and purpose-driven digital experiences. My focus is on delivering work that feels premium, thoughtfully designed, and visually impressive , without sacrificing functionality or user experience.
-    </p><br>
-    <p>
-        I specialize in crafting expressive portfolios, websites, brand visuals, and user-friendly interfaces that bring ideas to life. Everything I build is tailored to the client’s needs , nothing generic, nothing cookie-cutter. Whether it's a portfolio, business website, or design system, I create with intention and precision.
-    </p><br>
-    <p>
-        When I’m not designing or coding, I deepen my knowledge through new projects, learning advanced concepts, and exploring new technologies. Every single day adds a new skill , and every new skill makes your project even better.
-    </p>
+<h2 class="section-title">About Me</h2>
+<p>
+    I'm Yashveer, a developer who loves building things that actually work and look good. I enjoy combining clean design with strong technical skills whether it's frontend, backend, AI, robotics, or anything in between. I like creating experiences that feel smooth, modern, and purposeful without losing performance or functionality.
+</p><br>
+<p>
+    I work across many fields including web development, AI, machine learning, deep learning, NLP, computer vision, voice technology, databases, cloud, DevOps, cybersecurity, robotics, embedded systems, and UI and UX design. I turn complex ideas into simple and effective digital solutions, built with precision instead of shortcuts or templates.
+</p><br>
+<p>
+    When I’m not coding or designing, I learn new technologies, build experimental projects, and explore advanced concepts in AI and robotics. Every day I improve a little more and that growth directly reflects in the quality of the work I deliver.
+</p>
 </section>
+
+
+<!--Skills-->
+
+
+<div class="skills-grid">
+  <!-- Arduino -->
+  <div class="skill-card">
+    <img src="https://ik.imagekit.io/yashveer/Icons/Icons/Arduino.png" class="skill-icon" />
+    <div class="skill-name">Arduino</div>
+  </div>
+
+  <!-- CSS -->
+  <div class="skill-card">
+    <img src="https://ik.imagekit.io/yashveer/Icons/Icons/css.png" class="skill-icon" />
+    <div class="skill-name">CSS</div>
+  </div>
+
+  <!-- Docker -->
+  <div class="skill-card">
+    <img src="https://ik.imagekit.io/yashveer/Icons/Icons/docker.png" class="skill-icon" />
+    <div class="skill-name">Docker</div>
+  </div>
+
+  <!-- ESP32 -->
+  <div class="skill-card">
+    <img src="https://ik.imagekit.io/yashveer/Icons/Icons/ESP32.png" class="skill-icon" />
+    <div class="skill-name">ESP32</div>
+  </div>
+
+  <!-- Git -->
+  <div class="skill-card">
+    <img src="https://ik.imagekit.io/yashveer/Icons/Icons/git.png" class="skill-icon" />
+    <div class="skill-name">Git</div>
+  </div>
+
+  <!-- GitHub -->
+  <div class="skill-card">
+    <img src="https://ik.imagekit.io/yashveer/Icons/Icons/github.png" class="skill-icon" />
+    <div class="skill-name">GitHub</div>
+  </div>
+
+  <!-- HTML -->
+  <div class="skill-card">
+    <img src="https://ik.imagekit.io/yashveer/Icons/Icons/html.png" class="skill-icon" />
+    <div class="skill-name">HTML</div>
+  </div>
+
+  <!-- JavaScript -->
+  <div class="skill-card">
+    <img src="https://ik.imagekit.io/yashveer/Icons/Icons/js.png" class="skill-icon" />
+    <div class="skill-name">JavaScript</div>
+  </div>
+
+  <!-- Linux -->
+  <div class="skill-card">
+    <img src="https://ik.imagekit.io/yashveer/Icons/Icons/linux.png" class="skill-icon" />
+    <div class="skill-name">Linux</div>
+  </div>
+
+  <!-- MongoDB -->
+  <div class="skill-card">
+    <img src="https://ik.imagekit.io/yashveer/Icons/Icons/MongoDB.png" class="skill-icon" />
+    <div class="skill-name">MongoDB</div>
+  </div>
+
+  <!-- Next.js -->
+  <div class="skill-card">
+    <img src="https://ik.imagekit.io/yashveer/Icons/Icons/nextjs.png" class="skill-icon" />
+    <div class="skill-name">Next.js</div>
+  </div>
+
+  <!-- Postgres -->
+  <div class="skill-card">
+    <img src="https://ik.imagekit.io/yashveer/Icons/Icons/Postgres.png" class="skill-icon" />
+    <div class="skill-name">Postgres</div>
+  </div>
+
+  <!-- PyTorch -->
+  <div class="skill-card">
+    <img src="https://ik.imagekit.io/yashveer/Icons/Icons/PyTorch.png" class="skill-icon" />
+    <div class="skill-name">PyTorch</div>
+  </div>
+
+  <!-- Python -->
+  <div class="skill-card">
+    <img src="https://ik.imagekit.io/yashveer/Icons/Icons/python.png" class="skill-icon" />
+    <div class="skill-name">Python</div>
+  </div>
+
+  <!-- React -->
+  <div class="skill-card">
+    <img src="https://ik.imagekit.io/yashveer/Icons/Icons/react.png" class="skill-icon" />
+    <div class="skill-name">React</div>
+  </div>
+
+  <!-- Redis -->
+  <div class="skill-card">
+    <img src="https://ik.imagekit.io/yashveer/Icons/Icons/Redis.png" class="skill-icon" />
+    <div class="skill-name">Redis</div>
+  </div>
+
+  <!-- ROS2 -->
+  <div class="skill-card">
+    <img src="https://ik.imagekit.io/yashveer/Icons/Icons/ROS2.png" class="skill-icon" />
+    <div class="skill-name">ROS2</div>
+  </div>
+
+</div>
 
 <!-- SERVICES -->
 <section id="services" class="fade-in">
-    <h2 class="section-title">Services</h2>
-    <p>
-        I help individuals, brands, and businesses build strong digital identities through modern web development, graphic design, storytelling, and technical education. Every service is handled with premium quality, attention to detail, and a personalized approach.
-    </p>
+<h2 class="section-title">Services</h2>
+<p>
+    I help individuals, creators, startups, and businesses build powerful digital systems. My services include website development, AI and machine learning solutions, automation tools, portfolio design, UI and UX design, robotics projects, embedded AI, and technical guidance. Everything is done with high quality, clear communication, and a personalized approach that fits your exact goals.
+</p>
 </section>
 
 <!-- PROJECTS -->
@@ -413,69 +581,157 @@ RESPONSIVE
     <h2 class="section-title">Pricing</h2>
 
     <!-- WHY CHOOSE US -->
+<div class="price-card">
+    <h3>Why Choose Us?</h3>
+    <p><strong>Personalized Attention:</strong> Every project is built from scratch whether it's a website, an AI system, a voice assistant, or a robotics setup. The solution is made specifically for you.</p>
+    <p><strong>Real World Skills:</strong> With experience in full stack development, AI, deep learning, NLP, computer vision, cloud, cybersecurity, and robotics, you get practical and future ready solutions.</p>
+    <p><strong>Clear and Honest Pricing:</strong> No hidden charges and no confusion. You always know what you are paying for.</p>
+</div>
+
+   <!-- UPDATED HTML WITH NEW PRICING AND NEW TOPICS -->
+<!-- Only the PRICING SECTION is modified; rest of your code stays same -->
+
+<section id="pricing" class="fade-in">
+    <h2 class="section-title">Pricing</h2>
+
+    <!-- WHY CHOOSE US -->
     <div class="price-card">
-        <h3>Why Choose Us?</h3>
-        <p><strong>Personalized Attention:</strong> Whether it's web development, Python, or graphic design, we tailor our services to your specific needs.</p>
-        <p><strong>Real-World Experience:</strong> With hands-on projects and a focus on industry skills, you'll be ready for real-world applications.</p>
-        <p><strong>Affordable & Transparent Pricing:</strong> No hidden fees , what you see is what you get.</p>
+        <h3>Why Choose Me?</h3>
+        <p><strong>Personalized Learning:</strong> Every student gets custom guidance based on goals.</p>
+        <p><strong>Real-World Skills:</strong> Learn with projects, practical examples, and industry workflows.</p>
+        <p><strong>Transparent Pricing:</strong> No hidden fees — clear, value‑focused pricing.</p>
     </div>
 
-    <!-- WEBSITE DEVELOPMENT -->
+    <!-- WEBSITE DEVELOPMENT (KEEPING LOW) -->
     <div class="price-card">
-        <h3>Website Development</h3>
+        <h3>Want a Website?</h3>
         <table>
             <tr><td>Single Page Portfolio</td><td style="text-align:right">₹4,999</td></tr>
             <tr><td>Small Business Website</td><td style="text-align:right">₹9,999</td></tr>
             <tr><td>Multi-Page Website</td><td style="text-align:right">₹19,999</td></tr>
             <tr><td>Shopify Store</td><td style="text-align:right">₹29,999</td></tr>
+
+
+        </table>
+
+    </div>
+
+    <div class="price-card">
+        <h3>Wanna Learn WebDev?</h3>
+        <table>
+                        <tr><td>Beginner</td><td style="text-align:right">₹3,999</td></tr>
+            <tr><td>Advance</td><td style="text-align:right">₹5,999</td></tr>
+            <tr><td>Shopify Store Creation</td><td style="text-align:right">₹19,999</td></tr>
         </table>
     </div>
 
-    <!-- PYTHON TUTORING -->
+    <!-- NEW TECH EDUCATION PRICING -->
     <div class="price-card">
-        <h3>Python Tutoring</h3>
+        <h3>Programming Basics</h3>
         <table>
-            <tr><td>Beginner (30 Days)</td><td style="text-align:right">₹3,499</td></tr>
-            <tr><td>Advanced + Projects (45 Days)</td><td style="text-align:right">₹5,999</td></tr>
-            <tr><td>Internship-Ready (60 Days)</td><td style="text-align:right">₹9,999</td></tr>
+            <tr><td>Beginner</td><td style="text-align:right">₹1,499</td></tr>
+            <tr><td>Advanced</td><td style="text-align:right">₹3,999</td></tr>
         </table>
     </div>
 
-    <!-- WEB DEV TUTORING -->
     <div class="price-card">
-        <h3>Web Development Tutoring</h3>
+        <h3>Core CS Concepts</h3>
         <table>
-            <tr><td>Beginner (30 Days)</td><td style="text-align:right">₹4,499</td></tr>
-            <tr><td>Intermediate (45 Days)</td><td style="text-align:right">₹7,999</td></tr>
-            <tr><td>Advanced + Projects (60 Days)</td><td style="text-align:right">₹12,999</td></tr>
-            <tr><td>Internship-Ready (90 Days)</td><td style="text-align:right">₹19,999</td></tr>
+            <tr><td>Beginner</td><td style="text-align:right">₹4,999</td></tr>
+            <tr><td>Advanced</td><td style="text-align:right">₹12,999</td></tr>
         </table>
     </div>
 
-    <!-- DESIGN & WRITING -->
     <div class="price-card">
-        <h3>Graphic Design & Writing</h3>
+        <h3>Math for AI</h3>
         <table>
-            <tr><td>Logo Design</td><td style="text-align:right">₹2,499</td></tr>
-            <tr><td>Basic Social Media Pack (10 posts)</td><td style="text-align:right">₹3,499</td></tr>
-            <tr><td>Captions (10 posts)</td><td style="text-align:right">₹1,499</td></tr>
-            <tr><td>Full Social Media Pack</td><td style="text-align:right">₹5,999</td></tr>
-            <tr><td>Custom Graphics</td><td style="text-align:right">₹4,499</td></tr>
+            <tr><td>Beginner</td><td style="text-align:right">₹5,999</td></tr>
+            <tr><td>Advanced</td><td style="text-align:right">₹14,999</td></tr>
+        </table>
+    </div>
+
+    <div class="price-card">
+        <h3>Machine Learning Basics</h3>
+        <table>
+            <tr><td>Beginner</td><td style="text-align:right">₹6,999</td></tr>
+            <tr><td>Advanced</td><td style="text-align:right">₹16,999</td></tr>
+        </table>
+    </div>
+
+    <div class="price-card">
+        <h3>Deep Learning</h3>
+        <table>
+            <tr><td>Beginner</td><td style="text-align:right">₹7,999</td></tr>
+            <tr><td>Advanced</td><td style="text-align:right">₹19,999</td></tr>
+        </table>
+    </div>
+
+    <div class="price-card">
+        <h3>NLP & LLMs</h3>
+        <table>
+            <tr><td>Beginner</td><td style="text-align:right">₹8,999</td></tr>
+            <tr><td>Advanced</td><td style="text-align:right">₹22,999</td></tr>
+        </table>
+    </div>
+
+    <div class="price-card">
+        <h3>Speech / Voice AI</h3>
+        <table>
+            <tr><td>Beginner</td><td style="text-align:right">₹7,499</td></tr>
+            <tr><td>Advanced</td><td style="text-align:right">₹18,999</td></tr>
+        </table>
+    </div>
+
+    <div class="price-card">
+        <h3>Computer Vision</h3>
+        <table>
+            <tr><td>Beginner</td><td style="text-align:right">₹7,999</td></tr>
+            <tr><td>Advanced</td><td style="text-align:right">₹20,999</td></tr>
+        </table>
+    </div>
+
+    <div class="price-card">
+        <h3>Databases</h3>
+        <table>
+            <tr><td>Beginner</td><td style="text-align:right">₹4,499</td></tr>
+            <tr><td>Advanced</td><td style="text-align:right">₹12,499</td></tr>
+        </table>
+    </div>
+
+    <div class="price-card">
+        <h3>Cloud & DevOps</h3>
+        <table>
+            <tr><td>Beginner</td><td style="text-align:right">₹6,499</td></tr>
+            <tr><td>Advanced</td><td style="text-align:right">₹17,999</td></tr>
+        </table>
+    </div>
+
+    <div class="price-card">
+        <h3>Robotics & Real-Time Systems</h3>
+        <table>
+            <tr><td>Beginner</td><td style="text-align:right">₹8,499</td></tr>
+            <tr><td>Advanced</td><td style="text-align:right">₹23,499</td></tr>
+        </table>
+    </div>
+
+    <div class="price-card">
+        <h3>Edge & Embedded AI</h3>
+        <table>
+            <tr><td>Beginner</td><td style="text-align:right">₹7,999</td></tr>
+            <tr><td>Advanced</td><td style="text-align:right">₹21,999</td></tr>
+        </table>
+    </div>
+
+    <div class="price-card">
+        <h3>Cybersecurity</h3>
+        <table>
+            <tr><td>Beginner</td><td style="text-align:right">₹6,999</td></tr>
+            <tr><td>Advanced</td><td style="text-align:right">₹18,499</td></tr>
         </table>
     </div>
 
 </section>
 
-<!-- CONTACT -->
-<section id="contact" class="fade-in">
-    <h2 class="section-title">Contact</h2>
-
-    <p>Instagram: <a href="https://www.instagram.com/yashveer.codes/" target="_blank">@yashveer.codes</a></p>
-
-    <a class="btn" href="https://www.instagram.com/yashveer.codes/" target="_blank">
-        DM Me on Instagram
-    </a>
-</section>
 
 <!-- FOOTER -->
 <footer>
@@ -483,7 +739,7 @@ RESPONSIVE
     <br>
     Instagram: @yashveer.codes  
     <br>
-    Built with Love ❤️
+    Built with Chaos🖤
 </footer>
 
 <!-- JAVASCRIPT -->
@@ -514,4 +770,5 @@ handleScroll();
 
 </body>
 </html>
+
 
