@@ -1,773 +1,1610 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-<!-- GOOGLE VERIFICATION -->
-<meta name="google-site-verification" content="BiyjJHGVXcaLZubuwRiaAiYyFQRGdUs-Z83aCMKyXYo" />
-
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-FEE94LJZRL"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-FEE94LJZRL');
-</script>
-
-<!-- BASIC SEO -->
-<title>Yashveer Singh Rajpoot | Full Stack Developer, AI & Robotics</title>
-<meta name="description" content="Portfolio of Yashveer Singh Rajpoot — Full Stack Developer, AI Engineer, ML/DL enthusiast, and Robotics Developer. I build modern web apps, AI systems, automation tools, and premium digital experiences." />
-<meta name="keywords" content="Yashveer Singh Rajpoot, yashveercodes, Yashveer portfolio, AI developer India, full stack developer, young programmer, ML engineer, web developer, robotics developer, portfolio website" />
-<meta name="author" content="Yashveer Singh Rajpoot" />
-
-<!-- OPEN GRAPH — SOCIAL SHARE -->
-<meta property="og:title" content="Yashveer Singh Rajpoot | Developer & AI Engineer" />
-<meta property="og:description" content="I create modern websites, AI systems, automation tools, and robotics projects. Turning ideas into reality." />
-<meta property="og:image" content="https://ik.imagekit.io/yashveer/1.jpg?updatedAt=1763307833364" />
-<meta property="og:type" content="website" />
-<meta property="og:url" content="https://yashveercodes.github.io/" />
-
-<!-- TWITTER CARD -->
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Yashveer Singh Rajpoot | Developer & AI Engineer">
-<meta name="twitter:description" content="Full stack development, AI, ML/DL, robotics, automation & design.">
-<meta name="twitter:image" content="https://ik.imagekit.io/yashveer/1.jpg?updatedAt=1763307833364">
-
-<!-- FAVICON -->
-<link rel="icon" type="image/png" href="https://ik.imagekit.io/yashveer/1.jpg?updatedAt=1763307833364" />
-
-<!-- JSON-LD STRUCTURED DATA (Google SEO Boost) -->
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org/",
-  "@type": "Person",
-  "name": "Yashveer Singh Rajpoot",
-  "alternateName": "yashveercodes",
-  "url": "https://yashveercodes.github.io/",
-  "image": "https://ik.imagekit.io/yashveer/1.jpg",
-  "jobTitle": "Developer | AI & Robotics",
-  "sameAs": [
-    "https://www.instagram.com/yashveer.codes"
-  ],
-  "description": "Developer, AI engineer, full stack specialist, robotics and automation builder. I create modern digital products and intelligent systems."
-}
-</script>
-
-<style>
-/* ----------------------------------------------
-GLOBAL STYLES
----------------------------------------------- */
-body {
-    margin: 0;
-    font-family: "Poppins", sans-serif;
-    background: radial-gradient(circle at top, #0a0f1e, #05070d 60%);
-    color: white;
-    overflow-x: hidden;
-}
-
-h1, h2, h3 {
-    margin: 0;
-    font-weight: 600;
-}
-
-section {
-    padding: 90px 12%;
-}
-
-a {
-    text-decoration: none;
-    color: inherit;
-}
-
-/* ----------------------------------------------
-GLASS NAVBAR
----------------------------------------------- */
-nav {
-    position: fixed;
-    top: 0;
-    width: 100%;
-    padding: 18px 10%;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    backdrop-filter: blur(18px);
-    background: rgba(255,255,255,0.05);
-    border-bottom: 1px solid rgba(255,255,255,0.1);
-    z-index: 9999;
-}
-
-nav .left {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-}
-
-nav img {
-    height: 48px;
-    width: 48px;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 2px solid rgba(255,255,255,0.4);
-}
-
-nav .right {
-    display: flex;
-    gap: 30px;
-    font-size: 16px;
-}
-
-nav .right a:hover {
-    opacity: 0.6;
-}
-
-/* ----------------------------------------------
-MOBILE MENU
----------------------------------------------- */
-#menu-btn {
-    display: none;
-    font-size: 30px;
-    cursor: pointer;
-}
-
-#mobile-menu {
-    position: fixed;
-    top: 0;
-    right: -100%;
-    width: 65%;
-    height: 100%;
-    background: rgba(255,255,255,0.07);
-    backdrop-filter: blur(15px);
-    padding: 80px 40px;
-    display: flex;
-    flex-direction: column;
-    gap: 25px;
-    font-size: 20px;
-    transition: 0.3s ease;
-    z-index: 9999999;
-}
-
-#mobile-menu.open {
-    right: 0;
-}
-
-#mobile-menu a {
-    border-bottom: 1px solid rgba(255,255,255,0.1);
-    padding-bottom: 10px;
-}
-
-/* ----------------------------------------------
-HERO / BANNER
----------------------------------------------- */
-#hero {
-    padding-top: 170px;
-    text-align: center;
-}
-
-#hero h1 {
-    font-size: 62px;
-    background: linear-gradient(to right, #78a8ff, #c187ff);
-    -webkit-background-clip: text;
-    color: transparent;
-}
-
-#hero p {
-    margin-top: 15px;
-    font-size: 20px;
-    opacity: 0.8;
-}
-
-#hero .btn {
-    margin-top: 35px;
-    padding: 14px 34px;
-    background: rgba(255,255,255,0.08);
-    border: 1px solid rgba(255,255,255,0.2);
-    backdrop-filter: blur(8px);
-    border-radius: 12px;
-    font-size: 18px;
-    display: inline-block;
-    transition: 0.2s ease;
-}
-
-#hero .btn:hover {
-    background: rgba(255,255,255,0.18);
-}
-
-/* ----------------------------------------------
-SECTIONS
----------------------------------------------- */
-.section-title {
-    font-size: 46px;
-    margin-bottom: 40px;
-}
-
-/* ----------------------------------------------
-PROJECT CARDS
----------------------------------------------- */
-.project-card {
-    padding: 35px;
-    margin-bottom: 40px;
-    background: rgba(255,255,255,0.06);
-    border: 1px solid rgba(255,255,255,0.1);
-    backdrop-filter: blur(12px);
-    border-radius: 20px;
-}
-
-.project-card h3 {
-    font-size: 30px;
-}
-
-.project-card a {
-    color: #94b3ff;
-    font-weight: 600;
-}
-
-/* ----------------------------------------------
-SKILLS GRID
----------------------------------------------- */
-.skills-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-  gap: 20px;
-  padding: 20px;
-  justify-items: center;
-}
-
-.skill-card {
-  width: 160px;
-  height: 160px;
-  backdrop-filter: blur(8px);
-  background: rgba(255, 255, 255, 0.08);
-  border-radius: 22px;
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  transition: 0.25s ease;
-  cursor: pointer;
-}
-
-.skill-card:hover {
-  background: black;
-  transform: scale(1.07);
-}
-
-.skill-icon {
-  width: 65px;
-  height: 65px;
-  object-fit: contain;
-  margin-bottom: 12px;
-  transition: 0.25s ease;
-  filter: brightness(0) invert(1);
-}
-
-.skill-card:hover .skill-icon {
-  transform: scale(1.12);
-}
-
-.skill-name {
-  font-size: 1rem;
-  color: white;
-  font-weight: 500;
-  letter-spacing: .5px;
-  transition: 0.25s ease;
-}
-
-.skill-card:hover .skill-name {
-  transform: scale(1.12);
-}
-
-/* ----------------------------------------------
-CERTIFICATES
----------------------------------------------- */
-.cert-grid {
-    display: grid;
-    gap: 25px;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-}
-
-.cert-grid img {
-    width: 100%;
-    border-radius: 14px;
-    border: 1px solid rgba(255,255,255,0.15);
-}
-
-/* ----------------------------------------------
-PRICING CARDS
----------------------------------------------- */
-.price-card {
-    background: rgba(255,255,255,0.07);
-    border: 1px solid rgba(255,255,255,0.12);
-    padding: 35px;
-    border-radius: 20px;
-    margin-bottom: 35px;
-}
-
-.price-card h3 {
-    font-size: 28px;
-}
-
-.price-card table {
-    width: 100%;
-    margin-top: 15px;
-    border-collapse: collapse;
-}
-
-.price-card td {
-    padding: 10px 0;
-    border-bottom: 1px solid rgba(255,255,255,0.09);
-}
-
-/* ----------------------------------------------
-ABOUT SECTION
----------------------------------------------- */
-#about p {
-    line-height: 1.8;
-    opacity: 0.85;
-    font-size: 17px;
-}
-
-/* ----------------------------------------------
-CONTACT SECTION
----------------------------------------------- */
-#contact .btn {
-    padding: 14px 30px;
-    background: rgba(255,255,255,0.08);
-    border: 1px solid rgba(255,255,255,0.2);
-    border-radius: 12px;
-    display: inline-block;
-    margin-top: 10px;
-}
-
-/* ----------------------------------------------
-FOOTER
----------------------------------------------- */
-footer {
-    text-align: center;
-    padding: 40px 12%;
-    opacity: 0.55;
-    margin-top: 50px;
-    font-size: 14px;
-}
-
-/* ----------------------------------------------
-SCROLL ANIMATIONS
----------------------------------------------- */
-.fade-in {
-    opacity: 0;
-    transform: translateY(40px);
-    transition: 0.8s ease;
-}
-
-.fade-in.show {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-/* ----------------------------------------------
-RESPONSIVE
----------------------------------------------- */
-@media (max-width: 900px) {
-    nav .right {
-        display: none;
-    }
-    #menu-btn {
-        display: block;
-    }
-    #hero h1 {
-        font-size: 40px;
-    }
-}
-</style>
-</head>
-<body>
-
-<!-- NAVBAR -->
-<nav>
-    <div class="left">
-        <img src="https://ik.imagekit.io/yashveer/1.jpg?updatedAt=1763307833364">
-        <strong>Yashveer</strong>
-    </div>
-
-    <div class="right">
-        <a href="#about">About</a>
-        <a href="#services">Services</a>
-        <a href="#projects">Project</a>
-        <a href="#pricing">Pricing</a>
-        <a href="#work">Work</a>
-        <a href="#contact">Contact</a>
-    </div>
-
-    <div id="menu-btn">☰</div>
-</nav>
-
-<!-- MOBILE MENU -->
-<div id="mobile-menu">
-    <a href="#about">About</a>
-    <a href="#services">Services</a>
-    <a href="#projects">Project</a>
-    <a href="#pricing">Pricing</a>
-    <a href="#work">Work</a>
-    <a href="#contact">Contact</a>
-</div>
-
-<!-- HERO -->
-<section id="hero">
-    <h1>I Turn Ideas Into Reality.</h1>
-    <p>Developer • Designer • Learner</p>
-
-    <a class="btn" href="https://www.instagram.com/yashveer.codes/" target="_blank">
-        Talk to Me
-    </a>
-</section>
-
-<!-- ABOUT -->
-<section id="about" class="fade-in">
-<h2 class="section-title">About Me</h2>
-<p>
-    I'm Yashveer, a developer who loves building things that actually work and look good. I enjoy combining clean design with strong technical skills whether it's frontend, backend, AI, robotics, or anything in between. I like creating experiences that feel smooth, modern, and purposeful without losing performance or functionality.
-</p><br>
-<p>
-    I work across many fields including web development, AI, machine learning, deep learning, NLP, computer vision, voice technology, databases, cloud, DevOps, cybersecurity, robotics, embedded systems, and UI and UX design. I turn complex ideas into simple and effective digital solutions, built with precision instead of shortcuts or templates.
-</p><br>
-<p>
-    When I’m not coding or designing, I learn new technologies, build experimental projects, and explore advanced concepts in AI and robotics. Every day I improve a little more and that growth directly reflects in the quality of the work I deliver.
-</p>
-</section>
-
-<!--Skills-->
-<div class="skills-grid">
-  <div class="skill-card">
-    <img src="https://ik.imagekit.io/yashveer/Icons/Icons/Arduino.png" class="skill-icon" />
-    <div class="skill-name">Arduino</div>
-  </div>
-
-  <div class="skill-card">
-    <img src="https://ik.imagekit.io/yashveer/Icons/Icons/css.png" class="skill-icon" />
-    <div class="skill-name">CSS</div>
-  </div>
-
-  <div class="skill-card">
-    <img src="https://ik.imagekit.io/yashveer/Icons/Icons/docker.png" class="skill-icon" />
-    <div class="skill-name">Docker</div>
-  </div>
-
-  <div class="skill-card">
-    <img src="https://ik.imagekit.io/yashveer/Icons/Icons/ESP32.png" class="skill-icon" />
-    <div class="skill-name">ESP32</div>
-  </div>
-
-  <div class="skill-card">
-    <img src="https://ik.imagekit.io/yashveer/Icons/Icons/git.png" class="skill-icon" />
-    <div class="skill-name">Git</div>
-  </div>
-
-  <div class="skill-card">
-    <img src="https://ik.imagekit.io/yashveer/Icons/Icons/github.png" class="skill-icon" />
-    <div class="skill-name">GitHub</div>
-  </div>
-
-  <div class="skill-card">
-    <img src="https://ik.imagekit.io/yashveer/Icons/Icons/html.png" class="skill-icon" />
-    <div class="skill-name">HTML</div>
-  </div>
-
-  <div class="skill-card">
-    <img src="https://ik.imagekit.io/yashveer/Icons/Icons/js.png" class="skill-icon" />
-    <div class="skill-name">JavaScript</div>
-  </div>
-
-  <div class="skill-card">
-    <img src="https://ik.imagekit.io/yashveer/Icons/Icons/linux.png" class="skill-icon" />
-    <div class="skill-name">Linux</div>
-  </div>
-
-  <div class="skill-card">
-    <img src="https://ik.imagekit.io/yashveer/Icons/Icons/MongoDB.png" class="skill-icon" />
-    <div class="skill-name">MongoDB</div>
-  </div>
-
-  <div class="skill-card">
-    <img src="https://ik.imagekit.io/yashveer/Icons/Icons/nextjs.png" class="skill-icon" />
-    <div class="skill-name">Next.js</div>
-  </div>
-
-  <div class="skill-card">
-    <img src="https://ik.imagekit.io/yashveer/Icons/Icons/Postgres.png" class="skill-icon" />
-    <div class="skill-name">Postgres</div>
-  </div>
-
-  <div class="skill-card">
-    <img src="https://ik.imagekit.io/yashveer/Icons/Icons/PyTorch.png" class="skill-icon" />
-    <div class="skill-name">PyTorch</div>
-  </div>
-
-  <div class="skill-card">
-    <img src="https://ik.imagekit.io/yashveer/Icons/Icons/python.png" class="skill-icon" />
-    <div class="skill-name">Python</div>
-  </div>
-
-  <div class="skill-card">
-    <img src="https://ik.imagekit.io/yashveer/Icons/Icons/react.png" class="skill-icon" />
-    <div class="skill-name">React</div>
-  </div>
-
-  <div class="skill-card">
-    <img src="https://ik.imagekit.io/yashveer/Icons/Icons/Redis.png" class="skill-icon" />
-    <div class="skill-name">Redis</div>
-  </div>
-
-  <div class="skill-card">
-    <img src="https://ik.imagekit.io/yashveer/Icons/Icons/ROS2.png" class="skill-icon" />
-    <div class="skill-name">ROS2</div>
-  </div>
-</div>
-
-<!-- SERVICES -->
-<section id="services" class="fade-in">
-<h2 class="section-title">Services</h2>
-<p>
-    I help individuals, creators, startups, and businesses build powerful digital systems. My services include website development, AI and machine learning solutions, automation tools, portfolio design, UI and UX design, robotics projects, embedded AI, and technical guidance. Everything is done with high quality, clear communication, and a personalized approach that fits your exact goals.
-</p>
-</section>
-
-<!-- PROJECTS -->
-<section id="projects" class="fade-in">
-    <h2 class="section-title">Projects</h2>
-
-    <div class="project-card">
-        <h3>Rohit Mukherjee Portfolio</h3>
-        <a href="https://www.myadvertisingfolio.com/" target="_blank">
-            Visit Project →
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- GOOGLE VERIFICATION -->
+    <meta
+      name="google-site-verification"
+      content="BiyjJHGVXcaLZubuwRiaAiYyFQRGdUs-Z83aCMKyXYo"
+    />
+
+    <!-- Google tag (gtag.js) -->
+    <script
+      async=""
+      src="https://www.googletagmanager.com/gtag/js?id=G-FEE94LJZRL"
+    ></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-FEE94LJZRL');
+    </script>
+
+    <!-- BASIC SEO -->
+    <title>
+      Yashveer Singh Rajpoot | Full Stack Developer, AI &amp; Robotics
+    </title>
+    <meta
+      name="description"
+      content="Portfolio of Yashveer Singh Rajpoot — Full Stack Developer, AI Engineer. Building modern web apps and AI systems."
+    />
+    <!-- OPEN GRAPH -->
+    <meta property="og:type" content="website" />
+    <meta
+      property="og:title"
+      content="Yashveer Singh Rajpoot | Full Stack Developer, AI &amp; Robotics"
+    />
+    <meta
+      property="og:description"
+      content="Portfolio of Yashveer Singh Rajpoot — Full Stack Developer, AI Engineer. Building modern web apps and AI systems."
+    />
+    <meta
+      property="og:image"
+      content="https://ik.imagekit.io/yashveer/1.jpg?updatedAt=1763307833364"
+    />
+
+    <!-- TWITTER -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta
+      name="twitter:title"
+      content="Yashveer Singh Rajpoot | Full Stack Developer, AI &amp; Robotics"
+    />
+    <meta
+      name="twitter:description"
+      content="Portfolio of Yashveer Singh Rajpoot — Full Stack Developer, AI Engineer. Building modern web apps and AI systems."
+    />
+    <meta
+      name="twitter:image"
+      content="https://ik.imagekit.io/yashveer/1.jpg?updatedAt=1763307833364"
+    />
+
+    <!-- SCHEMA.ORG JSON-LD -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Yashveer Singh Rajpoot",
+        "jobTitle": "Full Stack Developer, AI Engineer",
+        "image": "https://ik.imagekit.io/yashveer/1.jpg?updatedAt=1763307833364",
+        "description": "Portfolio of Yashveer Singh Rajpoot — Full Stack Developer, AI Engineer. Building modern web apps and AI systems.",
+        "sameAs": [
+          "https://www.instagram.com/yashveer.codes/"
+        ]
+      }
+    </script>
+
+    <!-- FAVICON -->
+    <link
+      rel="icon"
+      type="image/png"
+      href="https://ik.imagekit.io/yashveer/1.jpg?updatedAt=1763307833364"
+    />
+
+    <!-- FONTS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&amp;display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- TAILWIND & ICONS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+      tailwind.config = {
+          theme: {
+              extend: {
+                  fontFamily: {
+                      sans: ['Poppins', 'sans-serif'],
+                  },
+                  colors: {
+                      brand: {
+                          dark: '#05070d',
+                          blue: '#78a8ff',
+                          purple: '#c187ff'
+                      }
+                  },
+                  animation: {
+                      'fade-in-up': 'fadeInUp 0.8s ease-out forwards',
+                      'bounce-settle': 'bounceSettle 1.2s cubic-bezier(0.34, 1.56, 0.64, 1) forwards',
+                  },
+                  keyframes: {
+                      fadeInUp: {
+                          '0%': { opacity: '0', transform: 'translateY(20px)' },
+                          '100%': { opacity: '1', transform: 'translateY(0)' },
+                      },
+                      bounceSettle: {
+                          '0%': { opacity: '0', transform: 'translateY(50px) scale(0.9)' },
+                          '60%': { opacity: '1', transform: 'translateY(-15px) scale(1.02)' },
+                          '80%': { transform: 'translateY(5px) scale(0.98)' },
+                          '100%': { opacity: '1', transform: 'translateY(0) scale(1)' },
+                      }
+                  }
+              }
+          }
+      }
+    </script>
+    <style>
+      body {
+          background: radial-gradient(circle at top, #0a0f1e, #05070d 60%);
+          min-height: 100vh;
+          cursor: default;
+      }
+
+      /* Custom Mouse Follower */
+      #cursor-glow {
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 400px;
+          height: 400px;
+          background: radial-gradient(circle, rgba(193, 135, 255, 0.15) 0%, rgba(120, 168, 255, 0.05) 40%, transparent 70%);
+          transform: translate(-50%, -50%);
+          pointer-events: none;
+          z-index: 9999;
+          mix-blend-mode: screen;
+          transition: opacity 0.3s ease;
+      }
+
+      .fade-in-section {
+          opacity: 0;
+          transform: translateY(20px);
+          transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+      }
+
+      .fade-in-section.is-visible {
+          opacity: 1;
+          transform: none;
+      }
+
+      /* Pricing Card Hover Effect */
+      .pricing-card {
+          transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+          transform-style: preserve-3d;
+      }
+
+      .pricing-card:hover {
+          transform: translateY(-8px) scale(1.02);
+          box-shadow: 0 20px 40px -10px rgba(255, 255, 255, 0.1);
+      }
+
+      /* Scrollbar */
+      ::-webkit-scrollbar {
+          width: 8px;
+      }
+
+      ::-webkit-scrollbar-track {
+          background: #05070d;
+      }
+
+      ::-webkit-scrollbar-thumb {
+          background: #333;
+          border-radius: 4px;
+      }
+
+      ::-webkit-scrollbar-thumb:hover {
+          background: #555;
+      }
+    </style>
+  </head>
+
+  <body
+    class="text-slate-300 font-sans antialiased overflow-x-hidden selection:bg-purple-500/30 relative"
+  >
+    <!-- CURSOR FOLLOWER -->
+    <div id="cursor-glow"></div>
+
+    <!-- NAVBAR -->
+    <nav
+      class="fixed top-0 inset-x-0 z-50 flex items-center justify-between px-6 py-4 md:px-12 md:py-5 border-b border-white/[0.08] bg-[#0a0f1e]/80 backdrop-blur-xl"
+    >
+      <div class="flex items-center gap-3">
+        <img
+          src="https://ik.imagekit.io/yashveer/1.jpg?updatedAt=1763307833364"
+          alt="Profile"
+          class="h-10 w-10 md:h-12 md:w-12 rounded-full object-cover border-2 border-white/20 ring-2 ring-white/5"
+        />
+        <strong class="text-white font-medium tracking-tight text-lg">
+          Yashveer
+        </strong>
+      </div>
+
+      <div
+        class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-400"
+      >
+        <a
+          href="#about"
+          class="hover:text-white transition-colors duration-200"
+        >
+          About
         </a>
-        <p>
-            A storytelling-focused portfolio built for an advertising creative who needed a space that is more than just a website , it’s an experience. The entire design revolves around narrative flow, ensuring every section feels like a chapter in his career journey. Soft typography, scroll-based visuals, and a cinematic presentation style create a personal connection with the viewer.
-        </p>
-        <p>
-            This project emphasizes clarity and emotional resonance. Instead of simply listing work, the website guides visitors through the logic, story, and context behind each piece. Subtle animations, strategic spacing, and visual pacing make the site feel both premium and memorable.
-        </p>
-        <p>
-            From concept to execution, every detail was crafted to match Rohit’s personality and creative identity. The goal was to build a digital portfolio that doesn't just show who he is , but also shows how he thinks. The result is a site that truly stands out in the advertising industry.
-        </p>
-    </div>
-
-    <div class="project-card">
-        <h3>Amisha – Design Portfolio</h3>
-        <a href="https://amisha-graphic-designer.yashvsr2010.workers.dev/" target="_blank">
-            Visit Project →
+        <a
+          href="#services"
+          class="hover:text-white transition-colors duration-200"
+        >
+          Services
         </a>
-        <p>
-            A clean and expressive portfolio created for a graphic designer who wanted a soft, artistic, and modern space to showcase her work. The design focuses on white space, minimal color accents, and an elegant rhythm that allows visuals to shine. Every element is carefully placed to ensure an aesthetically pleasing experience that aligns with current design trends.
-        </p>
-        <p>
-            The layout emphasizes storytelling through design , each project is introduced with subtle animations, soft shadows, and a gallery-style presentation. Nothing is cluttered; everything is intentional. This approach allows her creativity to take center stage without any distractions.
-        </p>
-        <p>
-            The website is optimized for responsiveness, ensuring seamless browsing on any device. It's not just a portfolio , it's an extension of her artistic identity, crafted to leave a lasting impression on potential clients, employers, and collaborators.
-        </p>
-    </div>
-
-    <div class="project-card">
-        <h3>MakeUp Artist Sample Site</h3>
-        <a href="https://yashveer-makeup-artist-sample-site.netlify.app/" target="_blank">
-            Visit Project →
+        <a
+          href="#projects"
+          class="hover:text-white transition-colors duration-200"
+        >
+          Project
         </a>
+        <a
+          href="#pricing"
+          class="hover:text-white transition-colors duration-200"
+        >
+          Pricing
+        </a>
+        <a href="#work" class="hover:text-white transition-colors duration-200">
+          Work
+        </a>
+        <a
+          href="#contact"
+          class="hover:text-white transition-colors duration-200"
+        >
+          Contact
+        </a>
+      </div>
+
+      <button
+        id="menu-btn"
+        class="md:hidden text-white p-1 hover:bg-white/10 rounded-lg transition"
+      >
+        <i data-lucide="menu" class="w-7 h-7"></i>
+      </button>
+    </nav>
+
+    <!-- MOBILE MENU -->
+    <div
+      id="mobile-menu"
+      class="fixed inset-y-0 right-0 z-[60] w-3/4 max-w-sm bg-[#0a0f1e]/95 backdrop-blur-2xl border-l border-white/10 p-8 flex flex-col gap-6 transform translate-x-full transition-transform duration-300 ease-in-out shadow-2xl"
+    >
+      <div class="flex justify-end">
+        <button
+          id="close-menu-btn"
+          class="text-slate-400 hover:text-white transition"
+        >
+          <i data-lucide="x" class="w-8 h-8"></i>
+        </button>
+      </div>
+      <nav class="flex flex-col gap-6 text-lg font-medium text-slate-300">
+        <a
+          href="#about"
+          class="border-b border-white/5 pb-2 hover:text-white hover:border-white/20 transition-all"
+        >
+          About
+        </a>
+        <a
+          href="#services"
+          class="border-b border-white/5 pb-2 hover:text-white hover:border-white/20 transition-all"
+        >
+          Services
+        </a>
+        <a
+          href="#projects"
+          class="border-b border-white/5 pb-2 hover:text-white hover:border-white/20 transition-all"
+        >
+          Project
+        </a>
+        <a
+          href="#pricing"
+          class="border-b border-white/5 pb-2 hover:text-white hover:border-white/20 transition-all"
+        >
+          Pricing
+        </a>
+        <a
+          href="#work"
+          class="border-b border-white/5 pb-2 hover:text-white hover:border-white/20 transition-all"
+        >
+          Work
+        </a>
+        <a
+          href="#contact"
+          class="border-b border-white/5 pb-2 hover:text-white hover:border-white/20 transition-all"
+        >
+          Contact
+        </a>
+      </nav>
+    </div>
+    <div
+      id="menu-overlay"
+      class="fixed inset-0 bg-black/60 backdrop-blur-sm z-[55] hidden opacity-0 transition-opacity duration-300"
+    ></div>
+
+    <!-- HERO -->
+    <section
+      id="hero"
+      class="pt-40 pb-20 px-6 md:px-12 flex flex-col items-center text-center"
+    >
+      <div
+        class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-xs font-medium text-purple-300 mb-8 tracking-wide animate-fade-in-up"
+      >
+        <span class="relative flex h-2 w-2">
+          <span
+            class="animate-ping absolute inline-flex h-full w-full rounded-full bg-purple-400 opacity-75"
+          ></span>
+          <span
+            class="relative inline-flex rounded-full h-2 w-2 bg-purple-500"
+          ></span>
+        </span>
+        Available for hire
+      </div>
+
+      <!-- Bouncing Title -->
+      <h1
+        class="text-5xl md:text-7xl font-semibold tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-brand-blue to-brand-purple mb-6 max-w-4xl leading-[1.1] opacity-0 animate-bounce-settle"
+      >
+        I Turn Ideas Into Reality.
+      </h1>
+
+      <p
+        class="text-lg md:text-xl text-slate-400 max-w-2xl mb-10 font-light animate-fade-in-up"
+        style="animation-delay: 0.4s;"
+      >
+        Developer • Designer • Learner
+      </p>
+
+      <a
+        href="https://www.instagram.com/yashveer.codes/"
+        target="_blank"
+        class="group relative inline-flex items-center gap-2 px-8 py-3.5 bg-white/[0.08] hover:bg-white/[0.12] border border-white/20 rounded-xl text-white font-medium transition-all duration-300 backdrop-blur-sm overflow-hidden animate-fade-in-up"
+        style="animation-delay: 0.6s;"
+      >
+        <span>Talk to Me</span>
+        <i
+          data-lucide="arrow-right"
+          class="w-4 h-4 group-hover:translate-x-1 transition-transform"
+        ></i>
+        <div
+          class="absolute inset-0 -z-10 bg-gradient-to-r from-transparent via-white/10 to-transparent w-1/2 -translate-x-full group-hover:animate-[shimmer_1s_infinite]"
+        ></div>
+      </a>
+    </section>
+
+    <!-- ABOUT -->
+    <section
+      id="about"
+      class="py-20 px-6 md:px-24 max-w-7xl mx-auto fade-in-section"
+    >
+      <h2
+        class="text-3xl md:text-4xl font-semibold text-white tracking-tight mb-8"
+      >
+        About Me
+      </h2>
+      <div
+        class="space-y-6 text-base md:text-lg leading-relaxed text-slate-400 font-light"
+      >
         <p>
-            A soft, aesthetic website designed specifically for beauty professionals looking to build an online presence that reflects elegance and style. The visual theme showcases warm color palettes, light gradients, and high-end beauty aesthetics inspired by professional makeup portfolios.
+          I'm Yashveer, a developer who loves building things that actually work
+          and look good. I enjoy combining clean design with strong technical
+          skills whether it's frontend, backend, AI, robotics, or anything in
+          between. I like creating experiences that feel smooth, modern, and
+          purposeful without losing performance or functionality.
         </p>
         <p>
-            The layout is structured to highlight services, showcase before/after transformations, and display testimonials with high clarity. A strong focus was placed on typography, creating a luxurious look that feels consistent with modern beauty brands.
+          I work across many fields including web development, AI, machine
+          learning, deep learning, NLP, computer vision, voice technology,
+          databases, cloud, DevOps, cybersecurity, robotics, embedded systems,
+          and UI and UX design. I turn complex ideas into simple and effective
+          digital solutions, built with precision instead of shortcuts or
+          templates.
         </p>
         <p>
-            This sample site demonstrates what a premium online presence for makeup artists can look like , smooth, professional, and visually engaging. It’s built to attract clients and convey credibility instantly.
+          When I’m not coding or designing, I learn new technologies, build
+          experimental projects, and explore advanced concepts in AI and
+          robotics. Every day I improve a little more and that growth directly
+          reflects in the quality of the work I deliver.
         </p>
-    </div>
+      </div>
+    </section>
 
-</section>
+    <!-- SKILLS GRID (Full Color Logos) -->
+    <section class="py-12 px-6 md:px-12 max-w-7xl mx-auto fade-in-section">
+      <div
+        class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-5 justify-items-center"
+      >
+        <div
+          class="group flex flex-col items-center justify-center w-full aspect-square bg-white/[0.03] border border-white/10 rounded-2xl hover:bg-white/[0.08] hover:border-white/20 hover:scale-105 transition-all duration-300 cursor-default"
+        >
+          <img
+            src="https://ik.imagekit.io/yashveer/Icons/Icons/Arduino.png"
+            class="w-12 h-12 object-contain mb-3 opacity-90 group-hover:scale-110 transition-all duration-300"
+            alt="Arduino"
+          />
+          <span
+            class="text-sm font-medium text-slate-400 group-hover:text-white transition-colors"
+          >
+            Arduino
+          </span>
+        </div>
 
-<!-- CERTIFICATES -->
-<section id="work" class="fade-in">
-    <h2 class="section-title">Certificates</h2>
+        <div
+          class="group flex flex-col items-center justify-center w-full aspect-square bg-white/[0.03] border border-white/10 rounded-2xl hover:bg-white/[0.08] hover:border-white/20 hover:scale-105 transition-all duration-300 cursor-default"
+        >
+          <img
+            src="https://ik.imagekit.io/yashveer/Icons/Icons/css.png"
+            class="w-12 h-12 object-contain mb-3 opacity-90 group-hover:scale-110 transition-all duration-300"
+            alt="CSS"
+          />
+          <span
+            class="text-sm font-medium text-slate-400 group-hover:text-white transition-colors"
+          >
+            CSS
+          </span>
+        </div>
 
-    <div class="cert-grid">
-        <img src="https://ik.imagekit.io/yashveer/1.png?updatedAt=1763388038277">
-        <img src="https://ik.imagekit.io/yashveer/2.png?updatedAt=1763388082989">
-        <img src="https://ik.imagekit.io/yashveer/4.png?updatedAt=1763388818509">
-        <img src="https://ik.imagekit.io/yashveer/3.png?updatedAt=1763388716213">
-    </div>
-</section>
+        <div
+          class="group flex flex-col items-center justify-center w-full aspect-square bg-white/[0.03] border border-white/10 rounded-2xl hover:bg-white/[0.08] hover:border-white/20 hover:scale-105 transition-all duration-300 cursor-default"
+        >
+          <img
+            src="https://ik.imagekit.io/yashveer/Icons/Icons/docker.png"
+            class="w-12 h-12 object-contain mb-3 opacity-90 group-hover:scale-110 transition-all duration-300"
+            alt="Docker"
+          />
+          <span
+            class="text-sm font-medium text-slate-400 group-hover:text-white transition-colors"
+          >
+            Docker
+          </span>
+        </div>
 
-<!-- PRICING -->
-<section id="pricing" class="fade-in">
-    <h2 class="section-title">Pricing</h2>
+        <div
+          class="group flex flex-col items-center justify-center w-full aspect-square bg-white/[0.03] border border-white/10 rounded-2xl hover:bg-white/[0.08] hover:border-white/20 hover:scale-105 transition-all duration-300 cursor-default"
+        >
+          <img
+            src="https://ik.imagekit.io/yashveer/Icons/Icons/ESP32.png"
+            class="w-12 h-12 object-contain mb-3 opacity-90 group-hover:scale-110 transition-all duration-300"
+            alt="ESP32"
+          />
+          <span
+            class="text-sm font-medium text-slate-400 group-hover:text-white transition-colors"
+          >
+            ESP32
+          </span>
+        </div>
 
-    <div class="price-card">
-        <h3>Why Choose Me?</h3>
-        <p><strong>Personalized Learning:</strong> Every student gets custom guidance based on goals.</p>
-        <p><strong>Real-World Skills:</strong> Learn with projects, practical examples, and industry workflows.</p>
-        <p><strong>Transparent Pricing:</strong> No hidden fees — clear, value-focused pricing.</p>
-    </div>
+        <div
+          class="group flex flex-col items-center justify-center w-full aspect-square bg-white/[0.03] border border-white/10 rounded-2xl hover:bg-white/[0.08] hover:border-white/20 hover:scale-105 transition-all duration-300 cursor-default"
+        >
+          <img
+            src="https://ik.imagekit.io/yashveer/Icons/Icons/git.png"
+            class="w-12 h-12 object-contain mb-3 opacity-90 group-hover:scale-110 transition-all duration-300"
+            alt="Git"
+          />
+          <span
+            class="text-sm font-medium text-slate-400 group-hover:text-white transition-colors"
+          >
+            Git
+          </span>
+        </div>
 
-    <div class="price-card">
-        <h3>Want a Website?</h3>
-        <table>
-            <tr><td>Single Page Portfolio</td><td style="text-align:right">₹4,999</td></tr>
-            <tr><td>Small Business Website</td><td style="text-align:right">₹9,999</td></tr>
-            <tr><td>Multi-Page Website</td><td style="text-align:right">₹19,999</td></tr>
-            <tr><td>Shopify Store</td><td style="text-align:right">₹29,999</td></tr>
-        </table>
-    </div>
+        <div
+          class="group flex flex-col items-center justify-center w-full aspect-square bg-white/[0.03] border border-white/10 rounded-2xl hover:bg-white/[0.08] hover:border-white/20 hover:scale-105 transition-all duration-300 cursor-default"
+        >
+          <img
+            src="https://ik.imagekit.io/yashveer/Icons/Icons/github.png"
+            class="w-12 h-12 object-contain mb-3 opacity-90 group-hover:scale-110 transition-all duration-300"
+            alt="GitHub"
+          />
+          <span
+            class="text-sm font-medium text-slate-400 group-hover:text-white transition-colors"
+          >
+            GitHub
+          </span>
+        </div>
 
-    <div class="price-card">
-        <h3>Wanna Learn WebDev?</h3>
-        <table>
-            <tr><td>Beginner</td><td style="text-align:right">₹3,999</td></tr>
-            <tr><td>Advance</td><td style="text-align:right">₹5,999</td></tr>
-            <tr><td>Shopify Store Creation</td><td style="text-align:right">₹19,999</td></tr>
-        </table>
-    </div>
+        <div
+          class="group flex flex-col items-center justify-center w-full aspect-square bg-white/[0.03] border border-white/10 rounded-2xl hover:bg-white/[0.08] hover:border-white/20 hover:scale-105 transition-all duration-300 cursor-default"
+        >
+          <img
+            src="https://ik.imagekit.io/yashveer/Icons/Icons/html.png"
+            class="w-12 h-12 object-contain mb-3 opacity-90 group-hover:scale-110 transition-all duration-300"
+            alt="HTML"
+          />
+          <span
+            class="text-sm font-medium text-slate-400 group-hover:text-white transition-colors"
+          >
+            HTML
+          </span>
+        </div>
 
-    <div class="price-card">
-        <h3>Programming Basics</h3>
-        <table>
-            <tr><td>Beginner</td><td style="text-align:right">₹1,499</td></tr>
-            <tr><td>Advanced</td><td style="text-align:right">₹3,999</td></tr>
-        </table>
-    </div>
+        <div
+          class="group flex flex-col items-center justify-center w-full aspect-square bg-white/[0.03] border border-white/10 rounded-2xl hover:bg-white/[0.08] hover:border-white/20 hover:scale-105 transition-all duration-300 cursor-default"
+        >
+          <img
+            src="https://ik.imagekit.io/yashveer/Icons/Icons/js.png"
+            class="w-12 h-12 object-contain mb-3 opacity-90 group-hover:scale-110 transition-all duration-300"
+            alt="JavaScript"
+          />
+          <span
+            class="text-sm font-medium text-slate-400 group-hover:text-white transition-colors"
+          >
+            JavaScript
+          </span>
+        </div>
 
-    <div class="price-card">
-        <h3>Core CS Concepts</h3>
-        <table>
-            <tr><td>Beginner</td><td style="text-align:right">₹4,999</td></tr>
-            <tr><td>Advanced</td><td style="text-align:right">₹12,999</td></tr>
-        </table>
-    </div>
+        <div
+          class="group flex flex-col items-center justify-center w-full aspect-square bg-white/[0.03] border border-white/10 rounded-2xl hover:bg-white/[0.08] hover:border-white/20 hover:scale-105 transition-all duration-300 cursor-default"
+        >
+          <img
+            src="https://ik.imagekit.io/yashveer/Icons/Icons/linux.png"
+            class="w-12 h-12 object-contain mb-3 opacity-90 group-hover:scale-110 transition-all duration-300"
+            alt="Linux"
+          />
+          <span
+            class="text-sm font-medium text-slate-400 group-hover:text-white transition-colors"
+          >
+            Linux
+          </span>
+        </div>
 
-    <div class="price-card">
-        <h3>Math for AI</h3>
-        <table>
-            <tr><td>Beginner</td><td style="text-align:right">₹5,999</td></tr>
-            <tr><td>Advanced</td><td style="text-align:right">₹14,999</td></tr>
-        </table>
-    </div>
+        <div
+          class="group flex flex-col items-center justify-center w-full aspect-square bg-white/[0.03] border border-white/10 rounded-2xl hover:bg-white/[0.08] hover:border-white/20 hover:scale-105 transition-all duration-300 cursor-default"
+        >
+          <img
+            src="https://ik.imagekit.io/yashveer/Icons/Icons/MongoDB.png"
+            class="w-12 h-12 object-contain mb-3 opacity-90 group-hover:scale-110 transition-all duration-300"
+            alt="MongoDB"
+          />
+          <span
+            class="text-sm font-medium text-slate-400 group-hover:text-white transition-colors"
+          >
+            MongoDB
+          </span>
+        </div>
 
-    <div class="price-card">
-        <h3>Machine Learning Basics</h3>
-        <table>
-            <tr><td>Beginner</td><td style="text-align:right">₹6,999</td></tr>
-            <tr><td>Advanced</td><td style="text-align:right">₹16,999</td></tr>
-        </table>
-    </div>
+        <div
+          class="group flex flex-col items-center justify-center w-full aspect-square bg-white/[0.03] border border-white/10 rounded-2xl hover:bg-white/[0.08] hover:border-white/20 hover:scale-105 transition-all duration-300 cursor-default"
+        >
+          <img
+            src="https://ik.imagekit.io/yashveer/Icons/Icons/nextjs.png"
+            class="w-12 h-12 object-contain mb-3 opacity-90 group-hover:scale-110 transition-all duration-300"
+            alt="Next.js"
+          />
+          <span
+            class="text-sm font-medium text-slate-400 group-hover:text-white transition-colors"
+          >
+            Next.js
+          </span>
+        </div>
 
-    <div class="price-card">
-        <h3>Deep Learning</h3>
-        <table>
-            <tr><td>Beginner</td><td style="text-align:right">₹7,999</td></tr>
-            <tr><td>Advanced</td><td style="text-align:right">₹19,999</td></tr>
-        </table>
-    </div>
+        <div
+          class="group flex flex-col items-center justify-center w-full aspect-square bg-white/[0.03] border border-white/10 rounded-2xl hover:bg-white/[0.08] hover:border-white/20 hover:scale-105 transition-all duration-300 cursor-default"
+        >
+          <img
+            src="https://ik.imagekit.io/yashveer/Icons/Icons/Postgres.png"
+            class="w-12 h-12 object-contain mb-3 opacity-90 group-hover:scale-110 transition-all duration-300"
+            alt="Postgres"
+          />
+          <span
+            class="text-sm font-medium text-slate-400 group-hover:text-white transition-colors"
+          >
+            Postgres
+          </span>
+        </div>
 
-    <div class="price-card">
-        <h3>NLP & LLMs</h3>
-        <table>
-            <tr><td>Beginner</td><td style="text-align:right">₹8,999</td></tr>
-            <tr><td>Advanced</td><td style="text-align:right">₹22,999</td></tr>
-        </table>
-    </div>
+        <div
+          class="group flex flex-col items-center justify-center w-full aspect-square bg-white/[0.03] border border-white/10 rounded-2xl hover:bg-white/[0.08] hover:border-white/20 hover:scale-105 transition-all duration-300 cursor-default"
+        >
+          <img
+            src="https://ik.imagekit.io/yashveer/Icons/Icons/PyTorch.png"
+            class="w-12 h-12 object-contain mb-3 opacity-90 group-hover:scale-110 transition-all duration-300"
+            alt="PyTorch"
+          />
+          <span
+            class="text-sm font-medium text-slate-400 group-hover:text-white transition-colors"
+          >
+            PyTorch
+          </span>
+        </div>
 
-    <div class="price-card">
-        <h3>Speech / Voice AI</h3>
-        <table>
-            <tr><td>Beginner</td><td style="text-align:right">₹7,499</td></tr>
-            <tr><td>Advanced</td><td style="text-align:right">₹18,999</td></tr>
-        </table>
-    </div>
+        <div
+          class="group flex flex-col items-center justify-center w-full aspect-square bg-white/[0.03] border border-white/10 rounded-2xl hover:bg-white/[0.08] hover:border-white/20 hover:scale-105 transition-all duration-300 cursor-default"
+        >
+          <img
+            src="https://ik.imagekit.io/yashveer/Icons/Icons/python.png"
+            class="w-12 h-12 object-contain mb-3 opacity-90 group-hover:scale-110 transition-all duration-300"
+            alt="Python"
+          />
+          <span
+            class="text-sm font-medium text-slate-400 group-hover:text-white transition-colors"
+          >
+            Python
+          </span>
+        </div>
 
-    <div class="price-card">
-        <h3>Computer Vision</h3>
-        <table>
-            <tr><td>Beginner</td><td style="text-align:right">₹7,999</td></tr>
-            <tr><td>Advanced</td><td style="text-align:right">₹20,999</td></tr>
-        </table>
-    </div>
+        <div
+          class="group flex flex-col items-center justify-center w-full aspect-square bg-white/[0.03] border border-white/10 rounded-2xl hover:bg-white/[0.08] hover:border-white/20 hover:scale-105 transition-all duration-300 cursor-default"
+        >
+          <img
+            src="https://ik.imagekit.io/yashveer/Icons/Icons/react.png"
+            class="w-12 h-12 object-contain mb-3 opacity-90 group-hover:scale-110 transition-all duration-300"
+            alt="React"
+          />
+          <span
+            class="text-sm font-medium text-slate-400 group-hover:text-white transition-colors"
+          >
+            React
+          </span>
+        </div>
 
-    <div class="price-card">
-        <h3>Databases</h3>
-        <table>
-            <tr><td>Beginner</td><td style="text-align:right">₹4,499</td></tr>
-            <tr><td>Advanced</td><td style="text-align:right">₹12,499</td></tr>
-        </table>
-    </div>
+        <div
+          class="group flex flex-col items-center justify-center w-full aspect-square bg-white/[0.03] border border-white/10 rounded-2xl hover:bg-white/[0.08] hover:border-white/20 hover:scale-105 transition-all duration-300 cursor-default"
+        >
+          <img
+            src="https://ik.imagekit.io/yashveer/Icons/Icons/Redis.png"
+            class="w-12 h-12 object-contain mb-3 opacity-90 group-hover:scale-110 transition-all duration-300"
+            alt="Redis"
+          />
+          <span
+            class="text-sm font-medium text-slate-400 group-hover:text-white transition-colors"
+          >
+            Redis
+          </span>
+        </div>
 
-    <div class="price-card">
-        <h3>Cloud & DevOps</h3>
-        <table>
-            <tr><td>Beginner</td><td style="text-align:right">₹6,499</td></tr>
-            <tr><td>Advanced</td><td style="text-align:right">₹17,999</td></tr>
-        </table>
-    </div>
+        <div
+          class="group flex flex-col items-center justify-center w-full aspect-square bg-white/[0.03] border border-white/10 rounded-2xl hover:bg-white/[0.08] hover:border-white/20 hover:scale-105 transition-all duration-300 cursor-default"
+        >
+          <img
+            src="https://ik.imagekit.io/yashveer/Icons/Icons/ROS2.png"
+            class="w-12 h-12 object-contain mb-3 opacity-90 group-hover:scale-110 transition-all duration-300"
+            alt="ROS2"
+          />
+          <span
+            class="text-sm font-medium text-slate-400 group-hover:text-white transition-colors"
+          >
+            ROS2
+          </span>
+        </div>
+      </div>
+    </section>
 
-    <div class="price-card">
-        <h3>Robotics & Real-Time Systems</h3>
-        <table>
-            <tr><td>Beginner</td><td style="text-align:right">₹8,499</td></tr>
-            <tr><td>Advanced</td><td style="text-align:right">₹23,499</td></tr>
-        </table>
-    </div>
+    <!-- SERVICES -->
+    <section
+      id="services"
+      class="py-20 px-6 md:px-24 max-w-7xl mx-auto fade-in-section"
+    >
+      <h2
+        class="text-3xl md:text-4xl font-semibold text-white tracking-tight mb-8"
+      >
+        Services
+      </h2>
+      <p
+        class="text-base md:text-lg leading-relaxed text-slate-400 font-light max-w-4xl"
+      >
+        I help individuals, creators, startups, and businesses build powerful
+        digital systems. My services include website development, AI and machine
+        learning solutions, automation tools, portfolio design, UI and UX
+        design, robotics projects, embedded AI, and technical guidance.
+        Everything is done with high quality, clear communication, and a
+        personalized approach that fits your exact goals.
+      </p>
+    </section>
 
-    <div class="price-card">
-        <h3>Edge & Embedded AI</h3>
-        <table>
-            <tr><td>Beginner</td><td style="text-align:right">₹7,999</td></tr>
-            <tr><td>Advanced</td><td style="text-align:right">₹21,999</td></tr>
-        </table>
-    </div>
+    <!-- PROJECTS -->
+    <section
+      id="projects"
+      class="py-20 px-6 md:px-12 max-w-6xl mx-auto fade-in-section"
+    >
+      <h2
+        class="text-3xl md:text-4xl font-semibold text-white tracking-tight mb-12"
+      >
+        Projects
+      </h2>
+      <div class="grid gap-10">
+        <!-- Project 1 -->
+        <div
+          class="p-8 md:p-10 rounded-3xl bg-white/[0.03] border border-white/10 backdrop-blur-md hover:bg-white/[0.05] transition-colors duration-300"
+        >
+          <div
+            class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6"
+          >
+            <h3 class="text-2xl font-semibold text-white">
+              Rohit Mukherjee Portfolio
+            </h3>
+            <a
+              href="https://www.myadvertisingfolio.com/"
+              target="_blank"
+              class="inline-flex items-center gap-2 text-brand-blue hover:text-brand-purple font-medium transition-colors"
+            >
+              Visit Project
+              <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
+            </a>
+          </div>
+          <div class="space-y-4 text-slate-400 font-light leading-relaxed">
+            <p>
+              A storytelling-focused portfolio built for an advertising creative
+              who needed a space that is more than just a website , it’s an
+              experience. The entire design revolves around narrative flow,
+              ensuring every section feels like a chapter in his career journey.
+              Soft typography, scroll-based visuals, and a cinematic
+              presentation style create a personal connection with the viewer.
+            </p>
+          </div>
+        </div>
 
-    <div class="price-card">
-        <h3>Cybersecurity</h3>
-        <table>
-            <tr><td>Beginner</td><td style="text-align:right">₹6,999</td></tr>
-            <tr><td>Advanced</td><td style="text-align:right">₹18,499</td></tr>
-        </table>
-    </div>
+        <!-- Project 2 -->
+        <div
+          class="p-8 md:p-10 rounded-3xl bg-white/[0.03] border border-white/10 backdrop-blur-md hover:bg-white/[0.05] transition-colors duration-300"
+        >
+          <div
+            class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6"
+          >
+            <h3 class="text-2xl font-semibold text-white">
+              Amisha – Design Portfolio
+            </h3>
+            <a
+              href="https://amisha-graphic-designer.yashvsr2010.workers.dev/"
+              target="_blank"
+              class="inline-flex items-center gap-2 text-brand-blue hover:text-brand-purple font-medium transition-colors"
+            >
+              Visit Project
+              <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
+            </a>
+          </div>
+          <div class="space-y-4 text-slate-400 font-light leading-relaxed">
+            <p>
+              A clean and expressive portfolio created for a graphic designer
+              who wanted a soft, artistic, and modern space to showcase her
+              work. The design focuses on white space, minimal color accents,
+              and an elegant rhythm that allows visuals to shine.
+            </p>
+          </div>
+        </div>
 
-</section>
+        <!-- Project 3 -->
+        <div
+          class="p-8 md:p-10 rounded-3xl bg-white/[0.03] border border-white/10 backdrop-blur-md hover:bg-white/[0.05] transition-colors duration-300"
+        >
+          <div
+            class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6"
+          >
+            <h3 class="text-2xl font-semibold text-white">
+              MakeUp Artist Sample Site
+            </h3>
+            <a
+              href="https://yashveer-makeup-artist-sample-site.netlify.app/"
+              target="_blank"
+              class="inline-flex items-center gap-2 text-brand-blue hover:text-brand-purple font-medium transition-colors"
+            >
+              Visit Project
+              <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
+            </a>
+          </div>
+          <div class="space-y-4 text-slate-400 font-light leading-relaxed">
+            <p>
+              A soft, aesthetic website designed specifically for beauty
+              professionals looking to build an online presence that reflects
+              elegance and style. The visual theme showcases warm color
+              palettes, light gradients, and high-end beauty aesthetics inspired
+              by professional makeup portfolios.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
 
-<!-- FOOTER -->
-<footer>
-    © 2025 Yashveer Singh Rajpoot , All Rights Reserved  
-    <br>
-    Instagram: @yashveer.codes  
-    <br>
-    Built with Chaos🖤
-</footer>
+    <!-- CERTIFICATES -->
+    <section
+      id="work"
+      class="py-20 px-6 md:px-12 max-w-7xl mx-auto fade-in-section"
+    >
+      <h2
+        class="text-3xl md:text-4xl font-semibold text-white tracking-tight mb-12"
+      >
+        Certificates
+      </h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div
+          class="aspect-[4/3] rounded-xl overflow-hidden border border-white/10 group"
+        >
+          <img
+            src="https://ik.imagekit.io/yashveer/1.png?updatedAt=1763388038277"
+            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+            alt="Certificate 1"
+          />
+        </div>
+        <div
+          class="aspect-[4/3] rounded-xl overflow-hidden border border-white/10 group"
+        >
+          <img
+            src="https://ik.imagekit.io/yashveer/2.png?updatedAt=1763388082989"
+            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+            alt="Certificate 2"
+          />
+        </div>
+        <div
+          class="aspect-[4/3] rounded-xl overflow-hidden border border-white/10 group"
+        >
+          <img
+            src="https://ik.imagekit.io/yashveer/4.png?updatedAt=1763388818509"
+            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+            alt="Certificate 3"
+          />
+        </div>
+        <div
+          class="aspect-[4/3] rounded-xl overflow-hidden border border-white/10 group"
+        >
+          <img
+            src="https://ik.imagekit.io/yashveer/3.png?updatedAt=1763388716213"
+            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+            alt="Certificate 4"
+          />
+        </div>
+      </div>
+    </section>
 
-<!-- JAVASCRIPT -->
-<script>
-const menuBtn = document.getElementById("menu-btn");
-const mobileMenu = document.getElementById("mobile-menu");
+    <!-- PRICING -->
+    <section
+      id="pricing"
+      class="py-20 px-6 md:px-12 max-w-7xl mx-auto fade-in-section"
+    >
+      <h2
+        class="text-3xl md:text-4xl font-semibold text-white tracking-tight mb-12"
+      >
+        Pricing
+      </h2>
 
-menuBtn.addEventListener("click", () => {
-    mobileMenu.classList.toggle("open");
-});
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- Value Prop Card -->
+        <div
+          class="p-8 rounded-3xl bg-gradient-to-br from-white/[0.08] to-white/[0.02] border border-white/10 md:col-span-2 lg:col-span-3"
+        >
+          <h3 class="text-2xl font-semibold text-white mb-6">Why Choose Me?</h3>
+          <div class="grid md:grid-cols-3 gap-6 text-slate-300">
+            <div>
+              <strong class="text-white block mb-1">
+                Personalized Learning
+              </strong>
+              <span class="text-sm font-light">
+                Every student gets custom guidance based on goals.
+              </span>
+            </div>
+            <div>
+              <strong class="text-white block mb-1">Real-World Skills</strong>
+              <span class="text-sm font-light">
+                Learn with projects, practical examples, and industry workflows.
+              </span>
+            </div>
+            <div>
+              <strong class="text-white block mb-1">Transparent Pricing</strong>
+              <span class="text-sm font-light">
+                No hidden fees — clear, value-focused pricing.
+              </span>
+            </div>
+          </div>
+        </div>
 
-const elements = document.querySelectorAll(".fade-in");
+        <!-- Pricing Card 1 -->
+        <div
+          class="group pricing-card flex flex-col p-6 rounded-2xl bg-white/[0.03] border border-white/10 hover:bg-white hover:border-white"
+        >
+          <h3
+            class="text-xl font-medium text-white group-hover:text-black mb-4 transition-colors"
+          >
+            Want a Website?
+          </h3>
+          <div class="flex-1 space-y-3">
+            <div
+              class="flex justify-between items-center text-sm border-b border-white/5 group-hover:border-black/10 pb-2 transition-colors"
+            >
+              <span
+                class="text-slate-400 group-hover:text-slate-600 transition-colors"
+              >
+                Single Page Portfolio
+              </span>
+              <span
+                class="text-white font-medium group-hover:text-black transition-colors"
+              >
+                ₹4,999
+              </span>
+            </div>
+            <div
+              class="flex justify-between items-center text-sm border-b border-white/5 group-hover:border-black/10 pb-2 transition-colors"
+            >
+              <span
+                class="text-slate-400 group-hover:text-slate-600 transition-colors"
+              >
+                Small Business Website
+              </span>
+              <span
+                class="text-white font-medium group-hover:text-black transition-colors"
+              >
+                ₹9,999
+              </span>
+            </div>
+            <div
+              class="flex justify-between items-center text-sm border-b border-white/5 group-hover:border-black/10 pb-2 transition-colors"
+            >
+              <span
+                class="text-slate-400 group-hover:text-slate-600 transition-colors"
+              >
+                Multi-Page Website
+              </span>
+              <span
+                class="text-white font-medium group-hover:text-black transition-colors"
+              >
+                ₹19,999
+              </span>
+            </div>
+            <div class="flex justify-between items-center text-sm">
+              <span
+                class="text-slate-400 group-hover:text-slate-600 transition-colors"
+              >
+                Shopify Store
+              </span>
+              <span
+                class="text-white font-medium group-hover:text-black transition-colors"
+              >
+                ₹29,999
+              </span>
+            </div>
+          </div>
+        </div>
 
-function handleScroll() {
-    elements.forEach(el => {
-        const rect = el.getBoundingClientRect().top;
-        if (rect < window.innerHeight - 120) {
-            el.classList.add("show");
-        }
-    });
-}
+        <!-- Pricing Card 2 -->
+        <div
+          class="group pricing-card flex flex-col p-6 rounded-2xl bg-white/[0.03] border border-white/10 hover:bg-white hover:border-white"
+        >
+          <h3
+            class="text-xl font-medium text-white group-hover:text-black mb-4 transition-colors"
+          >
+            Wanna Learn WebDev?
+          </h3>
+          <div class="flex-1 space-y-3">
+            <div
+              class="flex justify-between items-center text-sm border-b border-white/5 group-hover:border-black/10 pb-2 transition-colors"
+            >
+              <span
+                class="text-slate-400 group-hover:text-slate-600 transition-colors"
+              >
+                Beginner
+              </span>
+              <span
+                class="text-white font-medium group-hover:text-black transition-colors"
+              >
+                ₹3,999
+              </span>
+            </div>
+            <div
+              class="flex justify-between items-center text-sm border-b border-white/5 group-hover:border-black/10 pb-2 transition-colors"
+            >
+              <span
+                class="text-slate-400 group-hover:text-slate-600 transition-colors"
+              >
+                Advance
+              </span>
+              <span
+                class="text-white font-medium group-hover:text-black transition-colors"
+              >
+                ₹5,999
+              </span>
+            </div>
+            <div class="flex justify-between items-center text-sm">
+              <span
+                class="text-slate-400 group-hover:text-slate-600 transition-colors"
+              >
+                Shopify Creation
+              </span>
+              <span
+                class="text-white font-medium group-hover:text-black transition-colors"
+              >
+                ₹19,999
+              </span>
+            </div>
+          </div>
+        </div>
 
-window.addEventListener("scroll", handleScroll);
-handleScroll();
-</script>
+        <!-- Pricing Card 3 -->
+        <div
+          class="group pricing-card flex flex-col p-6 rounded-2xl bg-white/[0.03] border border-white/10 hover:bg-white hover:border-white"
+        >
+          <h3
+            class="text-xl font-medium text-white group-hover:text-black mb-4 transition-colors"
+          >
+            Programming Basics
+          </h3>
+          <div class="flex-1 space-y-3">
+            <div
+              class="flex justify-between items-center text-sm border-b border-white/5 group-hover:border-black/10 pb-2 transition-colors"
+            >
+              <span
+                class="text-slate-400 group-hover:text-slate-600 transition-colors"
+              >
+                Beginner
+              </span>
+              <span
+                class="text-white font-medium group-hover:text-black transition-colors"
+              >
+                ₹1,499
+              </span>
+            </div>
+            <div class="flex justify-between items-center text-sm">
+              <span
+                class="text-slate-400 group-hover:text-slate-600 transition-colors"
+              >
+                Advanced
+              </span>
+              <span
+                class="text-white font-medium group-hover:text-black transition-colors"
+              >
+                ₹3,999
+              </span>
+            </div>
+          </div>
+        </div>
 
-</body>
+        <!-- Pricing Card 4 -->
+        <div
+          class="group pricing-card flex flex-col p-6 rounded-2xl bg-white/[0.03] border border-white/10 hover:bg-white hover:border-white"
+        >
+          <h3
+            class="text-xl font-medium text-white group-hover:text-black mb-4 transition-colors"
+          >
+            Core CS Concepts
+          </h3>
+          <div class="flex-1 space-y-3">
+            <div
+              class="flex justify-between items-center text-sm border-b border-white/5 group-hover:border-black/10 pb-2 transition-colors"
+            >
+              <span
+                class="text-slate-400 group-hover:text-slate-600 transition-colors"
+              >
+                Beginner
+              </span>
+              <span
+                class="text-white font-medium group-hover:text-black transition-colors"
+              >
+                ₹4,999
+              </span>
+            </div>
+            <div class="flex justify-between items-center text-sm">
+              <span
+                class="text-slate-400 group-hover:text-slate-600 transition-colors"
+              >
+                Advanced
+              </span>
+              <span
+                class="text-white font-medium group-hover:text-black transition-colors"
+              >
+                ₹12,999
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Pricing Card 5 -->
+        <div
+          class="group pricing-card flex flex-col p-6 rounded-2xl bg-white/[0.03] border border-white/10 hover:bg-white hover:border-white"
+        >
+          <h3
+            class="text-xl font-medium text-white group-hover:text-black mb-4 transition-colors"
+          >
+            Math for AI
+          </h3>
+          <div class="flex-1 space-y-3">
+            <div
+              class="flex justify-between items-center text-sm border-b border-white/5 group-hover:border-black/10 pb-2 transition-colors"
+            >
+              <span
+                class="text-slate-400 group-hover:text-slate-600 transition-colors"
+              >
+                Beginner
+              </span>
+              <span
+                class="text-white font-medium group-hover:text-black transition-colors"
+              >
+                ₹5,999
+              </span>
+            </div>
+            <div class="flex justify-between items-center text-sm">
+              <span
+                class="text-slate-400 group-hover:text-slate-600 transition-colors"
+              >
+                Advanced
+              </span>
+              <span
+                class="text-white font-medium group-hover:text-black transition-colors"
+              >
+                ₹14,999
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Pricing Card 6 -->
+        <div
+          class="group pricing-card flex flex-col p-6 rounded-2xl bg-white/[0.03] border border-white/10 hover:bg-white hover:border-white"
+        >
+          <h3
+            class="text-xl font-medium text-white group-hover:text-black mb-4 transition-colors"
+          >
+            Machine Learning
+          </h3>
+          <div class="flex-1 space-y-3">
+            <div
+              class="flex justify-between items-center text-sm border-b border-white/5 group-hover:border-black/10 pb-2 transition-colors"
+            >
+              <span
+                class="text-slate-400 group-hover:text-slate-600 transition-colors"
+              >
+                Beginner
+              </span>
+              <span
+                class="text-white font-medium group-hover:text-black transition-colors"
+              >
+                ₹6,999
+              </span>
+            </div>
+            <div class="flex justify-between items-center text-sm">
+              <span
+                class="text-slate-400 group-hover:text-slate-600 transition-colors"
+              >
+                Advanced
+              </span>
+              <span
+                class="text-white font-medium group-hover:text-black transition-colors"
+              >
+                ₹16,999
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Pricing Card 7 -->
+        <div
+          class="group pricing-card flex flex-col p-6 rounded-2xl bg-white/[0.03] border border-white/10 hover:bg-white hover:border-white"
+        >
+          <h3
+            class="text-xl font-medium text-white group-hover:text-black mb-4 transition-colors"
+          >
+            Deep Learning
+          </h3>
+          <div class="flex-1 space-y-3">
+            <div
+              class="flex justify-between items-center text-sm border-b border-white/5 group-hover:border-black/10 pb-2 transition-colors"
+            >
+              <span
+                class="text-slate-400 group-hover:text-slate-600 transition-colors"
+              >
+                Beginner
+              </span>
+              <span
+                class="text-white font-medium group-hover:text-black transition-colors"
+              >
+                ₹7,999
+              </span>
+            </div>
+            <div class="flex justify-between items-center text-sm">
+              <span
+                class="text-slate-400 group-hover:text-slate-600 transition-colors"
+              >
+                Advanced
+              </span>
+              <span
+                class="text-white font-medium group-hover:text-black transition-colors"
+              >
+                ₹19,999
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Pricing Card 8 -->
+        <div
+          class="group pricing-card flex flex-col p-6 rounded-2xl bg-white/[0.03] border border-white/10 hover:bg-white hover:border-white"
+        >
+          <h3
+            class="text-xl font-medium text-white group-hover:text-black mb-4 transition-colors"
+          >
+            NLP &amp; LLMs
+          </h3>
+          <div class="flex-1 space-y-3">
+            <div
+              class="flex justify-between items-center text-sm border-b border-white/5 group-hover:border-black/10 pb-2 transition-colors"
+            >
+              <span
+                class="text-slate-400 group-hover:text-slate-600 transition-colors"
+              >
+                Beginner
+              </span>
+              <span
+                class="text-white font-medium group-hover:text-black transition-colors"
+              >
+                ₹8,999
+              </span>
+            </div>
+            <div class="flex justify-between items-center text-sm">
+              <span
+                class="text-slate-400 group-hover:text-slate-600 transition-colors"
+              >
+                Advanced
+              </span>
+              <span
+                class="text-white font-medium group-hover:text-black transition-colors"
+              >
+                ₹22,999
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Pricing Card 9 -->
+        <div
+          class="group pricing-card flex flex-col p-6 rounded-2xl bg-white/[0.03] border border-white/10 hover:bg-white hover:border-white"
+        >
+          <h3
+            class="text-xl font-medium text-white group-hover:text-black mb-4 transition-colors"
+          >
+            Speech / Voice AI
+          </h3>
+          <div class="flex-1 space-y-3">
+            <div
+              class="flex justify-between items-center text-sm border-b border-white/5 group-hover:border-black/10 pb-2 transition-colors"
+            >
+              <span
+                class="text-slate-400 group-hover:text-slate-600 transition-colors"
+              >
+                Beginner
+              </span>
+              <span
+                class="text-white font-medium group-hover:text-black transition-colors"
+              >
+                ₹7,499
+              </span>
+            </div>
+            <div class="flex justify-between items-center text-sm">
+              <span
+                class="text-slate-400 group-hover:text-slate-600 transition-colors"
+              >
+                Advanced
+              </span>
+              <span
+                class="text-white font-medium group-hover:text-black transition-colors"
+              >
+                ₹18,999
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Pricing Card 10 -->
+        <div
+          class="group pricing-card flex flex-col p-6 rounded-2xl bg-white/[0.03] border border-white/10 hover:bg-white hover:border-white"
+        >
+          <h3
+            class="text-xl font-medium text-white group-hover:text-black mb-4 transition-colors"
+          >
+            Computer Vision
+          </h3>
+          <div class="flex-1 space-y-3">
+            <div
+              class="flex justify-between items-center text-sm border-b border-white/5 group-hover:border-black/10 pb-2 transition-colors"
+            >
+              <span
+                class="text-slate-400 group-hover:text-slate-600 transition-colors"
+              >
+                Beginner
+              </span>
+              <span
+                class="text-white font-medium group-hover:text-black transition-colors"
+              >
+                ₹7,999
+              </span>
+            </div>
+            <div class="flex justify-between items-center text-sm">
+              <span
+                class="text-slate-400 group-hover:text-slate-600 transition-colors"
+              >
+                Advanced
+              </span>
+              <span
+                class="text-white font-medium group-hover:text-black transition-colors"
+              >
+                ₹20,999
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Pricing Card 11 -->
+        <div
+          class="group pricing-card flex flex-col p-6 rounded-2xl bg-white/[0.03] border border-white/10 hover:bg-white hover:border-white"
+        >
+          <h3
+            class="text-xl font-medium text-white group-hover:text-black mb-4 transition-colors"
+          >
+            Databases
+          </h3>
+          <div class="flex-1 space-y-3">
+            <div
+              class="flex justify-between items-center text-sm border-b border-white/5 group-hover:border-black/10 pb-2 transition-colors"
+            >
+              <span
+                class="text-slate-400 group-hover:text-slate-600 transition-colors"
+              >
+                Beginner
+              </span>
+              <span
+                class="text-white font-medium group-hover:text-black transition-colors"
+              >
+                ₹4,499
+              </span>
+            </div>
+            <div class="flex justify-between items-center text-sm">
+              <span
+                class="text-slate-400 group-hover:text-slate-600 transition-colors"
+              >
+                Advanced
+              </span>
+              <span
+                class="text-white font-medium group-hover:text-black transition-colors"
+              >
+                ₹12,499
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Pricing Card 12 -->
+        <div
+          class="group pricing-card flex flex-col p-6 rounded-2xl bg-white/[0.03] border border-white/10 hover:bg-white hover:border-white"
+        >
+          <h3
+            class="text-xl font-medium text-white group-hover:text-black mb-4 transition-colors"
+          >
+            Cloud &amp; DevOps
+          </h3>
+          <div class="flex-1 space-y-3">
+            <div
+              class="flex justify-between items-center text-sm border-b border-white/5 group-hover:border-black/10 pb-2 transition-colors"
+            >
+              <span
+                class="text-slate-400 group-hover:text-slate-600 transition-colors"
+              >
+                Beginner
+              </span>
+              <span
+                class="text-white font-medium group-hover:text-black transition-colors"
+              >
+                ₹6,499
+              </span>
+            </div>
+            <div class="flex justify-between items-center text-sm">
+              <span
+                class="text-slate-400 group-hover:text-slate-600 transition-colors"
+              >
+                Advanced
+              </span>
+              <span
+                class="text-white font-medium group-hover:text-black transition-colors"
+              >
+                ₹17,999
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Pricing Card 13 -->
+        <div
+          class="group pricing-card flex flex-col p-6 rounded-2xl bg-white/[0.03] border border-white/10 hover:bg-white hover:border-white"
+        >
+          <h3
+            class="text-xl font-medium text-white group-hover:text-black mb-4 transition-colors"
+          >
+            Robotics &amp; Real-Time
+          </h3>
+          <div class="flex-1 space-y-3">
+            <div
+              class="flex justify-between items-center text-sm border-b border-white/5 group-hover:border-black/10 pb-2 transition-colors"
+            >
+              <span
+                class="text-slate-400 group-hover:text-slate-600 transition-colors"
+              >
+                Beginner
+              </span>
+              <span
+                class="text-white font-medium group-hover:text-black transition-colors"
+              >
+                ₹8,499
+              </span>
+            </div>
+            <div class="flex justify-between items-center text-sm">
+              <span
+                class="text-slate-400 group-hover:text-slate-600 transition-colors"
+              >
+                Advanced
+              </span>
+              <span
+                class="text-white font-medium group-hover:text-black transition-colors"
+              >
+                ₹23,499
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Pricing Card 14 -->
+        <div
+          class="group pricing-card flex flex-col p-6 rounded-2xl bg-white/[0.03] border border-white/10 hover:bg-white hover:border-white"
+        >
+          <h3
+            class="text-xl font-medium text-white group-hover:text-black mb-4 transition-colors"
+          >
+            Edge &amp; Embedded AI
+          </h3>
+          <div class="flex-1 space-y-3">
+            <div
+              class="flex justify-between items-center text-sm border-b border-white/5 group-hover:border-black/10 pb-2 transition-colors"
+            >
+              <span
+                class="text-slate-400 group-hover:text-slate-600 transition-colors"
+              >
+                Beginner
+              </span>
+              <span
+                class="text-white font-medium group-hover:text-black transition-colors"
+              >
+                ₹7,999
+              </span>
+            </div>
+            <div class="flex justify-between items-center text-sm">
+              <span
+                class="text-slate-400 group-hover:text-slate-600 transition-colors"
+              >
+                Advanced
+              </span>
+              <span
+                class="text-white font-medium group-hover:text-black transition-colors"
+              >
+                ₹21,999
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Pricing Card 15 -->
+        <div
+          class="group pricing-card flex flex-col p-6 rounded-2xl bg-white/[0.03] border border-white/10 hover:bg-white hover:border-white"
+        >
+          <h3
+            class="text-xl font-medium text-white group-hover:text-black mb-4 transition-colors"
+          >
+            Cybersecurity
+          </h3>
+          <div class="flex-1 space-y-3">
+            <div
+              class="flex justify-between items-center text-sm border-b border-white/5 group-hover:border-black/10 pb-2 transition-colors"
+            >
+              <span
+                class="text-slate-400 group-hover:text-slate-600 transition-colors"
+              >
+                Beginner
+              </span>
+              <span
+                class="text-white font-medium group-hover:text-black transition-colors"
+              >
+                ₹6,999
+              </span>
+            </div>
+            <div class="flex justify-between items-center text-sm">
+              <span
+                class="text-slate-400 group-hover:text-slate-600 transition-colors"
+              >
+                Advanced
+              </span>
+              <span
+                class="text-white font-medium group-hover:text-black transition-colors"
+              >
+                ₹18,499
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT / FOOTER -->
+    <footer
+      id="contact"
+      class="py-16 text-center border-t border-white/[0.08] bg-[#0a0f1e]/30 mt-10"
+    >
+      <div class="mb-8">
+        <a
+          href="https://www.instagram.com/yashveer.codes/"
+          target="_blank"
+          class="inline-flex items-center gap-2 px-6 py-3 bg-white/[0.08] hover:bg-white/[0.15] border border-white/20 rounded-xl text-white font-medium transition-all backdrop-blur-sm"
+        >
+          Get in Touch
+          <i data-lucide="mail" class="w-4 h-4"></i>
+        </a>
+      </div>
+      <p class="text-slate-500 text-sm mb-2">
+        © 2025 Yashveer Singh Rajpoot , All Rights Reserved
+      </p>
+      <p class="text-slate-500 text-sm mb-4">Instagram: @yashveer.codes</p>
+      <p class="text-slate-600 text-xs">Built with Chaos🖤</p>
+    </footer>
+
+    <!-- INTERACTION SCRIPT -->
+    <script>
+      // Icons
+      lucide.createIcons();
+
+      // Mouse Follower Logic
+      const cursor = document.getElementById('cursor-glow');
+      let mouseX = window.innerWidth / 2;
+      let mouseY = window.innerHeight / 2;
+      let cursorX = window.innerWidth / 2;
+      let cursorY = window.innerHeight / 2;
+
+      document.addEventListener('mousemove', (e) => {
+          mouseX = e.clientX;
+          mouseY = e.clientY;
+      });
+
+      function animateCursor() {
+          // Smooth lerp interpolation
+          const distX = mouseX - cursorX;
+          const distY = mouseY - cursorY;
+
+          cursorX = cursorX + (distX * 0.1);
+          cursorY = cursorY + (distY * 0.1);
+
+          cursor.style.transform = `translate(${cursorX}px, ${cursorY}px) translate(-50%, -50%)`;
+
+          requestAnimationFrame(animateCursor);
+      }
+      animateCursor();
+
+      // Mobile Menu Logic
+      const menuBtn = document.getElementById("menu-btn");
+      const closeMenuBtn = document.getElementById("close-menu-btn");
+      const mobileMenu = document.getElementById("mobile-menu");
+      const menuOverlay = document.getElementById("menu-overlay");
+      const mobileLinks = mobileMenu.querySelectorAll('a');
+
+      function toggleMenu() {
+          const isClosed = mobileMenu.classList.contains('translate-x-full');
+          if (isClosed) {
+              mobileMenu.classList.remove('translate-x-full');
+              mobileMenu.classList.add('translate-x-0');
+              menuOverlay.classList.remove('hidden', 'opacity-0');
+              menuOverlay.classList.add('opacity-100');
+          } else {
+              mobileMenu.classList.add('translate-x-full');
+              mobileMenu.classList.remove('translate-x-0');
+              menuOverlay.classList.remove('opacity-100');
+              menuOverlay.classList.add('opacity-0');
+              setTimeout(() => menuOverlay.classList.add('hidden'), 300);
+          }
+      }
+
+      menuBtn.addEventListener("click", toggleMenu);
+      closeMenuBtn.addEventListener("click", toggleMenu);
+      menuOverlay.addEventListener("click", toggleMenu);
+
+      mobileLinks.forEach(link => {
+          link.addEventListener("click", toggleMenu);
+      });
+
+      // Scroll Animation Observer
+      const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+              if (entry.isIntersecting) {
+                  entry.target.classList.add('is-visible');
+              }
+          });
+      }, { threshold: 0.1 });
+
+      document.querySelectorAll('.fade-in-section').forEach(section => {
+          observer.observe(section);
+      });
+    </script>
+  </body>
 </html>
-
