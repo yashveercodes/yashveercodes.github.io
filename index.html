@@ -188,6 +188,13 @@
       ::-webkit-scrollbar-thumb:hover {
           background: #555;
       }
+      
+      /* Accessibility Focus Styles */
+      :focus-visible {
+          outline: 2px solid #c187ff;
+          outline-offset: 4px;
+          border-radius: 4px;
+      }
     </style>
   </head>
 
@@ -195,16 +202,18 @@
     class="text-slate-300 font-sans antialiased overflow-x-hidden selection:bg-purple-500/30 relative"
   >
     <!-- CURSOR FOLLOWER -->
-    <div id="cursor-glow"></div>
+    <div id="cursor-glow" aria-hidden="true"></div>
 
-    <!-- NAVBAR -->
-    <nav
+    <!-- HEADER & NAVBAR -->
+    <header
       class="fixed top-0 inset-x-0 z-50 flex items-center justify-between px-6 py-4 md:px-12 md:py-5 border-b border-white/[0.08] bg-[#0a0f1e]/80 backdrop-blur-xl"
     >
       <div class="flex items-center gap-3">
         <img
           src="https://ik.imagekit.io/yashveer/1.jpg?updatedAt=1763307833364"
-          alt="Profile"
+          alt="Yashveer Singh Rajpoot Profile Picture"
+          width="48"
+          height="48"
           class="h-10 w-10 md:h-12 md:w-12 rounded-full object-cover border-2 border-white/20 ring-2 ring-white/5"
         />
         <strong class="text-white font-medium tracking-tight text-lg">
@@ -212,63 +221,71 @@
         </strong>
       </div>
 
-      <div
+      <!-- Desktop Nav -->
+      <nav
         class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-400"
+        aria-label="Main Navigation"
       >
         <a
           href="#about"
-          class="hover:text-white transition-colors duration-200"
+          class="hover:text-white transition-colors duration-200 focus:text-white"
         >
           About
         </a>
         <a
           href="#services"
-          class="hover:text-white transition-colors duration-200"
+          class="hover:text-white transition-colors duration-200 focus:text-white"
         >
           Services
         </a>
         <a
           href="#projects"
-          class="hover:text-white transition-colors duration-200"
+          class="hover:text-white transition-colors duration-200 focus:text-white"
         >
           Project
         </a>
         <a
           href="#pricing"
-          class="hover:text-white transition-colors duration-200"
+          class="hover:text-white transition-colors duration-200 focus:text-white"
         >
           Pricing
         </a>
-        <a href="#work" class="hover:text-white transition-colors duration-200">
+        <a href="#work" class="hover:text-white transition-colors duration-200 focus:text-white">
           Work
         </a>
         <a
           href="#contact"
-          class="hover:text-white transition-colors duration-200"
+          class="hover:text-white transition-colors duration-200 focus:text-white"
         >
           Contact
         </a>
-      </div>
+      </nav>
 
+      <!-- Mobile Menu Button -->
       <button
         id="menu-btn"
+        aria-label="Toggle mobile menu"
+        aria-expanded="false"
+        aria-controls="mobile-menu"
         class="md:hidden text-white p-1 hover:bg-white/10 rounded-lg transition"
       >
-        <i data-lucide="menu" class="w-7 h-7"></i>
+        <i data-lucide="menu" class="w-7 h-7" aria-hidden="true"></i>
       </button>
-    </nav>
+    </header>
 
-    <!-- MOBILE MENU -->
+    <!-- MOBILE MENU DRAWER -->
     <div
       id="mobile-menu"
       class="fixed inset-y-0 right-0 z-[60] w-3/4 max-w-sm bg-[#0a0f1e]/95 backdrop-blur-2xl border-l border-white/10 p-8 flex flex-col gap-6 transform translate-x-full transition-transform duration-300 ease-in-out shadow-2xl"
+      aria-hidden="true"
     >
       <div class="flex justify-end">
         <button
           id="close-menu-btn"
+          aria-label="Close menu"
           class="text-slate-400 hover:text-white transition"
         >
-          <i data-lucide="x" class="w-8 h-8"></i>
+          <i data-lucide="x" class="w-8 h-8" aria-hidden="true"></i>
         </button>
       </div>
       <nav class="flex flex-col gap-6 text-lg font-medium text-slate-300">
@@ -313,1203 +330,1294 @@
     <div
       id="menu-overlay"
       class="fixed inset-0 bg-black/60 backdrop-blur-sm z-[55] hidden opacity-0 transition-opacity duration-300"
+      aria-hidden="true"
     ></div>
 
-    <!-- HERO -->
-    <section
-      id="hero"
-      class="pt-40 pb-20 px-6 md:px-12 flex flex-col items-center text-center"
-    >
-      <div
-        class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-xs font-medium text-purple-300 mb-8 tracking-wide animate-fade-in-up"
+    <main>
+      <!-- HERO -->
+      <section
+        id="hero"
+        class="pt-40 pb-20 px-6 md:px-12 flex flex-col items-center text-center"
+        aria-label="Introduction"
       >
-        <span class="relative flex h-2 w-2">
-          <span
-            class="animate-ping absolute inline-flex h-full w-full rounded-full bg-purple-400 opacity-75"
-          ></span>
-          <span
-            class="relative inline-flex rounded-full h-2 w-2 bg-purple-500"
-          ></span>
-        </span>
-        Available for hire
-      </div>
-
-      <!-- Bouncing Title -->
-      <h1
-        class="text-5xl md:text-7xl font-semibold tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-brand-blue to-brand-purple mb-6 max-w-4xl leading-[1.1] opacity-0 animate-bounce-settle"
-      >
-        I Turn Ideas Into Reality.
-      </h1>
-
-      <p
-        class="text-lg md:text-xl text-slate-400 max-w-2xl mb-10 font-light animate-fade-in-up"
-        style="animation-delay: 0.4s;"
-      >
-        Developer • Designer • Learner
-      </p>
-
-      <a
-        href="https://www.instagram.com/yashveer.codes/"
-        target="_blank"
-        class="group relative inline-flex items-center gap-2 px-8 py-3.5 bg-white/[0.08] hover:bg-white/[0.12] border border-white/20 rounded-xl text-white font-medium transition-all duration-300 backdrop-blur-sm overflow-hidden animate-fade-in-up"
-        style="animation-delay: 0.6s;"
-      >
-        <span>Talk to Me</span>
-        <i
-          data-lucide="arrow-right"
-          class="w-4 h-4 group-hover:translate-x-1 transition-transform"
-        ></i>
         <div
-          class="absolute inset-0 -z-10 bg-gradient-to-r from-transparent via-white/10 to-transparent w-1/2 -translate-x-full group-hover:animate-[shimmer_1s_infinite]"
-        ></div>
-      </a>
-    </section>
+          class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-xs font-medium text-purple-300 mb-8 tracking-wide animate-fade-in-up"
+        >
+          <span class="relative flex h-2 w-2" aria-hidden="true">
+            <span
+              class="animate-ping absolute inline-flex h-full w-full rounded-full bg-purple-400 opacity-75"
+            ></span>
+            <span
+              class="relative inline-flex rounded-full h-2 w-2 bg-purple-500"
+            ></span>
+          </span>
+          Available for hire
+        </div>
 
-    <!-- ABOUT -->
-    <section
-      id="about"
-      class="py-20 px-6 md:px-24 max-w-7xl mx-auto fade-in-section"
-    >
-      <h2
-        class="text-3xl md:text-4xl font-semibold text-white tracking-tight mb-8"
-      >
-        About Me
-      </h2>
-      <div
-        class="space-y-6 text-base md:text-lg leading-relaxed text-slate-400 font-light"
-      >
-        <p>
-          I'm Yashveer, a developer who loves building things that actually work
-          and look good. I enjoy combining clean design with strong technical
-          skills whether it's frontend, backend, AI, robotics, or anything in
-          between. I like creating experiences that feel smooth, modern, and
-          purposeful without losing performance or functionality.
+        <h1
+          class="text-5xl md:text-7xl font-semibold tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-brand-blue to-brand-purple mb-6 max-w-4xl leading-[1.1] opacity-0 animate-bounce-settle"
+        >
+          I Turn Ideas Into Reality.
+        </h1>
+
+        <p
+          class="text-lg md:text-xl text-slate-400 max-w-2xl mb-10 font-light animate-fade-in-up"
+          style="animation-delay: 0.4s;"
+        >
+          Developer • Designer • Learner
         </p>
-        <p>
-          I work across many fields including web development, AI, machine
-          learning, deep learning, NLP, computer vision, voice technology,
-          databases, cloud, DevOps, cybersecurity, robotics, embedded systems,
-          and UI and UX design. I turn complex ideas into simple and effective
-          digital solutions, built with precision instead of shortcuts or
-          templates.
+
+        <a
+          href="https://www.instagram.com/yashveer.codes/"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Talk to me on Instagram"
+          class="group relative inline-flex items-center gap-2 px-8 py-3.5 bg-white/[0.08] hover:bg-white/[0.12] border border-white/20 rounded-xl text-white font-medium transition-all duration-300 backdrop-blur-sm overflow-hidden animate-fade-in-up"
+          style="animation-delay: 0.6s;"
+        >
+          <span>Talk to Me</span>
+          <i
+            data-lucide="arrow-right"
+            class="w-4 h-4 group-hover:translate-x-1 transition-transform"
+            aria-hidden="true"
+          ></i>
+          <div
+            class="absolute inset-0 -z-10 bg-gradient-to-r from-transparent via-white/10 to-transparent w-1/2 -translate-x-full group-hover:animate-[shimmer_1s_infinite]"
+          ></div>
+        </a>
+      </section>
+
+      <!-- ABOUT -->
+      <section
+        id="about"
+        class="py-20 px-6 md:px-24 max-w-7xl mx-auto fade-in-section"
+      >
+        <h2
+          class="text-3xl md:text-4xl font-semibold text-white tracking-tight mb-8"
+        >
+          About Me
+        </h2>
+        <div
+          class="space-y-6 text-base md:text-lg leading-relaxed text-slate-400 font-light"
+        >
+          <p>
+            I'm Yashveer, a developer who loves building things that actually work
+            and look good. I enjoy combining clean design with strong technical
+            skills whether it's frontend, backend, AI, robotics, or anything in
+            between. I like creating experiences that feel smooth, modern, and
+            purposeful without losing performance or functionality.
+          </p>
+          <p>
+            I work across many fields including web development, AI, machine
+            learning, deep learning, NLP, computer vision, voice technology,
+            databases, cloud, DevOps, cybersecurity, robotics, embedded systems,
+            and UI and UX design. I turn complex ideas into simple and effective
+            digital solutions, built with precision instead of shortcuts or
+            templates.
+          </p>
+          <p>
+            When I’m not coding or designing, I learn new technologies, build
+            experimental projects, and explore advanced concepts in AI and
+            robotics. Every day I improve a little more and that growth directly
+            reflects in the quality of the work I deliver.
+          </p>
+        </div>
+      </section>
+
+      <!-- SKILLS GRID -->
+      <section class="py-12 px-6 md:px-12 max-w-7xl mx-auto fade-in-section" aria-label="Technical Skills">
+        <div
+          class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-5 justify-items-center"
+        >
+          <!-- Skill Items -->
+          <div
+            class="group flex flex-col items-center justify-center w-full aspect-square bg-white/[0.03] border border-white/10 rounded-2xl hover:bg-white/[0.08] hover:border-white/20 hover:scale-105 transition-all duration-300 cursor-default"
+          >
+            <img
+              src="https://ik.imagekit.io/yashveer/Icons/Icons/Arduino.png"
+              class="w-12 h-12 object-contain mb-3 opacity-90 group-hover:scale-110 transition-all duration-300"
+              alt="Arduino Logo"
+              width="48"
+              height="48"
+              loading="lazy"
+            />
+            <span
+              class="text-sm font-medium text-slate-400 group-hover:text-white transition-colors"
+            >
+              Arduino
+            </span>
+          </div>
+
+          <div
+            class="group flex flex-col items-center justify-center w-full aspect-square bg-white/[0.03] border border-white/10 rounded-2xl hover:bg-white/[0.08] hover:border-white/20 hover:scale-105 transition-all duration-300 cursor-default"
+          >
+            <img
+              src="https://ik.imagekit.io/yashveer/Icons/Icons/css.png"
+              class="w-12 h-12 object-contain mb-3 opacity-90 group-hover:scale-110 transition-all duration-300"
+              alt="CSS Logo"
+              width="48"
+              height="48"
+              loading="lazy"
+            />
+            <span
+              class="text-sm font-medium text-slate-400 group-hover:text-white transition-colors"
+            >
+              CSS
+            </span>
+          </div>
+
+          <div
+            class="group flex flex-col items-center justify-center w-full aspect-square bg-white/[0.03] border border-white/10 rounded-2xl hover:bg-white/[0.08] hover:border-white/20 hover:scale-105 transition-all duration-300 cursor-default"
+          >
+            <img
+              src="https://ik.imagekit.io/yashveer/Icons/Icons/docker.png"
+              class="w-12 h-12 object-contain mb-3 opacity-90 group-hover:scale-110 transition-all duration-300"
+              alt="Docker Logo"
+              width="48"
+              height="48"
+              loading="lazy"
+            />
+            <span
+              class="text-sm font-medium text-slate-400 group-hover:text-white transition-colors"
+            >
+              Docker
+            </span>
+          </div>
+
+          <div
+            class="group flex flex-col items-center justify-center w-full aspect-square bg-white/[0.03] border border-white/10 rounded-2xl hover:bg-white/[0.08] hover:border-white/20 hover:scale-105 transition-all duration-300 cursor-default"
+          >
+            <img
+              src="https://ik.imagekit.io/yashveer/Icons/Icons/ESP32.png"
+              class="w-12 h-12 object-contain mb-3 opacity-90 group-hover:scale-110 transition-all duration-300"
+              alt="ESP32 Logo"
+              width="48"
+              height="48"
+              loading="lazy"
+            />
+            <span
+              class="text-sm font-medium text-slate-400 group-hover:text-white transition-colors"
+            >
+              ESP32
+            </span>
+          </div>
+
+          <div
+            class="group flex flex-col items-center justify-center w-full aspect-square bg-white/[0.03] border border-white/10 rounded-2xl hover:bg-white/[0.08] hover:border-white/20 hover:scale-105 transition-all duration-300 cursor-default"
+          >
+            <img
+              src="https://ik.imagekit.io/yashveer/Icons/Icons/git.png"
+              class="w-12 h-12 object-contain mb-3 opacity-90 group-hover:scale-110 transition-all duration-300"
+              alt="Git Logo"
+              width="48"
+              height="48"
+              loading="lazy"
+            />
+            <span
+              class="text-sm font-medium text-slate-400 group-hover:text-white transition-colors"
+            >
+              Git
+            </span>
+          </div>
+
+          <div
+            class="group flex flex-col items-center justify-center w-full aspect-square bg-white/[0.03] border border-white/10 rounded-2xl hover:bg-white/[0.08] hover:border-white/20 hover:scale-105 transition-all duration-300 cursor-default"
+          >
+            <img
+              src="https://ik.imagekit.io/yashveer/Icons/Icons/github.png"
+              class="w-12 h-12 object-contain mb-3 opacity-90 group-hover:scale-110 transition-all duration-300"
+              alt="GitHub Logo"
+              width="48"
+              height="48"
+              loading="lazy"
+            />
+            <span
+              class="text-sm font-medium text-slate-400 group-hover:text-white transition-colors"
+            >
+              GitHub
+            </span>
+          </div>
+
+          <div
+            class="group flex flex-col items-center justify-center w-full aspect-square bg-white/[0.03] border border-white/10 rounded-2xl hover:bg-white/[0.08] hover:border-white/20 hover:scale-105 transition-all duration-300 cursor-default"
+          >
+            <img
+              src="https://ik.imagekit.io/yashveer/Icons/Icons/html.png"
+              class="w-12 h-12 object-contain mb-3 opacity-90 group-hover:scale-110 transition-all duration-300"
+              alt="HTML Logo"
+              width="48"
+              height="48"
+              loading="lazy"
+            />
+            <span
+              class="text-sm font-medium text-slate-400 group-hover:text-white transition-colors"
+            >
+              HTML
+            </span>
+          </div>
+
+          <div
+            class="group flex flex-col items-center justify-center w-full aspect-square bg-white/[0.03] border border-white/10 rounded-2xl hover:bg-white/[0.08] hover:border-white/20 hover:scale-105 transition-all duration-300 cursor-default"
+          >
+            <img
+              src="https://ik.imagekit.io/yashveer/Icons/Icons/js.png"
+              class="w-12 h-12 object-contain mb-3 opacity-90 group-hover:scale-110 transition-all duration-300"
+              alt="JavaScript Logo"
+              width="48"
+              height="48"
+              loading="lazy"
+            />
+            <span
+              class="text-sm font-medium text-slate-400 group-hover:text-white transition-colors"
+            >
+              JavaScript
+            </span>
+          </div>
+
+          <div
+            class="group flex flex-col items-center justify-center w-full aspect-square bg-white/[0.03] border border-white/10 rounded-2xl hover:bg-white/[0.08] hover:border-white/20 hover:scale-105 transition-all duration-300 cursor-default"
+          >
+            <img
+              src="https://ik.imagekit.io/yashveer/Icons/Icons/linux.png"
+              class="w-12 h-12 object-contain mb-3 opacity-90 group-hover:scale-110 transition-all duration-300"
+              alt="Linux Logo"
+              width="48"
+              height="48"
+              loading="lazy"
+            />
+            <span
+              class="text-sm font-medium text-slate-400 group-hover:text-white transition-colors"
+            >
+              Linux
+            </span>
+          </div>
+
+          <div
+            class="group flex flex-col items-center justify-center w-full aspect-square bg-white/[0.03] border border-white/10 rounded-2xl hover:bg-white/[0.08] hover:border-white/20 hover:scale-105 transition-all duration-300 cursor-default"
+          >
+            <img
+              src="https://ik.imagekit.io/yashveer/Icons/Icons/MongoDB.png"
+              class="w-12 h-12 object-contain mb-3 opacity-90 group-hover:scale-110 transition-all duration-300"
+              alt="MongoDB Logo"
+              width="48"
+              height="48"
+              loading="lazy"
+            />
+            <span
+              class="text-sm font-medium text-slate-400 group-hover:text-white transition-colors"
+            >
+              MongoDB
+            </span>
+          </div>
+
+          <div
+            class="group flex flex-col items-center justify-center w-full aspect-square bg-white/[0.03] border border-white/10 rounded-2xl hover:bg-white/[0.08] hover:border-white/20 hover:scale-105 transition-all duration-300 cursor-default"
+          >
+            <img
+              src="https://ik.imagekit.io/yashveer/Icons/Icons/nextjs.png"
+              class="w-12 h-12 object-contain mb-3 opacity-90 group-hover:scale-110 transition-all duration-300"
+              alt="Next.js Logo"
+              width="48"
+              height="48"
+              loading="lazy"
+            />
+            <span
+              class="text-sm font-medium text-slate-400 group-hover:text-white transition-colors"
+            >
+              Next.js
+            </span>
+          </div>
+
+          <div
+            class="group flex flex-col items-center justify-center w-full aspect-square bg-white/[0.03] border border-white/10 rounded-2xl hover:bg-white/[0.08] hover:border-white/20 hover:scale-105 transition-all duration-300 cursor-default"
+          >
+            <img
+              src="https://ik.imagekit.io/yashveer/Icons/Icons/Postgres.png"
+              class="w-12 h-12 object-contain mb-3 opacity-90 group-hover:scale-110 transition-all duration-300"
+              alt="Postgres Logo"
+              width="48"
+              height="48"
+              loading="lazy"
+            />
+            <span
+              class="text-sm font-medium text-slate-400 group-hover:text-white transition-colors"
+            >
+              Postgres
+            </span>
+          </div>
+
+          <div
+            class="group flex flex-col items-center justify-center w-full aspect-square bg-white/[0.03] border border-white/10 rounded-2xl hover:bg-white/[0.08] hover:border-white/20 hover:scale-105 transition-all duration-300 cursor-default"
+          >
+            <img
+              src="https://ik.imagekit.io/yashveer/Icons/Icons/PyTorch.png"
+              class="w-12 h-12 object-contain mb-3 opacity-90 group-hover:scale-110 transition-all duration-300"
+              alt="PyTorch Logo"
+              width="48"
+              height="48"
+              loading="lazy"
+            />
+            <span
+              class="text-sm font-medium text-slate-400 group-hover:text-white transition-colors"
+            >
+              PyTorch
+            </span>
+          </div>
+
+          <div
+            class="group flex flex-col items-center justify-center w-full aspect-square bg-white/[0.03] border border-white/10 rounded-2xl hover:bg-white/[0.08] hover:border-white/20 hover:scale-105 transition-all duration-300 cursor-default"
+          >
+            <img
+              src="https://ik.imagekit.io/yashveer/Icons/Icons/python.png"
+              class="w-12 h-12 object-contain mb-3 opacity-90 group-hover:scale-110 transition-all duration-300"
+              alt="Python Logo"
+              width="48"
+              height="48"
+              loading="lazy"
+            />
+            <span
+              class="text-sm font-medium text-slate-400 group-hover:text-white transition-colors"
+            >
+              Python
+            </span>
+          </div>
+
+          <div
+            class="group flex flex-col items-center justify-center w-full aspect-square bg-white/[0.03] border border-white/10 rounded-2xl hover:bg-white/[0.08] hover:border-white/20 hover:scale-105 transition-all duration-300 cursor-default"
+          >
+            <img
+              src="https://ik.imagekit.io/yashveer/Icons/Icons/react.png"
+              class="w-12 h-12 object-contain mb-3 opacity-90 group-hover:scale-110 transition-all duration-300"
+              alt="React Logo"
+              width="48"
+              height="48"
+              loading="lazy"
+            />
+            <span
+              class="text-sm font-medium text-slate-400 group-hover:text-white transition-colors"
+            >
+              React
+            </span>
+          </div>
+
+          <div
+            class="group flex flex-col items-center justify-center w-full aspect-square bg-white/[0.03] border border-white/10 rounded-2xl hover:bg-white/[0.08] hover:border-white/20 hover:scale-105 transition-all duration-300 cursor-default"
+          >
+            <img
+              src="https://ik.imagekit.io/yashveer/Icons/Icons/Redis.png"
+              class="w-12 h-12 object-contain mb-3 opacity-90 group-hover:scale-110 transition-all duration-300"
+              alt="Redis Logo"
+              width="48"
+              height="48"
+              loading="lazy"
+            />
+            <span
+              class="text-sm font-medium text-slate-400 group-hover:text-white transition-colors"
+            >
+              Redis
+            </span>
+          </div>
+
+          <div
+            class="group flex flex-col items-center justify-center w-full aspect-square bg-white/[0.03] border border-white/10 rounded-2xl hover:bg-white/[0.08] hover:border-white/20 hover:scale-105 transition-all duration-300 cursor-default"
+          >
+            <img
+              src="https://ik.imagekit.io/yashveer/Icons/Icons/ROS2.png"
+              class="w-12 h-12 object-contain mb-3 opacity-90 group-hover:scale-110 transition-all duration-300"
+              alt="ROS2 Logo"
+              width="48"
+              height="48"
+              loading="lazy"
+            />
+            <span
+              class="text-sm font-medium text-slate-400 group-hover:text-white transition-colors"
+            >
+              ROS2
+            </span>
+          </div>
+        </div>
+      </section>
+
+      <!-- SERVICES -->
+      <section
+        id="services"
+        class="py-20 px-6 md:px-24 max-w-7xl mx-auto fade-in-section"
+      >
+        <h2
+          class="text-3xl md:text-4xl font-semibold text-white tracking-tight mb-8"
+        >
+          Services
+        </h2>
+        <p
+          class="text-base md:text-lg leading-relaxed text-slate-400 font-light max-w-4xl"
+        >
+          I help individuals, creators, startups, and businesses build powerful
+          digital systems. My services include website development, AI and
+          machine learning solutions, automation tools, portfolio design, UI and
+          UX design, robotics projects, embedded AI, and technical guidance.
+          Everything is done with high quality, clear communication, and a
+          personalized approach that fits your exact goals.
         </p>
-        <p>
-          When I’m not coding or designing, I learn new technologies, build
-          experimental projects, and explore advanced concepts in AI and
-          robotics. Every day I improve a little more and that growth directly
-          reflects in the quality of the work I deliver.
-        </p>
-      </div>
-    </section>
+      </section>
 
-    <!-- SKILLS GRID (Full Color Logos) -->
-    <section class="py-12 px-6 md:px-12 max-w-7xl mx-auto fade-in-section">
-      <div
-        class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-5 justify-items-center"
+      <!-- PROJECTS -->
+      <section
+        id="projects"
+        class="py-20 px-6 md:px-12 max-w-6xl mx-auto fade-in-section"
       >
-        <div
-          class="group flex flex-col items-center justify-center w-full aspect-square bg-white/[0.03] border border-white/10 rounded-2xl hover:bg-white/[0.08] hover:border-white/20 hover:scale-105 transition-all duration-300 cursor-default"
+        <h2
+          class="text-3xl md:text-4xl font-semibold text-white tracking-tight mb-12"
         >
-          <img
-            src="https://ik.imagekit.io/yashveer/Icons/Icons/Arduino.png"
-            class="w-12 h-12 object-contain mb-3 opacity-90 group-hover:scale-110 transition-all duration-300"
-            alt="Arduino"
-          />
-          <span
-            class="text-sm font-medium text-slate-400 group-hover:text-white transition-colors"
+          Projects
+        </h2>
+        <div class="grid gap-10">
+          <!-- Project 1 -->
+          <article
+            class="p-8 md:p-10 rounded-3xl bg-white/[0.03] border border-white/10 backdrop-blur-md hover:bg-white/[0.05] transition-colors duration-300"
           >
-            Arduino
-          </span>
-        </div>
+            <div
+              class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6"
+            >
+              <h3 class="text-2xl font-semibold text-white">
+                Rohit Mukherjee Portfolio
+              </h3>
+              <a
+                href="https://www.myadvertisingfolio.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-flex items-center gap-2 text-brand-blue hover:text-brand-purple font-medium transition-colors"
+                aria-label="Visit Rohit Mukherjee Portfolio"
+              >
+                Visit Project
+                <i
+                  data-lucide="arrow-up-right"
+                  class="w-4 h-4"
+                  aria-hidden="true"
+                ></i>
+              </a>
+            </div>
+            <div class="space-y-4 text-slate-400 font-light leading-relaxed">
+              <p>
+                A storytelling-focused portfolio built for an advertising
+                creative who needed a space that is more than just a website ,
+                it’s an experience. The entire design revolves around narrative
+                flow, ensuring every section feels like a chapter in his career
+                journey. Soft typography, scroll-based visuals, and a cinematic
+                presentation style create a personal connection with the viewer.
+              </p>
+            </div>
+          </article>
 
-        <div
-          class="group flex flex-col items-center justify-center w-full aspect-square bg-white/[0.03] border border-white/10 rounded-2xl hover:bg-white/[0.08] hover:border-white/20 hover:scale-105 transition-all duration-300 cursor-default"
-        >
-          <img
-            src="https://ik.imagekit.io/yashveer/Icons/Icons/css.png"
-            class="w-12 h-12 object-contain mb-3 opacity-90 group-hover:scale-110 transition-all duration-300"
-            alt="CSS"
-          />
-          <span
-            class="text-sm font-medium text-slate-400 group-hover:text-white transition-colors"
+          <!-- Project 2 -->
+          <article
+            class="p-8 md:p-10 rounded-3xl bg-white/[0.03] border border-white/10 backdrop-blur-md hover:bg-white/[0.05] transition-colors duration-300"
           >
-            CSS
-          </span>
-        </div>
+            <div
+              class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6"
+            >
+              <h3 class="text-2xl font-semibold text-white">
+                Amisha – Design Portfolio
+              </h3>
+              <a
+                href="https://amisha-graphic-designer.yashvsr2010.workers.dev/"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-flex items-center gap-2 text-brand-blue hover:text-brand-purple font-medium transition-colors"
+                aria-label="Visit Amisha Design Portfolio"
+              >
+                Visit Project
+                <i
+                  data-lucide="arrow-up-right"
+                  class="w-4 h-4"
+                  aria-hidden="true"
+                ></i>
+              </a>
+            </div>
+            <div class="space-y-4 text-slate-400 font-light leading-relaxed">
+              <p>
+                A clean and expressive portfolio created for a graphic designer
+                who wanted a soft, artistic, and modern space to showcase her
+                work. The design focuses on white space, minimal color accents,
+                and an elegant rhythm that allows visuals to shine.
+              </p>
+            </div>
+          </article>
 
-        <div
-          class="group flex flex-col items-center justify-center w-full aspect-square bg-white/[0.03] border border-white/10 rounded-2xl hover:bg-white/[0.08] hover:border-white/20 hover:scale-105 transition-all duration-300 cursor-default"
-        >
-          <img
-            src="https://ik.imagekit.io/yashveer/Icons/Icons/docker.png"
-            class="w-12 h-12 object-contain mb-3 opacity-90 group-hover:scale-110 transition-all duration-300"
-            alt="Docker"
-          />
-          <span
-            class="text-sm font-medium text-slate-400 group-hover:text-white transition-colors"
+          <!-- Project 3 -->
+          <article
+            class="p-8 md:p-10 rounded-3xl bg-white/[0.03] border border-white/10 backdrop-blur-md hover:bg-white/[0.05] transition-colors duration-300"
           >
-            Docker
-          </span>
+            <div
+              class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6"
+            >
+              <h3 class="text-2xl font-semibold text-white">
+                MakeUp Artist Sample Site
+              </h3>
+              <a
+                href="https://yashveer-makeup-artist-sample-site.netlify.app/"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-flex items-center gap-2 text-brand-blue hover:text-brand-purple font-medium transition-colors"
+                aria-label="Visit MakeUp Artist Sample Site"
+              >
+                Visit Project
+                <i
+                  data-lucide="arrow-up-right"
+                  class="w-4 h-4"
+                  aria-hidden="true"
+                ></i>
+              </a>
+            </div>
+            <div class="space-y-4 text-slate-400 font-light leading-relaxed">
+              <p>
+                A soft, aesthetic website designed specifically for beauty
+                professionals looking to build an online presence that reflects
+                elegance and style. The visual theme showcases warm color
+                palettes, light gradients, and high-end beauty aesthetics
+                inspired by professional makeup portfolios.
+              </p>
+            </div>
+          </article>
         </div>
+      </section>
 
-        <div
-          class="group flex flex-col items-center justify-center w-full aspect-square bg-white/[0.03] border border-white/10 rounded-2xl hover:bg-white/[0.08] hover:border-white/20 hover:scale-105 transition-all duration-300 cursor-default"
-        >
-          <img
-            src="https://ik.imagekit.io/yashveer/Icons/Icons/ESP32.png"
-            class="w-12 h-12 object-contain mb-3 opacity-90 group-hover:scale-110 transition-all duration-300"
-            alt="ESP32"
-          />
-          <span
-            class="text-sm font-medium text-slate-400 group-hover:text-white transition-colors"
-          >
-            ESP32
-          </span>
-        </div>
-
-        <div
-          class="group flex flex-col items-center justify-center w-full aspect-square bg-white/[0.03] border border-white/10 rounded-2xl hover:bg-white/[0.08] hover:border-white/20 hover:scale-105 transition-all duration-300 cursor-default"
-        >
-          <img
-            src="https://ik.imagekit.io/yashveer/Icons/Icons/git.png"
-            class="w-12 h-12 object-contain mb-3 opacity-90 group-hover:scale-110 transition-all duration-300"
-            alt="Git"
-          />
-          <span
-            class="text-sm font-medium text-slate-400 group-hover:text-white transition-colors"
-          >
-            Git
-          </span>
-        </div>
-
-        <div
-          class="group flex flex-col items-center justify-center w-full aspect-square bg-white/[0.03] border border-white/10 rounded-2xl hover:bg-white/[0.08] hover:border-white/20 hover:scale-105 transition-all duration-300 cursor-default"
-        >
-          <img
-            src="https://ik.imagekit.io/yashveer/Icons/Icons/github.png"
-            class="w-12 h-12 object-contain mb-3 opacity-90 group-hover:scale-110 transition-all duration-300"
-            alt="GitHub"
-          />
-          <span
-            class="text-sm font-medium text-slate-400 group-hover:text-white transition-colors"
-          >
-            GitHub
-          </span>
-        </div>
-
-        <div
-          class="group flex flex-col items-center justify-center w-full aspect-square bg-white/[0.03] border border-white/10 rounded-2xl hover:bg-white/[0.08] hover:border-white/20 hover:scale-105 transition-all duration-300 cursor-default"
-        >
-          <img
-            src="https://ik.imagekit.io/yashveer/Icons/Icons/html.png"
-            class="w-12 h-12 object-contain mb-3 opacity-90 group-hover:scale-110 transition-all duration-300"
-            alt="HTML"
-          />
-          <span
-            class="text-sm font-medium text-slate-400 group-hover:text-white transition-colors"
-          >
-            HTML
-          </span>
-        </div>
-
-        <div
-          class="group flex flex-col items-center justify-center w-full aspect-square bg-white/[0.03] border border-white/10 rounded-2xl hover:bg-white/[0.08] hover:border-white/20 hover:scale-105 transition-all duration-300 cursor-default"
-        >
-          <img
-            src="https://ik.imagekit.io/yashveer/Icons/Icons/js.png"
-            class="w-12 h-12 object-contain mb-3 opacity-90 group-hover:scale-110 transition-all duration-300"
-            alt="JavaScript"
-          />
-          <span
-            class="text-sm font-medium text-slate-400 group-hover:text-white transition-colors"
-          >
-            JavaScript
-          </span>
-        </div>
-
-        <div
-          class="group flex flex-col items-center justify-center w-full aspect-square bg-white/[0.03] border border-white/10 rounded-2xl hover:bg-white/[0.08] hover:border-white/20 hover:scale-105 transition-all duration-300 cursor-default"
-        >
-          <img
-            src="https://ik.imagekit.io/yashveer/Icons/Icons/linux.png"
-            class="w-12 h-12 object-contain mb-3 opacity-90 group-hover:scale-110 transition-all duration-300"
-            alt="Linux"
-          />
-          <span
-            class="text-sm font-medium text-slate-400 group-hover:text-white transition-colors"
-          >
-            Linux
-          </span>
-        </div>
-
-        <div
-          class="group flex flex-col items-center justify-center w-full aspect-square bg-white/[0.03] border border-white/10 rounded-2xl hover:bg-white/[0.08] hover:border-white/20 hover:scale-105 transition-all duration-300 cursor-default"
-        >
-          <img
-            src="https://ik.imagekit.io/yashveer/Icons/Icons/MongoDB.png"
-            class="w-12 h-12 object-contain mb-3 opacity-90 group-hover:scale-110 transition-all duration-300"
-            alt="MongoDB"
-          />
-          <span
-            class="text-sm font-medium text-slate-400 group-hover:text-white transition-colors"
-          >
-            MongoDB
-          </span>
-        </div>
-
-        <div
-          class="group flex flex-col items-center justify-center w-full aspect-square bg-white/[0.03] border border-white/10 rounded-2xl hover:bg-white/[0.08] hover:border-white/20 hover:scale-105 transition-all duration-300 cursor-default"
-        >
-          <img
-            src="https://ik.imagekit.io/yashveer/Icons/Icons/nextjs.png"
-            class="w-12 h-12 object-contain mb-3 opacity-90 group-hover:scale-110 transition-all duration-300"
-            alt="Next.js"
-          />
-          <span
-            class="text-sm font-medium text-slate-400 group-hover:text-white transition-colors"
-          >
-            Next.js
-          </span>
-        </div>
-
-        <div
-          class="group flex flex-col items-center justify-center w-full aspect-square bg-white/[0.03] border border-white/10 rounded-2xl hover:bg-white/[0.08] hover:border-white/20 hover:scale-105 transition-all duration-300 cursor-default"
-        >
-          <img
-            src="https://ik.imagekit.io/yashveer/Icons/Icons/Postgres.png"
-            class="w-12 h-12 object-contain mb-3 opacity-90 group-hover:scale-110 transition-all duration-300"
-            alt="Postgres"
-          />
-          <span
-            class="text-sm font-medium text-slate-400 group-hover:text-white transition-colors"
-          >
-            Postgres
-          </span>
-        </div>
-
-        <div
-          class="group flex flex-col items-center justify-center w-full aspect-square bg-white/[0.03] border border-white/10 rounded-2xl hover:bg-white/[0.08] hover:border-white/20 hover:scale-105 transition-all duration-300 cursor-default"
-        >
-          <img
-            src="https://ik.imagekit.io/yashveer/Icons/Icons/PyTorch.png"
-            class="w-12 h-12 object-contain mb-3 opacity-90 group-hover:scale-110 transition-all duration-300"
-            alt="PyTorch"
-          />
-          <span
-            class="text-sm font-medium text-slate-400 group-hover:text-white transition-colors"
-          >
-            PyTorch
-          </span>
-        </div>
-
-        <div
-          class="group flex flex-col items-center justify-center w-full aspect-square bg-white/[0.03] border border-white/10 rounded-2xl hover:bg-white/[0.08] hover:border-white/20 hover:scale-105 transition-all duration-300 cursor-default"
-        >
-          <img
-            src="https://ik.imagekit.io/yashveer/Icons/Icons/python.png"
-            class="w-12 h-12 object-contain mb-3 opacity-90 group-hover:scale-110 transition-all duration-300"
-            alt="Python"
-          />
-          <span
-            class="text-sm font-medium text-slate-400 group-hover:text-white transition-colors"
-          >
-            Python
-          </span>
-        </div>
-
-        <div
-          class="group flex flex-col items-center justify-center w-full aspect-square bg-white/[0.03] border border-white/10 rounded-2xl hover:bg-white/[0.08] hover:border-white/20 hover:scale-105 transition-all duration-300 cursor-default"
-        >
-          <img
-            src="https://ik.imagekit.io/yashveer/Icons/Icons/react.png"
-            class="w-12 h-12 object-contain mb-3 opacity-90 group-hover:scale-110 transition-all duration-300"
-            alt="React"
-          />
-          <span
-            class="text-sm font-medium text-slate-400 group-hover:text-white transition-colors"
-          >
-            React
-          </span>
-        </div>
-
-        <div
-          class="group flex flex-col items-center justify-center w-full aspect-square bg-white/[0.03] border border-white/10 rounded-2xl hover:bg-white/[0.08] hover:border-white/20 hover:scale-105 transition-all duration-300 cursor-default"
-        >
-          <img
-            src="https://ik.imagekit.io/yashveer/Icons/Icons/Redis.png"
-            class="w-12 h-12 object-contain mb-3 opacity-90 group-hover:scale-110 transition-all duration-300"
-            alt="Redis"
-          />
-          <span
-            class="text-sm font-medium text-slate-400 group-hover:text-white transition-colors"
-          >
-            Redis
-          </span>
-        </div>
-
-        <div
-          class="group flex flex-col items-center justify-center w-full aspect-square bg-white/[0.03] border border-white/10 rounded-2xl hover:bg-white/[0.08] hover:border-white/20 hover:scale-105 transition-all duration-300 cursor-default"
-        >
-          <img
-            src="https://ik.imagekit.io/yashveer/Icons/Icons/ROS2.png"
-            class="w-12 h-12 object-contain mb-3 opacity-90 group-hover:scale-110 transition-all duration-300"
-            alt="ROS2"
-          />
-          <span
-            class="text-sm font-medium text-slate-400 group-hover:text-white transition-colors"
-          >
-            ROS2
-          </span>
-        </div>
-      </div>
-    </section>
-
-    <!-- SERVICES -->
-    <section
-      id="services"
-      class="py-20 px-6 md:px-24 max-w-7xl mx-auto fade-in-section"
-    >
-      <h2
-        class="text-3xl md:text-4xl font-semibold text-white tracking-tight mb-8"
+      <!-- CERTIFICATES -->
+      <section
+        id="work"
+        class="py-20 px-6 md:px-12 max-w-7xl mx-auto fade-in-section"
       >
-        Services
-      </h2>
-      <p
-        class="text-base md:text-lg leading-relaxed text-slate-400 font-light max-w-4xl"
-      >
-        I help individuals, creators, startups, and businesses build powerful
-        digital systems. My services include website development, AI and machine
-        learning solutions, automation tools, portfolio design, UI and UX
-        design, robotics projects, embedded AI, and technical guidance.
-        Everything is done with high quality, clear communication, and a
-        personalized approach that fits your exact goals.
-      </p>
-    </section>
-
-    <!-- PROJECTS -->
-    <section
-      id="projects"
-      class="py-20 px-6 md:px-12 max-w-6xl mx-auto fade-in-section"
-    >
-      <h2
-        class="text-3xl md:text-4xl font-semibold text-white tracking-tight mb-12"
-      >
-        Projects
-      </h2>
-      <div class="grid gap-10">
-        <!-- Project 1 -->
-        <div
-          class="p-8 md:p-10 rounded-3xl bg-white/[0.03] border border-white/10 backdrop-blur-md hover:bg-white/[0.05] transition-colors duration-300"
+        <h2
+          class="text-3xl md:text-4xl font-semibold text-white tracking-tight mb-12"
         >
+          Certificates
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           <div
-            class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6"
+            class="aspect-[4/3] rounded-xl overflow-hidden border border-white/10 group"
           >
-            <h3 class="text-2xl font-semibold text-white">
-              Rohit Mukherjee Portfolio
-            </h3>
-            <a
-              href="https://www.myadvertisingfolio.com/"
-              target="_blank"
-              class="inline-flex items-center gap-2 text-brand-blue hover:text-brand-purple font-medium transition-colors"
-            >
-              Visit Project
-              <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
-            </a>
+            <img
+              src="https://ik.imagekit.io/yashveer/1.png?updatedAt=1763388038277"
+              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              alt="Certificate of Achievement - Advanced AI"
+              width="600"
+              height="450"
+              loading="lazy"
+            />
           </div>
-          <div class="space-y-4 text-slate-400 font-light leading-relaxed">
-            <p>
-              A storytelling-focused portfolio built for an advertising creative
-              who needed a space that is more than just a website , it’s an
-              experience. The entire design revolves around narrative flow,
-              ensuring every section feels like a chapter in his career journey.
-              Soft typography, scroll-based visuals, and a cinematic
-              presentation style create a personal connection with the viewer.
-            </p>
-          </div>
-        </div>
-
-        <!-- Project 2 -->
-        <div
-          class="p-8 md:p-10 rounded-3xl bg-white/[0.03] border border-white/10 backdrop-blur-md hover:bg-white/[0.05] transition-colors duration-300"
-        >
           <div
-            class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6"
+            class="aspect-[4/3] rounded-xl overflow-hidden border border-white/10 group"
           >
-            <h3 class="text-2xl font-semibold text-white">
-              Amisha – Design Portfolio
-            </h3>
-            <a
-              href="https://amisha-graphic-designer.yashvsr2010.workers.dev/"
-              target="_blank"
-              class="inline-flex items-center gap-2 text-brand-blue hover:text-brand-purple font-medium transition-colors"
-            >
-              Visit Project
-              <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
-            </a>
+            <img
+              src="https://ik.imagekit.io/yashveer/2.png?updatedAt=1763388082989"
+              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              alt="Certificate of Achievement - Robotics Fundamentals"
+              width="600"
+              height="450"
+              loading="lazy"
+            />
           </div>
-          <div class="space-y-4 text-slate-400 font-light leading-relaxed">
-            <p>
-              A clean and expressive portfolio created for a graphic designer
-              who wanted a soft, artistic, and modern space to showcase her
-              work. The design focuses on white space, minimal color accents,
-              and an elegant rhythm that allows visuals to shine.
-            </p>
-          </div>
-        </div>
-
-        <!-- Project 3 -->
-        <div
-          class="p-8 md:p-10 rounded-3xl bg-white/[0.03] border border-white/10 backdrop-blur-md hover:bg-white/[0.05] transition-colors duration-300"
-        >
           <div
-            class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6"
+            class="aspect-[4/3] rounded-xl overflow-hidden border border-white/10 group"
           >
-            <h3 class="text-2xl font-semibold text-white">
-              MakeUp Artist Sample Site
+            <img
+              src="https://ik.imagekit.io/yashveer/4.png?updatedAt=1763388818509"
+              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              alt="Certificate of Achievement - Web Development"
+              width="600"
+              height="450"
+              loading="lazy"
+            />
+          </div>
+          <div
+            class="aspect-[4/3] rounded-xl overflow-hidden border border-white/10 group"
+          >
+            <img
+              src="https://ik.imagekit.io/yashveer/3.png?updatedAt=1763388716213"
+              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              alt="Certificate of Achievement - Database Management"
+              width="600"
+              height="450"
+              loading="lazy"
+            />
+          </div>
+        </div>
+      </section>
+
+      <!-- PRICING -->
+      <section
+        id="pricing"
+        class="py-20 px-6 md:px-12 max-w-7xl mx-auto fade-in-section"
+      >
+        <h2
+          class="text-3xl md:text-4xl font-semibold text-white tracking-tight mb-12"
+        >
+          Pricing
+        </h2>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <!-- Value Prop Card -->
+          <div
+            class="p-8 rounded-3xl bg-gradient-to-br from-white/[0.08] to-white/[0.02] border border-white/10 md:col-span-2 lg:col-span-3"
+          >
+            <h3 class="text-2xl font-semibold text-white mb-6">Why Choose Me?</h3>
+            <div class="grid md:grid-cols-3 gap-6 text-slate-300">
+              <div>
+                <strong class="text-white block mb-1">
+                  Personalized Learning
+                </strong>
+                <span class="text-sm font-light">
+                  Every student gets custom guidance based on goals.
+                </span>
+              </div>
+              <div>
+                <strong class="text-white block mb-1">Real-World Skills</strong>
+                <span class="text-sm font-light">
+                  Learn with projects, practical examples, and industry
+                  workflows.
+                </span>
+              </div>
+              <div>
+                <strong class="text-white block mb-1">
+                  Transparent Pricing
+                </strong>
+                <span class="text-sm font-light">
+                  No hidden fees — clear, value-focused pricing.
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Pricing Card 1 -->
+          <article
+            class="group pricing-card flex flex-col p-6 rounded-2xl bg-white/[0.03] border border-white/10 hover:bg-white hover:border-white"
+          >
+            <h3
+              class="text-xl font-medium text-white group-hover:text-black mb-4 transition-colors"
+            >
+              Want a Website?
             </h3>
-            <a
-              href="https://yashveer-makeup-artist-sample-site.netlify.app/"
-              target="_blank"
-              class="inline-flex items-center gap-2 text-brand-blue hover:text-brand-purple font-medium transition-colors"
-            >
-              Visit Project
-              <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
-            </a>
-          </div>
-          <div class="space-y-4 text-slate-400 font-light leading-relaxed">
-            <p>
-              A soft, aesthetic website designed specifically for beauty
-              professionals looking to build an online presence that reflects
-              elegance and style. The visual theme showcases warm color
-              palettes, light gradients, and high-end beauty aesthetics inspired
-              by professional makeup portfolios.
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- CERTIFICATES -->
-    <section
-      id="work"
-      class="py-20 px-6 md:px-12 max-w-7xl mx-auto fade-in-section"
-    >
-      <h2
-        class="text-3xl md:text-4xl font-semibold text-white tracking-tight mb-12"
-      >
-        Certificates
-      </h2>
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-        <div
-          class="aspect-[4/3] rounded-xl overflow-hidden border border-white/10 group"
-        >
-          <img
-            src="https://ik.imagekit.io/yashveer/1.png?updatedAt=1763388038277"
-            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-            alt="Certificate 1"
-          />
-        </div>
-        <div
-          class="aspect-[4/3] rounded-xl overflow-hidden border border-white/10 group"
-        >
-          <img
-            src="https://ik.imagekit.io/yashveer/2.png?updatedAt=1763388082989"
-            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-            alt="Certificate 2"
-          />
-        </div>
-        <div
-          class="aspect-[4/3] rounded-xl overflow-hidden border border-white/10 group"
-        >
-          <img
-            src="https://ik.imagekit.io/yashveer/4.png?updatedAt=1763388818509"
-            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-            alt="Certificate 3"
-          />
-        </div>
-        <div
-          class="aspect-[4/3] rounded-xl overflow-hidden border border-white/10 group"
-        >
-          <img
-            src="https://ik.imagekit.io/yashveer/3.png?updatedAt=1763388716213"
-            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-            alt="Certificate 4"
-          />
-        </div>
-      </div>
-    </section>
-
-    <!-- PRICING -->
-    <section
-      id="pricing"
-      class="py-20 px-6 md:px-12 max-w-7xl mx-auto fade-in-section"
-    >
-      <h2
-        class="text-3xl md:text-4xl font-semibold text-white tracking-tight mb-12"
-      >
-        Pricing
-      </h2>
-
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        <!-- Value Prop Card -->
-        <div
-          class="p-8 rounded-3xl bg-gradient-to-br from-white/[0.08] to-white/[0.02] border border-white/10 md:col-span-2 lg:col-span-3"
-        >
-          <h3 class="text-2xl font-semibold text-white mb-6">Why Choose Me?</h3>
-          <div class="grid md:grid-cols-3 gap-6 text-slate-300">
-            <div>
-              <strong class="text-white block mb-1">
-                Personalized Learning
-              </strong>
-              <span class="text-sm font-light">
-                Every student gets custom guidance based on goals.
-              </span>
+            <div class="flex-1 space-y-3">
+              <div
+                class="flex justify-between items-center text-sm border-b border-white/5 group-hover:border-black/10 pb-2 transition-colors"
+              >
+                <span
+                  class="text-slate-400 group-hover:text-slate-600 transition-colors"
+                >
+                  Single Page Portfolio
+                </span>
+                <span
+                  class="text-white font-medium group-hover:text-black transition-colors"
+                >
+                  ₹4,999
+                </span>
+              </div>
+              <div
+                class="flex justify-between items-center text-sm border-b border-white/5 group-hover:border-black/10 pb-2 transition-colors"
+              >
+                <span
+                  class="text-slate-400 group-hover:text-slate-600 transition-colors"
+                >
+                  Small Business Website
+                </span>
+                <span
+                  class="text-white font-medium group-hover:text-black transition-colors"
+                >
+                  ₹9,999
+                </span>
+              </div>
+              <div
+                class="flex justify-between items-center text-sm border-b border-white/5 group-hover:border-black/10 pb-2 transition-colors"
+              >
+                <span
+                  class="text-slate-400 group-hover:text-slate-600 transition-colors"
+                >
+                  Multi-Page Website
+                </span>
+                <span
+                  class="text-white font-medium group-hover:text-black transition-colors"
+                >
+                  ₹19,999
+                </span>
+              </div>
+              <div class="flex justify-between items-center text-sm">
+                <span
+                  class="text-slate-400 group-hover:text-slate-600 transition-colors"
+                >
+                  Shopify Store
+                </span>
+                <span
+                  class="text-white font-medium group-hover:text-black transition-colors"
+                >
+                  ₹29,999
+                </span>
+              </div>
             </div>
-            <div>
-              <strong class="text-white block mb-1">Real-World Skills</strong>
-              <span class="text-sm font-light">
-                Learn with projects, practical examples, and industry workflows.
-              </span>
-            </div>
-            <div>
-              <strong class="text-white block mb-1">Transparent Pricing</strong>
-              <span class="text-sm font-light">
-                No hidden fees — clear, value-focused pricing.
-              </span>
-            </div>
-          </div>
-        </div>
+          </article>
 
-        <!-- Pricing Card 1 -->
-        <div
-          class="group pricing-card flex flex-col p-6 rounded-2xl bg-white/[0.03] border border-white/10 hover:bg-white hover:border-white"
-        >
-          <h3
-            class="text-xl font-medium text-white group-hover:text-black mb-4 transition-colors"
+          <!-- Pricing Card 2 -->
+          <article
+            class="group pricing-card flex flex-col p-6 rounded-2xl bg-white/[0.03] border border-white/10 hover:bg-white hover:border-white"
           >
-            Want a Website?
-          </h3>
-          <div class="flex-1 space-y-3">
-            <div
-              class="flex justify-between items-center text-sm border-b border-white/5 group-hover:border-black/10 pb-2 transition-colors"
+            <h3
+              class="text-xl font-medium text-white group-hover:text-black mb-4 transition-colors"
             >
-              <span
-                class="text-slate-400 group-hover:text-slate-600 transition-colors"
+              Wanna Learn WebDev?
+            </h3>
+            <div class="flex-1 space-y-3">
+              <div
+                class="flex justify-between items-center text-sm border-b border-white/5 group-hover:border-black/10 pb-2 transition-colors"
               >
-                Single Page Portfolio
-              </span>
-              <span
-                class="text-white font-medium group-hover:text-black transition-colors"
+                <span
+                  class="text-slate-400 group-hover:text-slate-600 transition-colors"
+                >
+                  Beginner
+                </span>
+                <span
+                  class="text-white font-medium group-hover:text-black transition-colors"
+                >
+                  ₹3,999
+                </span>
+              </div>
+              <div
+                class="flex justify-between items-center text-sm border-b border-white/5 group-hover:border-black/10 pb-2 transition-colors"
               >
-                ₹4,999
-              </span>
+                <span
+                  class="text-slate-400 group-hover:text-slate-600 transition-colors"
+                >
+                  Advance
+                </span>
+                <span
+                  class="text-white font-medium group-hover:text-black transition-colors"
+                >
+                  ₹5,999
+                </span>
+              </div>
+              <div class="flex justify-between items-center text-sm">
+                <span
+                  class="text-slate-400 group-hover:text-slate-600 transition-colors"
+                >
+                  Shopify Creation
+                </span>
+                <span
+                  class="text-white font-medium group-hover:text-black transition-colors"
+                >
+                  ₹19,999
+                </span>
+              </div>
             </div>
-            <div
-              class="flex justify-between items-center text-sm border-b border-white/5 group-hover:border-black/10 pb-2 transition-colors"
-            >
-              <span
-                class="text-slate-400 group-hover:text-slate-600 transition-colors"
-              >
-                Small Business Website
-              </span>
-              <span
-                class="text-white font-medium group-hover:text-black transition-colors"
-              >
-                ₹9,999
-              </span>
-            </div>
-            <div
-              class="flex justify-between items-center text-sm border-b border-white/5 group-hover:border-black/10 pb-2 transition-colors"
-            >
-              <span
-                class="text-slate-400 group-hover:text-slate-600 transition-colors"
-              >
-                Multi-Page Website
-              </span>
-              <span
-                class="text-white font-medium group-hover:text-black transition-colors"
-              >
-                ₹19,999
-              </span>
-            </div>
-            <div class="flex justify-between items-center text-sm">
-              <span
-                class="text-slate-400 group-hover:text-slate-600 transition-colors"
-              >
-                Shopify Store
-              </span>
-              <span
-                class="text-white font-medium group-hover:text-black transition-colors"
-              >
-                ₹29,999
-              </span>
-            </div>
-          </div>
-        </div>
+          </article>
 
-        <!-- Pricing Card 2 -->
-        <div
-          class="group pricing-card flex flex-col p-6 rounded-2xl bg-white/[0.03] border border-white/10 hover:bg-white hover:border-white"
-        >
-          <h3
-            class="text-xl font-medium text-white group-hover:text-black mb-4 transition-colors"
+          <!-- Pricing Card 3 -->
+          <article
+            class="group pricing-card flex flex-col p-6 rounded-2xl bg-white/[0.03] border border-white/10 hover:bg-white hover:border-white"
           >
-            Wanna Learn WebDev?
-          </h3>
-          <div class="flex-1 space-y-3">
-            <div
-              class="flex justify-between items-center text-sm border-b border-white/5 group-hover:border-black/10 pb-2 transition-colors"
+            <h3
+              class="text-xl font-medium text-white group-hover:text-black mb-4 transition-colors"
             >
-              <span
-                class="text-slate-400 group-hover:text-slate-600 transition-colors"
+              Programming Basics
+            </h3>
+            <div class="flex-1 space-y-3">
+              <div
+                class="flex justify-between items-center text-sm border-b border-white/5 group-hover:border-black/10 pb-2 transition-colors"
               >
-                Beginner
-              </span>
-              <span
-                class="text-white font-medium group-hover:text-black transition-colors"
-              >
-                ₹3,999
-              </span>
+                <span
+                  class="text-slate-400 group-hover:text-slate-600 transition-colors"
+                >
+                  Beginner
+                </span>
+                <span
+                  class="text-white font-medium group-hover:text-black transition-colors"
+                >
+                  ₹1,499
+                </span>
+              </div>
+              <div class="flex justify-between items-center text-sm">
+                <span
+                  class="text-slate-400 group-hover:text-slate-600 transition-colors"
+                >
+                  Advanced
+                </span>
+                <span
+                  class="text-white font-medium group-hover:text-black transition-colors"
+                >
+                  ₹3,999
+                </span>
+              </div>
             </div>
-            <div
-              class="flex justify-between items-center text-sm border-b border-white/5 group-hover:border-black/10 pb-2 transition-colors"
-            >
-              <span
-                class="text-slate-400 group-hover:text-slate-600 transition-colors"
-              >
-                Advance
-              </span>
-              <span
-                class="text-white font-medium group-hover:text-black transition-colors"
-              >
-                ₹5,999
-              </span>
-            </div>
-            <div class="flex justify-between items-center text-sm">
-              <span
-                class="text-slate-400 group-hover:text-slate-600 transition-colors"
-              >
-                Shopify Creation
-              </span>
-              <span
-                class="text-white font-medium group-hover:text-black transition-colors"
-              >
-                ₹19,999
-              </span>
-            </div>
-          </div>
-        </div>
+          </article>
 
-        <!-- Pricing Card 3 -->
-        <div
-          class="group pricing-card flex flex-col p-6 rounded-2xl bg-white/[0.03] border border-white/10 hover:bg-white hover:border-white"
-        >
-          <h3
-            class="text-xl font-medium text-white group-hover:text-black mb-4 transition-colors"
+          <!-- Pricing Card 4 -->
+          <article
+            class="group pricing-card flex flex-col p-6 rounded-2xl bg-white/[0.03] border border-white/10 hover:bg-white hover:border-white"
           >
-            Programming Basics
-          </h3>
-          <div class="flex-1 space-y-3">
-            <div
-              class="flex justify-between items-center text-sm border-b border-white/5 group-hover:border-black/10 pb-2 transition-colors"
+            <h3
+              class="text-xl font-medium text-white group-hover:text-black mb-4 transition-colors"
             >
-              <span
-                class="text-slate-400 group-hover:text-slate-600 transition-colors"
+              Core CS Concepts
+            </h3>
+            <div class="flex-1 space-y-3">
+              <div
+                class="flex justify-between items-center text-sm border-b border-white/5 group-hover:border-black/10 pb-2 transition-colors"
               >
-                Beginner
-              </span>
-              <span
-                class="text-white font-medium group-hover:text-black transition-colors"
-              >
-                ₹1,499
-              </span>
+                <span
+                  class="text-slate-400 group-hover:text-slate-600 transition-colors"
+                >
+                  Beginner
+                </span>
+                <span
+                  class="text-white font-medium group-hover:text-black transition-colors"
+                >
+                  ₹4,999
+                </span>
+              </div>
+              <div class="flex justify-between items-center text-sm">
+                <span
+                  class="text-slate-400 group-hover:text-slate-600 transition-colors"
+                >
+                  Advanced
+                </span>
+                <span
+                  class="text-white font-medium group-hover:text-black transition-colors"
+                >
+                  ₹12,999
+                </span>
+              </div>
             </div>
-            <div class="flex justify-between items-center text-sm">
-              <span
-                class="text-slate-400 group-hover:text-slate-600 transition-colors"
-              >
-                Advanced
-              </span>
-              <span
-                class="text-white font-medium group-hover:text-black transition-colors"
-              >
-                ₹3,999
-              </span>
-            </div>
-          </div>
-        </div>
+          </article>
 
-        <!-- Pricing Card 4 -->
-        <div
-          class="group pricing-card flex flex-col p-6 rounded-2xl bg-white/[0.03] border border-white/10 hover:bg-white hover:border-white"
-        >
-          <h3
-            class="text-xl font-medium text-white group-hover:text-black mb-4 transition-colors"
+          <!-- Pricing Card 5 -->
+          <article
+            class="group pricing-card flex flex-col p-6 rounded-2xl bg-white/[0.03] border border-white/10 hover:bg-white hover:border-white"
           >
-            Core CS Concepts
-          </h3>
-          <div class="flex-1 space-y-3">
-            <div
-              class="flex justify-between items-center text-sm border-b border-white/5 group-hover:border-black/10 pb-2 transition-colors"
+            <h3
+              class="text-xl font-medium text-white group-hover:text-black mb-4 transition-colors"
             >
-              <span
-                class="text-slate-400 group-hover:text-slate-600 transition-colors"
+              Math for AI
+            </h3>
+            <div class="flex-1 space-y-3">
+              <div
+                class="flex justify-between items-center text-sm border-b border-white/5 group-hover:border-black/10 pb-2 transition-colors"
               >
-                Beginner
-              </span>
-              <span
-                class="text-white font-medium group-hover:text-black transition-colors"
-              >
-                ₹4,999
-              </span>
+                <span
+                  class="text-slate-400 group-hover:text-slate-600 transition-colors"
+                >
+                  Beginner
+                </span>
+                <span
+                  class="text-white font-medium group-hover:text-black transition-colors"
+                >
+                  ₹5,999
+                </span>
+              </div>
+              <div class="flex justify-between items-center text-sm">
+                <span
+                  class="text-slate-400 group-hover:text-slate-600 transition-colors"
+                >
+                  Advanced
+                </span>
+                <span
+                  class="text-white font-medium group-hover:text-black transition-colors"
+                >
+                  ₹14,999
+                </span>
+              </div>
             </div>
-            <div class="flex justify-between items-center text-sm">
-              <span
-                class="text-slate-400 group-hover:text-slate-600 transition-colors"
-              >
-                Advanced
-              </span>
-              <span
-                class="text-white font-medium group-hover:text-black transition-colors"
-              >
-                ₹12,999
-              </span>
-            </div>
-          </div>
-        </div>
+          </article>
 
-        <!-- Pricing Card 5 -->
-        <div
-          class="group pricing-card flex flex-col p-6 rounded-2xl bg-white/[0.03] border border-white/10 hover:bg-white hover:border-white"
-        >
-          <h3
-            class="text-xl font-medium text-white group-hover:text-black mb-4 transition-colors"
+          <!-- Pricing Card 6 -->
+          <article
+            class="group pricing-card flex flex-col p-6 rounded-2xl bg-white/[0.03] border border-white/10 hover:bg-white hover:border-white"
           >
-            Math for AI
-          </h3>
-          <div class="flex-1 space-y-3">
-            <div
-              class="flex justify-between items-center text-sm border-b border-white/5 group-hover:border-black/10 pb-2 transition-colors"
+            <h3
+              class="text-xl font-medium text-white group-hover:text-black mb-4 transition-colors"
             >
-              <span
-                class="text-slate-400 group-hover:text-slate-600 transition-colors"
+              Machine Learning
+            </h3>
+            <div class="flex-1 space-y-3">
+              <div
+                class="flex justify-between items-center text-sm border-b border-white/5 group-hover:border-black/10 pb-2 transition-colors"
               >
-                Beginner
-              </span>
-              <span
-                class="text-white font-medium group-hover:text-black transition-colors"
-              >
-                ₹5,999
-              </span>
+                <span
+                  class="text-slate-400 group-hover:text-slate-600 transition-colors"
+                >
+                  Beginner
+                </span>
+                <span
+                  class="text-white font-medium group-hover:text-black transition-colors"
+                >
+                  ₹6,999
+                </span>
+              </div>
+              <div class="flex justify-between items-center text-sm">
+                <span
+                  class="text-slate-400 group-hover:text-slate-600 transition-colors"
+                >
+                  Advanced
+                </span>
+                <span
+                  class="text-white font-medium group-hover:text-black transition-colors"
+                >
+                  ₹16,999
+                </span>
+              </div>
             </div>
-            <div class="flex justify-between items-center text-sm">
-              <span
-                class="text-slate-400 group-hover:text-slate-600 transition-colors"
-              >
-                Advanced
-              </span>
-              <span
-                class="text-white font-medium group-hover:text-black transition-colors"
-              >
-                ₹14,999
-              </span>
-            </div>
-          </div>
-        </div>
+          </article>
 
-        <!-- Pricing Card 6 -->
-        <div
-          class="group pricing-card flex flex-col p-6 rounded-2xl bg-white/[0.03] border border-white/10 hover:bg-white hover:border-white"
-        >
-          <h3
-            class="text-xl font-medium text-white group-hover:text-black mb-4 transition-colors"
+          <!-- Pricing Card 7 -->
+          <article
+            class="group pricing-card flex flex-col p-6 rounded-2xl bg-white/[0.03] border border-white/10 hover:bg-white hover:border-white"
           >
-            Machine Learning
-          </h3>
-          <div class="flex-1 space-y-3">
-            <div
-              class="flex justify-between items-center text-sm border-b border-white/5 group-hover:border-black/10 pb-2 transition-colors"
+            <h3
+              class="text-xl font-medium text-white group-hover:text-black mb-4 transition-colors"
             >
-              <span
-                class="text-slate-400 group-hover:text-slate-600 transition-colors"
+              Deep Learning
+            </h3>
+            <div class="flex-1 space-y-3">
+              <div
+                class="flex justify-between items-center text-sm border-b border-white/5 group-hover:border-black/10 pb-2 transition-colors"
               >
-                Beginner
-              </span>
-              <span
-                class="text-white font-medium group-hover:text-black transition-colors"
-              >
-                ₹6,999
-              </span>
+                <span
+                  class="text-slate-400 group-hover:text-slate-600 transition-colors"
+                >
+                  Beginner
+                </span>
+                <span
+                  class="text-white font-medium group-hover:text-black transition-colors"
+                >
+                  ₹7,999
+                </span>
+              </div>
+              <div class="flex justify-between items-center text-sm">
+                <span
+                  class="text-slate-400 group-hover:text-slate-600 transition-colors"
+                >
+                  Advanced
+                </span>
+                <span
+                  class="text-white font-medium group-hover:text-black transition-colors"
+                >
+                  ₹19,999
+                </span>
+              </div>
             </div>
-            <div class="flex justify-between items-center text-sm">
-              <span
-                class="text-slate-400 group-hover:text-slate-600 transition-colors"
-              >
-                Advanced
-              </span>
-              <span
-                class="text-white font-medium group-hover:text-black transition-colors"
-              >
-                ₹16,999
-              </span>
-            </div>
-          </div>
-        </div>
+          </article>
 
-        <!-- Pricing Card 7 -->
-        <div
-          class="group pricing-card flex flex-col p-6 rounded-2xl bg-white/[0.03] border border-white/10 hover:bg-white hover:border-white"
-        >
-          <h3
-            class="text-xl font-medium text-white group-hover:text-black mb-4 transition-colors"
+          <!-- Pricing Card 8 -->
+          <article
+            class="group pricing-card flex flex-col p-6 rounded-2xl bg-white/[0.03] border border-white/10 hover:bg-white hover:border-white"
           >
-            Deep Learning
-          </h3>
-          <div class="flex-1 space-y-3">
-            <div
-              class="flex justify-between items-center text-sm border-b border-white/5 group-hover:border-black/10 pb-2 transition-colors"
+            <h3
+              class="text-xl font-medium text-white group-hover:text-black mb-4 transition-colors"
             >
-              <span
-                class="text-slate-400 group-hover:text-slate-600 transition-colors"
+              NLP &amp; LLMs
+            </h3>
+            <div class="flex-1 space-y-3">
+              <div
+                class="flex justify-between items-center text-sm border-b border-white/5 group-hover:border-black/10 pb-2 transition-colors"
               >
-                Beginner
-              </span>
-              <span
-                class="text-white font-medium group-hover:text-black transition-colors"
-              >
-                ₹7,999
-              </span>
+                <span
+                  class="text-slate-400 group-hover:text-slate-600 transition-colors"
+                >
+                  Beginner
+                </span>
+                <span
+                  class="text-white font-medium group-hover:text-black transition-colors"
+                >
+                  ₹8,999
+                </span>
+              </div>
+              <div class="flex justify-between items-center text-sm">
+                <span
+                  class="text-slate-400 group-hover:text-slate-600 transition-colors"
+                >
+                  Advanced
+                </span>
+                <span
+                  class="text-white font-medium group-hover:text-black transition-colors"
+                >
+                  ₹22,999
+                </span>
+              </div>
             </div>
-            <div class="flex justify-between items-center text-sm">
-              <span
-                class="text-slate-400 group-hover:text-slate-600 transition-colors"
-              >
-                Advanced
-              </span>
-              <span
-                class="text-white font-medium group-hover:text-black transition-colors"
-              >
-                ₹19,999
-              </span>
-            </div>
-          </div>
-        </div>
+          </article>
 
-        <!-- Pricing Card 8 -->
-        <div
-          class="group pricing-card flex flex-col p-6 rounded-2xl bg-white/[0.03] border border-white/10 hover:bg-white hover:border-white"
-        >
-          <h3
-            class="text-xl font-medium text-white group-hover:text-black mb-4 transition-colors"
+          <!-- Pricing Card 9 -->
+          <article
+            class="group pricing-card flex flex-col p-6 rounded-2xl bg-white/[0.03] border border-white/10 hover:bg-white hover:border-white"
           >
-            NLP &amp; LLMs
-          </h3>
-          <div class="flex-1 space-y-3">
-            <div
-              class="flex justify-between items-center text-sm border-b border-white/5 group-hover:border-black/10 pb-2 transition-colors"
+            <h3
+              class="text-xl font-medium text-white group-hover:text-black mb-4 transition-colors"
             >
-              <span
-                class="text-slate-400 group-hover:text-slate-600 transition-colors"
+              Speech / Voice AI
+            </h3>
+            <div class="flex-1 space-y-3">
+              <div
+                class="flex justify-between items-center text-sm border-b border-white/5 group-hover:border-black/10 pb-2 transition-colors"
               >
-                Beginner
-              </span>
-              <span
-                class="text-white font-medium group-hover:text-black transition-colors"
-              >
-                ₹8,999
-              </span>
+                <span
+                  class="text-slate-400 group-hover:text-slate-600 transition-colors"
+                >
+                  Beginner
+                </span>
+                <span
+                  class="text-white font-medium group-hover:text-black transition-colors"
+                >
+                  ₹7,499
+                </span>
+              </div>
+              <div class="flex justify-between items-center text-sm">
+                <span
+                  class="text-slate-400 group-hover:text-slate-600 transition-colors"
+                >
+                  Advanced
+                </span>
+                <span
+                  class="text-white font-medium group-hover:text-black transition-colors"
+                >
+                  ₹18,999
+                </span>
+              </div>
             </div>
-            <div class="flex justify-between items-center text-sm">
-              <span
-                class="text-slate-400 group-hover:text-slate-600 transition-colors"
-              >
-                Advanced
-              </span>
-              <span
-                class="text-white font-medium group-hover:text-black transition-colors"
-              >
-                ₹22,999
-              </span>
-            </div>
-          </div>
-        </div>
+          </article>
 
-        <!-- Pricing Card 9 -->
-        <div
-          class="group pricing-card flex flex-col p-6 rounded-2xl bg-white/[0.03] border border-white/10 hover:bg-white hover:border-white"
-        >
-          <h3
-            class="text-xl font-medium text-white group-hover:text-black mb-4 transition-colors"
+          <!-- Pricing Card 10 -->
+          <article
+            class="group pricing-card flex flex-col p-6 rounded-2xl bg-white/[0.03] border border-white/10 hover:bg-white hover:border-white"
           >
-            Speech / Voice AI
-          </h3>
-          <div class="flex-1 space-y-3">
-            <div
-              class="flex justify-between items-center text-sm border-b border-white/5 group-hover:border-black/10 pb-2 transition-colors"
+            <h3
+              class="text-xl font-medium text-white group-hover:text-black mb-4 transition-colors"
             >
-              <span
-                class="text-slate-400 group-hover:text-slate-600 transition-colors"
+              Computer Vision
+            </h3>
+            <div class="flex-1 space-y-3">
+              <div
+                class="flex justify-between items-center text-sm border-b border-white/5 group-hover:border-black/10 pb-2 transition-colors"
               >
-                Beginner
-              </span>
-              <span
-                class="text-white font-medium group-hover:text-black transition-colors"
-              >
-                ₹7,499
-              </span>
+                <span
+                  class="text-slate-400 group-hover:text-slate-600 transition-colors"
+                >
+                  Beginner
+                </span>
+                <span
+                  class="text-white font-medium group-hover:text-black transition-colors"
+                >
+                  ₹7,999
+                </span>
+              </div>
+              <div class="flex justify-between items-center text-sm">
+                <span
+                  class="text-slate-400 group-hover:text-slate-600 transition-colors"
+                >
+                  Advanced
+                </span>
+                <span
+                  class="text-white font-medium group-hover:text-black transition-colors"
+                >
+                  ₹20,999
+                </span>
+              </div>
             </div>
-            <div class="flex justify-between items-center text-sm">
-              <span
-                class="text-slate-400 group-hover:text-slate-600 transition-colors"
-              >
-                Advanced
-              </span>
-              <span
-                class="text-white font-medium group-hover:text-black transition-colors"
-              >
-                ₹18,999
-              </span>
-            </div>
-          </div>
-        </div>
+          </article>
 
-        <!-- Pricing Card 10 -->
-        <div
-          class="group pricing-card flex flex-col p-6 rounded-2xl bg-white/[0.03] border border-white/10 hover:bg-white hover:border-white"
-        >
-          <h3
-            class="text-xl font-medium text-white group-hover:text-black mb-4 transition-colors"
+          <!-- Pricing Card 11 -->
+          <article
+            class="group pricing-card flex flex-col p-6 rounded-2xl bg-white/[0.03] border border-white/10 hover:bg-white hover:border-white"
           >
-            Computer Vision
-          </h3>
-          <div class="flex-1 space-y-3">
-            <div
-              class="flex justify-between items-center text-sm border-b border-white/5 group-hover:border-black/10 pb-2 transition-colors"
+            <h3
+              class="text-xl font-medium text-white group-hover:text-black mb-4 transition-colors"
             >
-              <span
-                class="text-slate-400 group-hover:text-slate-600 transition-colors"
+              Databases
+            </h3>
+            <div class="flex-1 space-y-3">
+              <div
+                class="flex justify-between items-center text-sm border-b border-white/5 group-hover:border-black/10 pb-2 transition-colors"
               >
-                Beginner
-              </span>
-              <span
-                class="text-white font-medium group-hover:text-black transition-colors"
-              >
-                ₹7,999
-              </span>
+                <span
+                  class="text-slate-400 group-hover:text-slate-600 transition-colors"
+                >
+                  Beginner
+                </span>
+                <span
+                  class="text-white font-medium group-hover:text-black transition-colors"
+                >
+                  ₹4,499
+                </span>
+              </div>
+              <div class="flex justify-between items-center text-sm">
+                <span
+                  class="text-slate-400 group-hover:text-slate-600 transition-colors"
+                >
+                  Advanced
+                </span>
+                <span
+                  class="text-white font-medium group-hover:text-black transition-colors"
+                >
+                  ₹12,499
+                </span>
+              </div>
             </div>
-            <div class="flex justify-between items-center text-sm">
-              <span
-                class="text-slate-400 group-hover:text-slate-600 transition-colors"
-              >
-                Advanced
-              </span>
-              <span
-                class="text-white font-medium group-hover:text-black transition-colors"
-              >
-                ₹20,999
-              </span>
-            </div>
-          </div>
-        </div>
+          </article>
 
-        <!-- Pricing Card 11 -->
-        <div
-          class="group pricing-card flex flex-col p-6 rounded-2xl bg-white/[0.03] border border-white/10 hover:bg-white hover:border-white"
-        >
-          <h3
-            class="text-xl font-medium text-white group-hover:text-black mb-4 transition-colors"
+          <!-- Pricing Card 12 -->
+          <article
+            class="group pricing-card flex flex-col p-6 rounded-2xl bg-white/[0.03] border border-white/10 hover:bg-white hover:border-white"
           >
-            Databases
-          </h3>
-          <div class="flex-1 space-y-3">
-            <div
-              class="flex justify-between items-center text-sm border-b border-white/5 group-hover:border-black/10 pb-2 transition-colors"
+            <h3
+              class="text-xl font-medium text-white group-hover:text-black mb-4 transition-colors"
             >
-              <span
-                class="text-slate-400 group-hover:text-slate-600 transition-colors"
+              Cloud &amp; DevOps
+            </h3>
+            <div class="flex-1 space-y-3">
+              <div
+                class="flex justify-between items-center text-sm border-b border-white/5 group-hover:border-black/10 pb-2 transition-colors"
               >
-                Beginner
-              </span>
-              <span
-                class="text-white font-medium group-hover:text-black transition-colors"
-              >
-                ₹4,499
-              </span>
+                <span
+                  class="text-slate-400 group-hover:text-slate-600 transition-colors"
+                >
+                  Beginner
+                </span>
+                <span
+                  class="text-white font-medium group-hover:text-black transition-colors"
+                >
+                  ₹6,499
+                </span>
+              </div>
+              <div class="flex justify-between items-center text-sm">
+                <span
+                  class="text-slate-400 group-hover:text-slate-600 transition-colors"
+                >
+                  Advanced
+                </span>
+                <span
+                  class="text-white font-medium group-hover:text-black transition-colors"
+                >
+                  ₹17,999
+                </span>
+              </div>
             </div>
-            <div class="flex justify-between items-center text-sm">
-              <span
-                class="text-slate-400 group-hover:text-slate-600 transition-colors"
-              >
-                Advanced
-              </span>
-              <span
-                class="text-white font-medium group-hover:text-black transition-colors"
-              >
-                ₹12,499
-              </span>
-            </div>
-          </div>
-        </div>
+          </article>
 
-        <!-- Pricing Card 12 -->
-        <div
-          class="group pricing-card flex flex-col p-6 rounded-2xl bg-white/[0.03] border border-white/10 hover:bg-white hover:border-white"
-        >
-          <h3
-            class="text-xl font-medium text-white group-hover:text-black mb-4 transition-colors"
+          <!-- Pricing Card 13 -->
+          <article
+            class="group pricing-card flex flex-col p-6 rounded-2xl bg-white/[0.03] border border-white/10 hover:bg-white hover:border-white"
           >
-            Cloud &amp; DevOps
-          </h3>
-          <div class="flex-1 space-y-3">
-            <div
-              class="flex justify-between items-center text-sm border-b border-white/5 group-hover:border-black/10 pb-2 transition-colors"
+            <h3
+              class="text-xl font-medium text-white group-hover:text-black mb-4 transition-colors"
             >
-              <span
-                class="text-slate-400 group-hover:text-slate-600 transition-colors"
+              Robotics &amp; Real-Time
+            </h3>
+            <div class="flex-1 space-y-3">
+              <div
+                class="flex justify-between items-center text-sm border-b border-white/5 group-hover:border-black/10 pb-2 transition-colors"
               >
-                Beginner
-              </span>
-              <span
-                class="text-white font-medium group-hover:text-black transition-colors"
-              >
-                ₹6,499
-              </span>
+                <span
+                  class="text-slate-400 group-hover:text-slate-600 transition-colors"
+                >
+                  Beginner
+                </span>
+                <span
+                  class="text-white font-medium group-hover:text-black transition-colors"
+                >
+                  ₹8,499
+                </span>
+              </div>
+              <div class="flex justify-between items-center text-sm">
+                <span
+                  class="text-slate-400 group-hover:text-slate-600 transition-colors"
+                >
+                  Advanced
+                </span>
+                <span
+                  class="text-white font-medium group-hover:text-black transition-colors"
+                >
+                  ₹23,499
+                </span>
+              </div>
             </div>
-            <div class="flex justify-between items-center text-sm">
-              <span
-                class="text-slate-400 group-hover:text-slate-600 transition-colors"
-              >
-                Advanced
-              </span>
-              <span
-                class="text-white font-medium group-hover:text-black transition-colors"
-              >
-                ₹17,999
-              </span>
-            </div>
-          </div>
-        </div>
+          </article>
 
-        <!-- Pricing Card 13 -->
-        <div
-          class="group pricing-card flex flex-col p-6 rounded-2xl bg-white/[0.03] border border-white/10 hover:bg-white hover:border-white"
-        >
-          <h3
-            class="text-xl font-medium text-white group-hover:text-black mb-4 transition-colors"
+          <!-- Pricing Card 14 -->
+          <article
+            class="group pricing-card flex flex-col p-6 rounded-2xl bg-white/[0.03] border border-white/10 hover:bg-white hover:border-white"
           >
-            Robotics &amp; Real-Time
-          </h3>
-          <div class="flex-1 space-y-3">
-            <div
-              class="flex justify-between items-center text-sm border-b border-white/5 group-hover:border-black/10 pb-2 transition-colors"
+            <h3
+              class="text-xl font-medium text-white group-hover:text-black mb-4 transition-colors"
             >
-              <span
-                class="text-slate-400 group-hover:text-slate-600 transition-colors"
+              Edge &amp; Embedded AI
+            </h3>
+            <div class="flex-1 space-y-3">
+              <div
+                class="flex justify-between items-center text-sm border-b border-white/5 group-hover:border-black/10 pb-2 transition-colors"
               >
-                Beginner
-              </span>
-              <span
-                class="text-white font-medium group-hover:text-black transition-colors"
-              >
-                ₹8,499
-              </span>
+                <span
+                  class="text-slate-400 group-hover:text-slate-600 transition-colors"
+                >
+                  Beginner
+                </span>
+                <span
+                  class="text-white font-medium group-hover:text-black transition-colors"
+                >
+                  ₹7,999
+                </span>
+              </div>
+              <div class="flex justify-between items-center text-sm">
+                <span
+                  class="text-slate-400 group-hover:text-slate-600 transition-colors"
+                >
+                  Advanced
+                </span>
+                <span
+                  class="text-white font-medium group-hover:text-black transition-colors"
+                >
+                  ₹21,999
+                </span>
+              </div>
             </div>
-            <div class="flex justify-between items-center text-sm">
-              <span
-                class="text-slate-400 group-hover:text-slate-600 transition-colors"
-              >
-                Advanced
-              </span>
-              <span
-                class="text-white font-medium group-hover:text-black transition-colors"
-              >
-                ₹23,499
-              </span>
-            </div>
-          </div>
-        </div>
+          </article>
 
-        <!-- Pricing Card 14 -->
-        <div
-          class="group pricing-card flex flex-col p-6 rounded-2xl bg-white/[0.03] border border-white/10 hover:bg-white hover:border-white"
-        >
-          <h3
-            class="text-xl font-medium text-white group-hover:text-black mb-4 transition-colors"
+          <!-- Pricing Card 15 -->
+          <article
+            class="group pricing-card flex flex-col p-6 rounded-2xl bg-white/[0.03] border border-white/10 hover:bg-white hover:border-white"
           >
-            Edge &amp; Embedded AI
-          </h3>
-          <div class="flex-1 space-y-3">
-            <div
-              class="flex justify-between items-center text-sm border-b border-white/5 group-hover:border-black/10 pb-2 transition-colors"
+            <h3
+              class="text-xl font-medium text-white group-hover:text-black mb-4 transition-colors"
             >
-              <span
-                class="text-slate-400 group-hover:text-slate-600 transition-colors"
+              Cybersecurity
+            </h3>
+            <div class="flex-1 space-y-3">
+              <div
+                class="flex justify-between items-center text-sm border-b border-white/5 group-hover:border-black/10 pb-2 transition-colors"
               >
-                Beginner
-              </span>
-              <span
-                class="text-white font-medium group-hover:text-black transition-colors"
-              >
-                ₹7,999
-              </span>
+                <span
+                  class="text-slate-400 group-hover:text-slate-600 transition-colors"
+                >
+                  Beginner
+                </span>
+                <span
+                  class="text-white font-medium group-hover:text-black transition-colors"
+                >
+                  ₹6,999
+                </span>
+              </div>
+              <div class="flex justify-between items-center text-sm">
+                <span
+                  class="text-slate-400 group-hover:text-slate-600 transition-colors"
+                >
+                  Advanced
+                </span>
+                <span
+                  class="text-white font-medium group-hover:text-black transition-colors"
+                >
+                  ₹18,499
+                </span>
+              </div>
             </div>
-            <div class="flex justify-between items-center text-sm">
-              <span
-                class="text-slate-400 group-hover:text-slate-600 transition-colors"
-              >
-                Advanced
-              </span>
-              <span
-                class="text-white font-medium group-hover:text-black transition-colors"
-              >
-                ₹21,999
-              </span>
-            </div>
-          </div>
+          </article>
         </div>
+      </section>
+    </main>
 
-        <!-- Pricing Card 15 -->
-        <div
-          class="group pricing-card flex flex-col p-6 rounded-2xl bg-white/[0.03] border border-white/10 hover:bg-white hover:border-white"
-        >
-          <h3
-            class="text-xl font-medium text-white group-hover:text-black mb-4 transition-colors"
-          >
-            Cybersecurity
-          </h3>
-          <div class="flex-1 space-y-3">
-            <div
-              class="flex justify-between items-center text-sm border-b border-white/5 group-hover:border-black/10 pb-2 transition-colors"
-            >
-              <span
-                class="text-slate-400 group-hover:text-slate-600 transition-colors"
-              >
-                Beginner
-              </span>
-              <span
-                class="text-white font-medium group-hover:text-black transition-colors"
-              >
-                ₹6,999
-              </span>
-            </div>
-            <div class="flex justify-between items-center text-sm">
-              <span
-                class="text-slate-400 group-hover:text-slate-600 transition-colors"
-              >
-                Advanced
-              </span>
-              <span
-                class="text-white font-medium group-hover:text-black transition-colors"
-              >
-                ₹18,499
-              </span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- CONTACT / FOOTER -->
+    <!-- FOOTER -->
     <footer
       id="contact"
       class="py-16 text-center border-t border-white/[0.08] bg-[#0a0f1e]/30 mt-10"
@@ -1518,10 +1626,12 @@
         <a
           href="https://www.instagram.com/yashveer.codes/"
           target="_blank"
-          class="inline-flex items-center gap-2 px-6 py-3 bg-white/[0.08] hover:bg-white/[0.15] border border-white/20 rounded-xl text-white font-medium transition-all backdrop-blur-sm"
+          rel="noopener noreferrer"
+          class="inline-flex items-center gap-2 px-6 py-3 bg-white/[0.08] hover:bg-white/[0.15] border border-white/20 rounded-xl text-white font-medium transition-all backdrop-blur-sm focus:outline-none focus:ring-2 focus:ring-purple-500"
+          aria-label="Contact via Instagram"
         >
           Get in Touch
-          <i data-lucide="mail" class="w-4 h-4"></i>
+          <i data-lucide="mail" class="w-4 h-4" aria-hidden="true"></i>
         </a>
       </div>
       <p class="text-slate-500 text-sm mb-2">
@@ -1533,8 +1643,12 @@
 
     <!-- INTERACTION SCRIPT -->
     <script>
-      // Icons
-      lucide.createIcons();
+      // Icons (Lucide) - Enforce 1.5 stroke width
+      lucide.createIcons({
+        attrs: {
+          'stroke-width': 1.5
+        }
+      });
 
       // Mouse Follower Logic
       const cursor = document.getElementById('cursor-glow');
@@ -1576,12 +1690,18 @@
               mobileMenu.classList.add('translate-x-0');
               menuOverlay.classList.remove('hidden', 'opacity-0');
               menuOverlay.classList.add('opacity-100');
+              // Accessibility
+              menuBtn.setAttribute('aria-expanded', 'true');
+              mobileMenu.setAttribute('aria-hidden', 'false');
           } else {
               mobileMenu.classList.add('translate-x-full');
               mobileMenu.classList.remove('translate-x-0');
               menuOverlay.classList.remove('opacity-100');
               menuOverlay.classList.add('opacity-0');
               setTimeout(() => menuOverlay.classList.add('hidden'), 300);
+              // Accessibility
+              menuBtn.setAttribute('aria-expanded', 'false');
+              mobileMenu.setAttribute('aria-hidden', 'true');
           }
       }
 
