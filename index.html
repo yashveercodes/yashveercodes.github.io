@@ -409,57 +409,87 @@
 
                 // Updated Projects Data
                 const projects = ref([
-                    {
-                        title: 'Bakery Restaurant',
-                        description: 'A modern, visually rich bakery and restaurant website designed to attract customers through warm aesthetics and smooth user experience.',
-                        url: 'https://ay6904898-glitch.github.io/bakery-yash-sample-site/',
-                        icon: 'lucide:croissant',
-                        cta: 'Visit Project'
-                    },
-                    {
-                        title: 'Amisha – Design Portfolio',
-                        description: 'A clean and expressive portfolio created for a graphic designer. The design focuses on white space, minimal color accents, and an elegant rhythm.',
-                        url: 'https://amisha-graphic-designer.yashvsr2010.workers.dev/',
-                        icon: 'lucide:palette',
-                        cta: 'Visit Project'
-                    },
-                    {
-                        title: 'HYPERLOOP — AI Interface',
-                        description: 'An experimental intelligence-driven interface concept. It explores how systems can observe user behavior and evolve dynamically over time.',
-                        url: 'https://ayushcpubyte.github.io/hyperloop-ai/',
-                        icon: 'lucide:brain-circuit',
-                        cta: 'Explore System'
-                    },
-                    {
-                        title: 'Cosmic — AI Dashboard',
-                        description: 'A futuristic dashboard UI concept inspired by AI and machine learning. Emphasizes structured data presentation and immersive visual depth.',
-                        url: 'https://saanvicpu.github.io/cosmic-dashboard-ui-webapp/',
-                        icon: 'lucide:layout-dashboard',
-                        cta: 'View Dashboard'
-                    },
-                    {
-                        title: 'Stranger Things Experience',
-                        description: 'Experimental landing page inspired by Stranger Things. Leans heavily on mood, mystery, and narrative-driven visuals to create tension.',
-                        url: 'https://vanshicpu.github.io/stranger-things-website-sample-yash/',
-                        icon: 'lucide:tv',
-                        cta: 'Enter Experience'
-                    },
-                    {
-                        title: 'MakeUp Artist Site',
-                        description: 'A soft, aesthetic website designed for beauty professionals. Showcases warm color palettes and high-end beauty aesthetics.',
-                        url: 'https://yashveer-makeup-artist-sample-site.netlify.app/',
-                        icon: 'lucide:sparkles',
-                        cta: 'Visit Project'
-                    },
-                    {
-                        title: 'Rohit Mukherjee Portfolio',
-                        description: 'A storytelling-focused portfolio built for an advertising creative. Soft typography and scroll-based visuals create a personal connection.',
-                        url: 'https://www.myadvertisingfolio.com/',
-                        icon: 'lucide:pen-tool',
-                        cta: 'Visit Project'
-                    }
-                ]);
+  {
+    title: 'My Portfolio',
+    description: 'A personal portfolio built to present projects, skills, and experience in a clear and professional manner. The site focuses on responsive layout design, clean typography, and smooth user interactions. It demonstrates component based thinking, attention to visual hierarchy, and performance conscious frontend development. This project reflects my ability to design and implement a complete personal brand website suitable for professional and recruiter evaluation.',
+    url: 'https://yashveercodes.github.io/',
+    icon: 'lucide:user',
+    cta: 'View Portfolio'
+  },
+  {
+    title: 'Gym Management System',
+    description: 'A functional web application designed to manage gym related data and workflows. The project focuses on structured UI, logical data flow, and usability for real world scenarios. It demonstrates dashboard design, form handling, and scalable layout organization. This project highlights my ability to build practical applications that solve operational problems while maintaining a clean and intuitive user experience.',
+    url: 'https://gym-system-five.vercel.app/',
+    icon: 'lucide:dumbbell',
+    cta: 'Open System'
+  },
+  {
+    title: 'Sport Buddy',
+    description: 'A community focused platform concept designed to help users connect through sports and activities. The interface emphasizes usability, responsiveness, and clear navigation. This project showcases user centric design principles, layout consistency, and component reuse. It reflects my understanding of building interaction driven interfaces that encourage engagement while remaining simple and accessible across devices.',
+    url: 'https://sport-buddy-sepia.vercel.app/',
+    icon: 'lucide:users',
+    cta: 'Explore Platform'
+  },
+  {
+    title: 'Weather App',
+    description: 'A modern weather application built to display real time data in a clean and readable format. The project demonstrates API integration, asynchronous data handling, and responsive UI design. Visual clarity and information hierarchy were prioritized to ensure usability. This project highlights my ability to work with external data sources and convert raw data into a user friendly interface.',
+    url: 'https://weather-app-henna-theta-31.vercel.app/',
+    icon: 'lucide:cloud-sun',
+    cta: 'Check Weather'
+  },
+  {
+    title: 'Amisha Design Portfolio',
+    description: 'A client focused portfolio website built for a graphic designer. The project emphasizes clean layouts, strong typography, and effective use of white space to showcase creative work. It demonstrates adaptability to client requirements and brand identity. This project highlights my ability to translate a creative brief into a polished and professional frontend solution.',
+    url: 'https://amisha-graphic-designer.yashvsr2010.workers.dev/',
+    icon: 'lucide:palette',
+    cta: 'Visit Portfolio'
+  },
+  {
+    title: 'Rohit Mukherjee Portfolio',
+    description: 'A portfolio website designed with a storytelling approach for an advertising professional. The layout uses scroll based flow, structured sections, and visual pacing to guide the viewer. This project demonstrates narrative driven UI design, attention to user journey, and the ability to create engaging personal brand websites.',
+    url: 'https://www.myadvertisingfolio.com/',
+    icon: 'lucide:pen-tool',
+    cta: 'View Work'
+  },
+  {
+    title: 'Bakery Restaurant',
+    description: 'A customer facing website concept for a bakery and restaurant brand. The project focuses on visual appeal, clear content structure, and easy navigation. It demonstrates how design choices can influence user trust and engagement. This project highlights my ability to build visually appealing yet functional websites suitable for small businesses.',
+    url: 'https://ay6904898-glitch.github.io/bakery-yash-sample-site/',
+    icon: 'lucide:croissant',
+    cta: 'Visit Site'
+  },
+  {
+    title: 'MakeUp Artist Site',
+    description: 'A brand oriented website designed for a beauty professional. The interface focuses on visual balance, soft color usage, and clean presentation. This project demonstrates sensitivity to industry specific aesthetics while maintaining usability and responsiveness. It reflects my ability to design websites aligned with branding and client expectations.',
+    url: 'https://yashveer-makeup-artist-sample-site.netlify.app/',
+    icon: 'lucide:sparkles',
+    cta: 'View Website'
+  },
+  {
+    title: 'If Stranger Things Was a Business Site',
+    description: 'An experimental landing page that applies a strong narrative theme to a business style website. The project explores mood driven design while maintaining structured layout principles. It demonstrates creative thinking, branding experimentation, and the ability to balance storytelling with functional UI structure.',
+    url: 'https://vanshicpu.github.io/stranger-things-website-sample-yash/',
+    icon: 'lucide:tv',
+    cta: 'Enter Experience'
+  },
+  {
+    title: 'Cosmic AI Dashboard',
+    description: 'A dashboard UI concept inspired by artificial intelligence systems. The design focuses on data hierarchy, structured components, and visual clarity. This project demonstrates my understanding of dashboard layouts, information prioritization, and scalable UI patterns suitable for data heavy applications.',
+    url: 'https://saanvicpu.github.io/cosmic-dashboard-ui-webapp/',
+    icon: 'lucide:layout-dashboard',
+    cta: 'View Dashboard'
+  },
+  {
+    title: 'Hyperloop AI Landing Page',
+    description: 'A conceptual AI themed landing page focused on futuristic presentation and structured content flow. The project demonstrates section based layout planning, modern visual design, and smooth interaction patterns. It reflects my interest in emerging technology interfaces and my ability to execute experimental concepts with disciplined frontend structure.',
+    url: 'https://ayushcpubyte.github.io/hyperloop-ai/',
+    icon: 'lucide:brain-circuit',
+    cta: 'Explore Concept'
+  }
+]);
 
+
+                
                 const toggleTheme = () => {
                     isDark.value = !isDark.value;
                     if (isDark.value) {
@@ -550,3 +580,4 @@
     </script>
 </body>
 </html>
+
