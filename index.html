@@ -28,556 +28,640 @@
 
 
 
-    
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Mono&display=swap" rel="stylesheet">
-    
-    <!-- Tailwind CSS -->
+
+
+
     <script src="https://cdn.tailwindcss.com"></script>
-    
-    <!-- Vue.js -->
-    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
-    
-    <!-- Icons -->
-    <script src="https://unpkg.com/lucide@latest"></script>
     <script src="https://code.iconify.design/3/3.1.0/iconify.min.js"></script>
-
-    <!-- Styles for Theme Variables & Effects -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --bg-color: #f3f4f6; /* Light mode bg (gray-100) */
-            --surface-color: #ffffff;
-            --text-primary: #111827;
-            --text-secondary: #4b5563;
-            --border-color: rgba(0,0,0,0.1);
-        }
-        
-        .dark {
-            --bg-color: #0a0a0a; /* Dark mode bg */
-            --surface-color: #171717;
-            --text-primary: #ededed;
-            --text-secondary: #a1a1aa;
-            --border-color: rgba(255,255,255,0.1);
-        }
-
-        body {
-            background-color: var(--bg-color);
-            color: var(--text-primary);
-            cursor: none;
-            overflow-x: hidden;
-            transition: background-color 0.3s ease, color 0.3s ease;
-        }
-
-        /* 3D Flip Card */
-        .perspective-1000 { perspective: 1000px; }
-        .transform-style-3d { transform-style: preserve-3d; }
-        .backface-hidden { backface-visibility: hidden; }
-        .rotate-y-180 { transform: rotateY(180deg); }
-        .group:hover .group-hover\:rotate-y-180 { transform: rotateY(180deg); }
-
-        /* Neon Box for Socials */
-        .neon-box {
-            box-shadow: 0 0 15px rgba(255, 255, 255, 0.2), 
-                        inset 0 0 10px rgba(255, 255, 255, 0.1);
-            border: 1px solid var(--text-primary);
-            background: var(--bg-color);
-        }
-
-        /* Scanline Effect */
-        .scanlines {
-            background: linear-gradient(
-                to bottom,
-                rgba(255,255,255,0),
-                rgba(255,255,255,0) 50%,
-                rgba(0,0,0,0.05) 50%,
-                rgba(0,0,0,0.05)
-            );
-            background-size: 100% 4px;
-            pointer-events: none;
-        }
-
-        /* Video Background Wrapper */
-        .video-bg {
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            object-fit: cover;
-            opacity: 0.3;
-            mix-blend-mode: overlay;
-        }
-
-        /* Scrollbar */
+        /* Custom scrollbar for premium feel */
         ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: var(--bg-color); }
-        ::-webkit-scrollbar-thumb { background: #555; border-radius: 4px; }
-        ::-webkit-scrollbar-thumb:hover { background: #777; }
-    </style>
-
-    <!-- Tailwind Config to use CSS Variables -->
-    <script>
-        tailwind.config = {
-            darkMode: 'class',
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                        mono: ['Space Mono', 'monospace'],
-                    },
-                    colors: {
-                        background: 'var(--bg-color)',
-                        surface: 'var(--surface-color)',
-                        primary: 'var(--text-primary)',
-                        secondary: 'var(--text-secondary)',
-                        border: 'var(--border-color)',
-                    },
-                    animation: {
-                        'float': 'float 6s ease-in-out infinite',
-                        'spin-slow': 'spin 15s linear infinite',
-                    },
-                    keyframes: {
-                        float: {
-                            '0%, 100%': { transform: 'translateY(0)' },
-                            '50%': { transform: 'translateY(-20px)' },
-                        }
-                    }
-                }
-            }
-        }
-    </script>
-</head>
-<body class="antialiased selection:bg-primary selection:text-background">
-    
-    <div id="app" class="relative">
+        ::-webkit-scrollbar-track { background: #0a0a0a; }
+        ::-webkit-scrollbar-thumb { background: #333; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #555; }
         
-        <!-- Custom Cursor Canvas -->
-        <canvas id="cursor-canvas" class="fixed top-0 left-0 w-full h-full pointer-events-none z-[9999] mix-blend-difference"></canvas>
+        /* Smooth reveal classes */
+        .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s cubic-bezier(0.5, 0, 0, 1); }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+        
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        /* 3D Preserves */
+        .preserve-3d { transform-style: preserve-3d; }
+    </style>
+</head>
+<body class="bg-neutral-950 text-white font-['Inter'] antialiased overflow-x-hidden selection:bg-orange-500/30 selection:text-orange-200">
 
-        <!-- Scanline Overlay -->
-        <div class="fixed inset-0 w-full h-full z-[50] scanlines opacity-20 pointer-events-none"></div>
-
-        <!-- Navigation -->
-        <nav class="fixed top-0 w-full z-50 border-b border-border backdrop-blur-md bg-background/70 transition-colors duration-300">
-            <div class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
-                <a href="#" class="font-sans font-medium tracking-tight text-lg hover:opacity-70 transition-opacity">
-                    YSR<span class="text-secondary">.dev</span>
-                </a>
-
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 border-b border-transparent" id="navbar">
+        <div class="absolute inset-0 bg-neutral-950/80 backdrop-blur-md"></div>
+        <div class="max-w-7xl mx-auto px-6 py-4 relative z-10">
+            <div class="flex items-center justify-between">
+                <a href="#" class="text-lg font-medium tracking-tight text-white hover:text-orange-200 transition-colors">YSR.</a>
+                
                 <!-- Desktop Menu -->
-                <div class="hidden md:flex items-center gap-8 text-sm font-medium text-secondary">
-                    <a href="#about" class="hover:text-primary transition-colors">About</a>
-                    <a href="#projects" class="hover:text-primary transition-colors">Projects</a>
-                    <a href="#contact" class="hover:text-primary transition-colors">Contact</a>
-                    
-                    <!-- Dark Mode Toggle -->
-                    <button @click="toggleTheme" class="p-2 rounded-full hover:bg-primary/10 transition-colors text-primary">
-                        <span class="iconify" :data-icon="isDark ? 'lucide:sun' : 'lucide:moon'" data-width="18" data-stroke-width="1.5"></span>
-                    </button>
+                <div class="hidden lg:flex items-center gap-6">
+                    <a href="#who-i-am" class="text-xs text-neutral-400 hover:text-white transition-colors uppercase tracking-wider">Who I Am</a>
+                    <a href="#what-i-do" class="text-xs text-neutral-400 hover:text-white transition-colors uppercase tracking-wider">What I Do</a>
+                    <a href="#projects" class="text-xs text-neutral-400 hover:text-white transition-colors uppercase tracking-wider">Projects</a>
+                    <a href="#mindset" class="text-xs text-neutral-400 hover:text-white transition-colors uppercase tracking-wider">Mindset</a>
+                    <a href="#process" class="text-xs text-neutral-400 hover:text-white transition-colors uppercase tracking-wider">Process</a>
+                    <a href="#pricing" class="text-xs text-neutral-400 hover:text-white transition-colors uppercase tracking-wider">Pricing</a>
                 </div>
 
-                <!-- Mobile Hamburger -->
-                <button @click="isMobileMenuOpen = !isMobileMenuOpen" class="md:hidden text-primary">
+                <div class="hidden lg:flex items-center gap-4">
+                    <a href="https://wa.me/9310572076" target="_blank" class="px-5 py-2.5 bg-white text-neutral-950 text-xs font-medium rounded-full hover:bg-orange-100 transition-all hover:scale-105">
+                        Let's Talk
+                    </a>
+                </div>
+
+                <!-- Mobile Toggle -->
+                <button id="mobile-toggle" class="lg:hidden text-white p-2">
                     <span class="iconify" data-icon="lucide:menu" data-width="24"></span>
                 </button>
             </div>
+        </div>
+    </nav>
 
-            <!-- Mobile Menu -->
-            <div v-if="isMobileMenuOpen" class="md:hidden absolute top-16 left-0 w-full bg-background border-b border-border p-4 flex flex-col gap-4 text-sm font-medium text-secondary shadow-lg">
-                <a href="#about" @click="isMobileMenuOpen = false">About</a>
-                <a href="#projects" @click="isMobileMenuOpen = false">Projects</a>
-                <a href="#contact" @click="isMobileMenuOpen = false">Contact</a>
-                <button @click="toggleTheme" class="text-left flex items-center gap-2">
-                    {{ isDark ? 'Switch to Light' : 'Switch to Dark' }}
-                </button>
-            </div>
-        </nav>
-
-        <!-- 1. HOME SECTION -->
-        <section class="relative h-screen flex items-center justify-center overflow-hidden">
-            <!-- Background Video/Gradient -->
-            <div class="absolute inset-0 w-full h-full z-0 bg-background transition-colors duration-300">
-                <video v-if="isDark" autoplay loop muted playsinline class="video-bg opacity-30">
-                    <source src="https://assets.mixkit.co/videos/preview/mixkit-abstract-video-of-a-black-fluid-bg-32774-large.mp4" type="video/mp4">
-                </video>
-                <div class="absolute inset-0 bg-gradient-to-b from-transparent via-background/80 to-background z-1"></div>
-            </div>
-
-            <!-- Floating Element -->
-            <div class="absolute top-1/4 right-1/4 w-32 h-32 border border-primary/20 rounded-xl animate-float opacity-20 rotate-45 z-0 blur-sm"></div>
-
-            <div class="relative z-10 text-center px-4 max-w-4xl mx-auto">
-                <div class="inline-block mb-4 px-3 py-1 rounded-full border border-border bg-surface/5 backdrop-blur-sm">
-                    <span class="text-xs font-mono text-secondary uppercase tracking-widest">Unified Mentors Intern</span>
-                </div>
-                <h1 class="text-5xl md:text-7xl font-sans font-semibold tracking-tight text-primary mb-6 leading-[1.1]">
-                    Yashveer Singh Rajpoot
-                </h1>
-                <p class="text-lg md:text-xl text-secondary max-w-2xl mx-auto mb-10 font-light leading-relaxed">
-                    Frontend Developer focused on clean and responsive web interfaces. Building digital experiences with precision and code.
-                </p>
-                
-                <a href="#projects" class="group relative inline-flex items-center justify-center px-8 py-3 overflow-hidden font-medium text-background transition duration-300 ease-out bg-primary rounded-full shadow-md">
-                    <span class="absolute inset-0 flex items-center justify-center w-full h-full text-primary duration-300 -translate-x-full bg-background group-hover:translate-x-0 ease">
-                        <span class="iconify" data-icon="lucide:arrow-down" data-width="20"></span>
-                    </span>
-                    <span class="absolute flex items-center justify-center w-full h-full text-background transition-all duration-300 transform group-hover:translate-x-full ease">View Projects</span>
-                    <span class="relative invisible">View Projects</span>
-                </a>
-            </div>
-        </section>
-
-        <!-- 2. ABOUT SECTION -->
-        <section id="about" class="relative py-24 md:py-32 border-t border-border bg-surface/30">
-            <div class="absolute left-10 top-1/3 w-20 h-20 border-2 border-dashed border-border rounded-full animate-spin-slow opacity-30"></div>
-
-            <div class="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-16 items-center">
-                <div class="relative group text-center md:text-left">
-                    <!-- Profile Image Wrapper -->
-                    <div class="relative w-64 h-64 md:w-80 md:h-80 mx-auto overflow-hidden rounded-2xl grayscale hover:grayscale-0 transition-all duration-500 ease-in-out border border-border shadow-2xl mb-6">
-                        <img src="https://ik.imagekit.io/yashveer/1.jpg?updatedAt=1763307833364" alt="Yashveer Singh Rajpoot" class="w-full h-full object-cover">
-                    </div>
-                    <!-- Resume Button Moved Here -->
-                    <div class="flex justify-center md:justify-center">
-                        <a href="https://ik.imagekit.io/yashveer/LinkedIn_Resume.pdf" target="_blank" class="inline-flex items-center gap-2 px-6 py-2 border border-border rounded-full text-sm text-secondary hover:text-primary hover:border-primary transition-all bg-background/50 backdrop-blur-sm">
-                            <span class="iconify" data-icon="lucide:file-text" data-width="16"></span>
-                            Download Resume
-                        </a>
-                    </div>
-                </div>
-
-                <div>
-                    <h2 class="text-3xl font-semibold tracking-tight mb-6 text-primary">About Me</h2>
-                    <div class="space-y-4 text-secondary leading-relaxed">
-                        <p>I am a passionate Frontend Developer Intern at Unified Mentors, turning designs into functional, pixel-perfect code. My focus is on creating seamless user experiences through modern web technologies.</p>
-                        <p>Currently pursuing my degree, I specialize in crafting responsive interfaces that prioritize performance and accessibility.</p>
-                        
-                        <div class="pt-4 grid grid-cols-2 gap-4 text-sm">
-                            <div>
-                                <h3 class="font-medium text-primary mb-1">Education</h3>
-                                <p>11th Class (Current)</p>
-                                <p class="text-xs opacity-75">10th Board: 86%</p>
-                            </div>
-                            <div>
-                                <h3 class="font-medium text-primary mb-1">Interests</h3>
-                                <p>Information and Technology, Problem Solving, Drinking Coffee</p>
-                            </div>
-                        </div>
-
-                        <div class="pt-6">
-                            <h3 class="font-medium text-primary mb-3">Tech Stack</h3>
-                            <div class="flex flex-wrap gap-2">
-                                <span class="px-3 py-1 bg-surface border border-border rounded text-xs font-mono text-primary">HTML</span>
-                                <span class="px-3 py-1 bg-surface border border-border rounded text-xs font-mono text-primary">CSS</span>
-                                <span class="px-3 py-1 bg-surface border border-border rounded text-xs font-mono text-primary">Tailwind CSS</span>
-                                <span class="px-3 py-1 bg-surface border border-border rounded text-xs font-mono text-primary">JavaScript</span>
-                                <span class="px-3 py-1 bg-surface border border-border rounded text-xs font-mono text-primary">React.js</span>
-                                <span class="px-3 py-1 bg-surface border border-border rounded text-xs font-mono text-primary">Vue.js</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Interactive Flip Coupon -->
-            <div class="max-w-xl mx-auto mt-20 perspective-1000 group cursor-pointer h-24 px-4">
-                <div class="relative w-full h-full transition-transform duration-700 transform-style-3d group-hover:rotate-y-180">
-                    <!-- Front -->
-                    <div class="absolute w-full h-full bg-surface text-primary flex items-center justify-center rounded-lg backface-hidden shadow-lg border border-dashed border-secondary/50">
-                        <span class="font-mono text-sm md:text-lg font-bold tracking-widest text-center px-4">"So, what’s my move when faced with the next big challenge? How do I handle the chaos? Curious? Hover or click this, if you dare😏."</span>
-                    </div>
-                    <!-- Back -->
-                    <div class="absolute w-full h-full bg-primary text-background flex items-center justify-center rounded-lg backface-hidden rotate-y-180 px-6 text-center border border-border">
-                        <p class="text-xs md:text-sm font-medium">"Thriving in the chaos, learning from every challenge. Currently navigating my internship at Unified Mentors🥂, always ready for the next adventure🖤"</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- 3. PROJECTS SECTION -->
-        <section id="projects" class="relative py-24 md:py-32">
-            <!-- 3D Element -->
-            <div class="absolute right-10 bottom-20 w-16 h-16 border border-border animate-float-delayed transform rotate-12 z-0"></div>
-
-            <div class="max-w-6xl mx-auto px-6">
-                <h2 class="text-3xl font-semibold tracking-tight mb-12 text-center text-primary">Selected Projects</h2>
-
-                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    <!-- Project Card Loop -->
-                    <div v-for="(project, index) in projects" :key="index" class="group relative bg-surface border border-border rounded-xl overflow-hidden hover:border-primary/50 transition-all duration-300 flex flex-col h-full">
-                        <div class="h-48 bg-gradient-to-br from-surface to-background flex items-center justify-center relative overflow-hidden border-b border-border">
-                             <div class="absolute inset-0 opacity-10 bg-[url('https://grainy-gradients.vercel.app/noise.svg')]"></div>
-                             <span class="iconify text-secondary group-hover:text-primary transition-colors" :data-icon="project.icon" data-width="48"></span>
-                        </div>
-                        <div class="p-6 flex flex-col flex-grow">
-                            <h3 class="text-lg font-medium text-primary mb-2">{{ project.title }}</h3>
-                            <p class="text-secondary text-xs md:text-sm mb-4 line-clamp-4 flex-grow">{{ project.description }}</p>
-                            <a :href="project.url" target="_blank" class="inline-flex items-center text-sm font-medium text-primary hover:opacity-70 transition-colors mt-auto">
-                                {{ project.cta }} <span class="iconify ml-1" data-icon="lucide:arrow-right" data-width="14"></span>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- 4. CONTACT SECTION -->
-        <section id="contact" class="relative py-24 md:py-32 border-t border-border bg-gradient-to-b from-transparent to-background">
-            <div class="max-w-2xl mx-auto px-6">
-                <div class="text-center mb-10">
-                    <h2 class="text-3xl font-semibold tracking-tight mb-4 text-primary">Get in Touch</h2>
-                    <p class="text-secondary">Have an opportunity or just want to say hi? Drop me a message.</p>
-                </div>
-
-                <!-- Contact Form with Mailto Action -->
-                <form action="mailto:yashvsr170@gmail.com" method="post" enctype="text/plain" class="space-y-4 mb-12">
-                    <div class="grid grid-cols-2 gap-4">
-                        <div class="space-y-1">
-                            <label class="text-xs uppercase tracking-wider text-secondary">Name</label>
-                            <input type="text" name="name" required class="w-full bg-surface border border-border rounded-lg px-4 py-3 text-sm focus:outline-none focus:border-primary transition-colors text-primary placeholder-secondary/50" placeholder="John Doe">
-                        </div>
-                        <div class="space-y-1">
-                            <label class="text-xs uppercase tracking-wider text-secondary">Email</label>
-                            <input type="email" name="email" required class="w-full bg-surface border border-border rounded-lg px-4 py-3 text-sm focus:outline-none focus:border-primary transition-colors text-primary placeholder-secondary/50" placeholder="john@example.com">
-                        </div>
-                    </div>
-                    <div class="space-y-1">
-                        <label class="text-xs uppercase tracking-wider text-secondary">Message</label>
-                        <textarea name="message" required rows="4" class="w-full bg-surface border border-border rounded-lg px-4 py-3 text-sm focus:outline-none focus:border-primary transition-colors text-primary placeholder-secondary/50" placeholder="Tell me about your project..."></textarea>
-                    </div>
-                    
-                    <button type="submit" class="w-full bg-primary text-background font-medium py-3 rounded-lg hover:opacity-90 transition-opacity text-sm">
-                        Send Message
-                    </button>
-                </form>
-
-                <div class="flex flex-col items-center gap-8">
-                    <!-- Social Icons with Overview Panel -->
-                    <div class="flex flex-wrap justify-center gap-6 relative">
-                        <div v-for="(social, index) in socials" :key="index" class="relative group">
-                            <a :href="social.link" target="_blank" class="text-secondary hover:text-primary transition-colors block p-2">
-                                <span class="iconify" :data-icon="social.icon" data-width="20"></span>
-                            </a>
-                            
-                            <!-- The Neon Preview Popup (For ALL Socials) -->
-                            <div class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-4 w-64 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
-                                <div class="bg-background p-4 rounded-lg neon-box relative">
-                                    <div class="flex items-center gap-3 mb-3">
-                                        <div class="w-10 h-10 rounded-full bg-surface overflow-hidden border border-border">
-                                            <img src="https://ik.imagekit.io/yashveer/1.jpg?updatedAt=1763307833364" class="w-full h-full object-cover">
-                                        </div>
-                                        <div class="text-left">
-                                            <p class="text-primary text-xs font-bold">{{ social.handle }}</p>
-                                            <p class="text-[10px] text-secondary">{{ social.name }} Profile</p>
-                                        </div>
-                                    </div>
-                                    <!-- Decorative Mock Data Grid -->
-                                    <div class="grid grid-cols-4 gap-1 opacity-50">
-                                        <div v-for="n in 8" :key="n" class="aspect-square bg-secondary/20 rounded-sm"></div>
-                                    </div>
-                                    <!-- Arrow -->
-                                    <div class="absolute -bottom-2 left-1/2 -translate-x-1/2 w-4 h-4 bg-background border-r border-b border-primary transform rotate-45"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="mt-20 pt-8 border-t border-border text-center text-xs text-secondary font-mono">
-                    <p>&copy; 2025 Yashveer Singh Rajpoot intern @ unified mentors. Catch me if you can.</p>
-                </div>
-            </div>
-        </section>
-
+    <!-- Mobile Menu Overlay -->
+    <div id="mobile-menu" class="fixed inset-0 z-40 bg-neutral-950 transform translate-x-full transition-transform duration-500 flex flex-col justify-center items-center gap-8">
+        <button id="mobile-close" class="absolute top-6 right-6 text-neutral-400 hover:text-white">
+            <span class="iconify" data-icon="lucide:x" data-width="32"></span>
+        </button>
+        <a href="#who-i-am" class="mobile-link text-2xl font-light tracking-tight hover:text-orange-200">Who I Am</a>
+        <a href="#what-i-do" class="mobile-link text-2xl font-light tracking-tight hover:text-orange-200">What I Do</a>
+        <a href="#projects" class="mobile-link text-2xl font-light tracking-tight hover:text-orange-200">Projects</a>
+        <a href="#mindset" class="mobile-link text-2xl font-light tracking-tight hover:text-orange-200">Mindset</a>
+        <a href="#process" class="mobile-link text-2xl font-light tracking-tight hover:text-orange-200">Process</a>
+        <a href="#contact" class="px-8 py-3 bg-white text-neutral-950 rounded-full font-medium mt-4">Let's Talk</a>
     </div>
 
-    <!-- Logic -->
-    <script>
-        const { createApp, ref, onMounted } = Vue;
+    <!-- Hero Section -->
+    <section class="min-h-screen relative flex items-center justify-center overflow-hidden pt-20">
+        <canvas id="hero-canvas" class="absolute inset-0 w-full h-full opacity-60"></canvas>
+        <div class="absolute inset-0 bg-gradient-to-t from-neutral-950 via-transparent to-transparent z-0"></div>
+        
+        <div class="relative z-10 text-center px-6 max-w-5xl mx-auto mt-10">
+            <div class="reveal">
+                <div class="inline-flex items-center gap-2 px-4 py-1.5 bg-white/5 border border-white/10 rounded-full mb-8 backdrop-blur-sm">
+                    <span class="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse"></span>
+                    <span class="text-xs font-medium text-neutral-300 uppercase tracking-widest">Available for Business Growth</span>
+                </div>
+                <h1 class="text-5xl md:text-7xl lg:text-8xl font-medium tracking-tight mb-8 leading-[1.1] bg-clip-text text-transparent bg-gradient-to-b from-white via-white to-neutral-500">
+                    I Build, Optimize & <br>Scale Digital Presence.
+                </h1>
+                <p class="text-lg md:text-xl text-neutral-400 font-light mb-10 max-w-3xl mx-auto leading-relaxed">
+                    I’m <span class="text-white font-normal">Yashveer Singh Rajpoot</span>. Full Stack Developer, SEO & Growth Specialist. I don’t just build websites; I identify where your business is underperforming and create exactly what it needs to convert.
+                </p>
+                <div class="flex flex-col sm:flex-row items-center justify-center gap-5">
+                    <a href="https://wa.me/9310572076" target="_blank" class="w-full sm:w-auto px-8 py-4 bg-white text-neutral-950 font-medium rounded-full hover:bg-neutral-200 transition-all hover:scale-105 flex items-center justify-center gap-2 group">
+                        <span>Discuss Your Business</span>
+                        <span class="iconify group-hover:translate-x-1 transition-transform" data-icon="lucide:arrow-right" data-width="18"></span>
+                    </a>
+                    <a href="#projects" class="w-full sm:w-auto px-8 py-4 border border-white/10 glass-panel text-white rounded-full hover:bg-white/5 transition-all flex items-center justify-center gap-2">
+                        View My Work
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce opacity-50">
+            <span class="iconify" data-icon="lucide:chevron-down" data-width="24"></span>
+        </div>
+    </section>
 
-        createApp({
-            setup() {
-                const isDark = ref(true);
-                const isMobileMenuOpen = ref(false);
+    <!-- Who I Am -->
+    <section id="who-i-am" class="py-32 px-6 border-t border-white/5">
+        <div class="max-w-6xl mx-auto">
+            <div class="grid lg:grid-cols-2 gap-20 items-center">
+                <div class="relative group reveal">
+                    <div class="absolute inset-0 bg-gradient-to-tr from-orange-500/20 to-purple-500/20 rounded-3xl blur-2xl group-hover:opacity-75 transition-opacity duration-700"></div>
+                    <div class="relative glass-panel rounded-3xl p-1 overflow-hidden aspect-square flex items-center justify-center">
+                        <!-- Placeholder for abstract 3D visual representation of 'Self' -->
+                        <div class="text-center p-10">
+                                                
+                            <img 
+                        src="https://ik.imagekit.io/yashveer/1.jpg?updatedAt=1763307833364"
+                        alt="Yashveer Singh Rajpoot"
+                        class="w-full h-full object-cover rounded-3xl"/>
+                        </div>
+                    </div>
+                </div>
 
-                // Updated Socials with Handles
-                const socials = ref([
-                    { name: 'GitHub', icon: 'lucide:github', link: 'https://github.com/yashveercodes', handle: 'yashveercodes' },
-                    { name: 'LinkedIn', icon: 'lucide:linkedin', link: 'https://www.linkedin.com/in/yashveercodes-py/', handle: 'yashveercoding' },
-                    { name: 'X', icon: 'lucide:twitter', link: 'https://x.com/yashveercodes', handle: '@yashveercodes' },
-                    { name: 'Instagram', icon: 'lucide:instagram', link: 'https://www.instagram.com/yashveercodes/', handle: '@yashveercodes' },
-                ]);
+                <div class="reveal">
+                    <h2 class="text-xs text-orange-200 font-medium tracking-widest uppercase mb-4">Who I Am</h2>
+                    <h3 class="text-3xl md:text-5xl font-medium tracking-tight mb-8">Bridging technology & marketing psychology.</h3>
+                    <div class="space-y-6 text-neutral-400 font-light leading-relaxed">
+                        <p>
+                            I’m a performance-driven digital professional combining code with growth strategies. I completed my CBSE Class 10th with 86%, reflecting the consistency and discipline I bring to every project.
+                        </p>
+                        <p>
+                            Most businesses fail online not because of effort, but because of misplaced priorities. I bridge development, SEO, and content growth into one cohesive strategy that actually moves the needle.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-                // Updated Projects Data
-                const projects = ref([
-  {
-    title: 'My Portfolio',
-    description: 'A personal portfolio built to present projects, skills, and experience in a clear and professional manner. The site focuses on responsive layout design, clean typography, and smooth user interactions. It demonstrates component based thinking, attention to visual hierarchy, and performance conscious frontend development. This project reflects my ability to design and implement a complete personal brand website suitable for professional and recruiter evaluation.',
-    url: 'https://yashveercodes.github.io/',
-    icon: 'lucide:user',
-    cta: 'View Portfolio'
-  },
-  {
-    title: 'Gym Management System',
-    description: 'A functional web application designed to manage gym related data and workflows. The project focuses on structured UI, logical data flow, and usability for real world scenarios. It demonstrates dashboard design, form handling, and scalable layout organization. This project highlights my ability to build practical applications that solve operational problems while maintaining a clean and intuitive user experience.',
-    url: 'https://gym-system-five.vercel.app/',
-    icon: 'lucide:dumbbell',
-    cta: 'Open System'
-  },
-  {
-    title: 'Sport Buddy',
-    description: 'A community focused platform concept designed to help users connect through sports and activities. The interface emphasizes usability, responsiveness, and clear navigation. This project showcases user centric design principles, layout consistency, and component reuse. It reflects my understanding of building interaction driven interfaces that encourage engagement while remaining simple and accessible across devices.',
-    url: 'https://sport-buddy-sepia.vercel.app/',
-    icon: 'lucide:users',
-    cta: 'Explore Platform'
-  },
-  {
-    title: 'Weather App',
-    description: 'A modern weather application built to display real time data in a clean and readable format. The project demonstrates API integration, asynchronous data handling, and responsive UI design. Visual clarity and information hierarchy were prioritized to ensure usability. This project highlights my ability to work with external data sources and convert raw data into a user friendly interface.',
-    url: 'https://weather-app-henna-theta-31.vercel.app/',
-    icon: 'lucide:cloud-sun',
-    cta: 'Check Weather'
-  },
-  {
-    title: 'Amisha Design Portfolio',
-    description: 'A client focused portfolio website built for a graphic designer. The project emphasizes clean layouts, strong typography, and effective use of white space to showcase creative work. It demonstrates adaptability to client requirements and brand identity. This project highlights my ability to translate a creative brief into a polished and professional frontend solution.',
-    url: 'https://amisha-graphic-designer.yashvsr2010.workers.dev/',
-    icon: 'lucide:palette',
-    cta: 'Visit Portfolio'
-  },
-  {
-    title: 'Rohit Mukherjee Portfolio',
-    description: 'A portfolio website designed with a storytelling approach for an advertising professional. The layout uses scroll based flow, structured sections, and visual pacing to guide the viewer. This project demonstrates narrative driven UI design, attention to user journey, and the ability to create engaging personal brand websites.',
-    url: 'https://www.myadvertisingfolio.com/',
-    icon: 'lucide:pen-tool',
-    cta: 'View Work'
-  },
-  {
-    title: 'Bakery Restaurant',
-    description: 'A customer facing website concept for a bakery and restaurant brand. The project focuses on visual appeal, clear content structure, and easy navigation. It demonstrates how design choices can influence user trust and engagement. This project highlights my ability to build visually appealing yet functional websites suitable for small businesses.',
-    url: 'https://ay6904898-glitch.github.io/bakery-yash-sample-site/',
-    icon: 'lucide:croissant',
-    cta: 'Visit Site'
-  },
-  {
-    title: 'MakeUp Artist Site',
-    description: 'A brand oriented website designed for a beauty professional. The interface focuses on visual balance, soft color usage, and clean presentation. This project demonstrates sensitivity to industry specific aesthetics while maintaining usability and responsiveness. It reflects my ability to design websites aligned with branding and client expectations.',
-    url: 'https://yashveer-makeup-artist-sample-site.netlify.app/',
-    icon: 'lucide:sparkles',
-    cta: 'View Website'
-  },
-  {
-    title: 'If Stranger Things Was a Business Site',
-    description: 'An experimental landing page that applies a strong narrative theme to a business style website. The project explores mood driven design while maintaining structured layout principles. It demonstrates creative thinking, branding experimentation, and the ability to balance storytelling with functional UI structure.',
-    url: 'https://vanshicpu.github.io/stranger-things-website-sample-yash/',
-    icon: 'lucide:tv',
-    cta: 'Enter Experience'
-  },
-  {
-    title: 'Cosmic AI Dashboard',
-    description: 'A dashboard UI concept inspired by artificial intelligence systems. The design focuses on data hierarchy, structured components, and visual clarity. This project demonstrates my understanding of dashboard layouts, information prioritization, and scalable UI patterns suitable for data heavy applications.',
-    url: 'https://saanvicpu.github.io/cosmic-dashboard-ui-webapp/',
-    icon: 'lucide:layout-dashboard',
-    cta: 'View Dashboard'
-  },
-  {
-    title: 'Hyperloop AI Landing Page',
-    description: 'A conceptual AI themed landing page focused on futuristic presentation and structured content flow. The project demonstrates section based layout planning, modern visual design, and smooth interaction patterns. It reflects my interest in emerging technology interfaces and my ability to execute experimental concepts with disciplined frontend structure.',
-    url: 'https://ayushcpubyte.github.io/hyperloop-ai/',
-    icon: 'lucide:brain-circuit',
-    cta: 'Explore Concept'
-  }
-]);
+    <!-- What I Do -->
+    <section id="what-i-do" class="py-32 px-6 bg-neutral-900/30">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-20 reveal">
+                <h2 class="text-xs text-orange-200 font-medium tracking-widest uppercase mb-4">Services</h2>
+                <h3 class="text-4xl md:text-5xl font-medium tracking-tight">What I Actually Do</h3>
+            </div>
 
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Card 1 -->
+                <div class="glass-panel p-8 rounded-2xl hover:border-orange-500/30 transition-all duration-500 group reveal hover:-translate-y-1">
+                    <div class="w-12 h-12 bg-neutral-900 rounded-lg flex items-center justify-center mb-6 border border-white/5 group-hover:border-orange-500/30 transition-colors">
+                        <span class="iconify text-white" data-icon="lucide:code-2" data-width="24"></span>
+                    </div>
+                    <h4 class="text-xl font-medium mb-3">Full Stack Web Development</h4>
+                    <p class="text-sm text-neutral-400 leading-relaxed">Fast, scalable, SEO-friendly websites that engage and convert. Clean code, high performance, no weak links.</p>
+                </div>
 
+                <!-- Card 2 -->
+                <div class="glass-panel p-8 rounded-2xl hover:border-orange-500/30 transition-all duration-500 group reveal hover:-translate-y-1">
+                    <div class="w-12 h-12 bg-neutral-900 rounded-lg flex items-center justify-center mb-6 border border-white/5 group-hover:border-orange-500/30 transition-colors">
+                        <span class="iconify text-white" data-icon="lucide:globe" data-width="24"></span>
+                    </div>
+                    <h4 class="text-xl font-medium mb-3">SEO + GEO + AEO</h4>
+                    <p class="text-sm text-neutral-400 leading-relaxed">Optimization for Google, AI answers, and future platforms. I ensure you appear where people are searching.</p>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="glass-panel p-8 rounded-2xl hover:border-orange-500/30 transition-all duration-500 group reveal hover:-translate-y-1">
+                    <div class="w-12 h-12 bg-neutral-900 rounded-lg flex items-center justify-center mb-6 border border-white/5 group-hover:border-orange-500/30 transition-colors">
+                        <span class="iconify text-white" data-icon="lucide:instagram" data-width="24"></span>
+                    </div>
+                    <h4 class="text-xl font-medium mb-3">Instagram Growth</h4>
+                    <p class="text-sm text-neutral-400 leading-relaxed">Followers are easy. Engagement is power. I optimize content so your audience actually interacts. No bots.</p>
+                </div>
+
+                <!-- Card 4 -->
+                <div class="glass-panel p-8 rounded-2xl hover:border-orange-500/30 transition-all duration-500 group reveal hover:-translate-y-1">
+                    <div class="w-12 h-12 bg-neutral-900 rounded-lg flex items-center justify-center mb-6 border border-white/5 group-hover:border-orange-500/30 transition-colors">
+                        <span class="iconify text-white" data-icon="lucide:youtube" data-width="24"></span>
+                    </div>
+                    <h4 class="text-xl font-medium mb-3">YouTube Strategy</h4>
+                    <p class="text-sm text-neutral-400 leading-relaxed">Virality is luck; strategy is control. Optimized for discovery, retention, and long-term organic traffic.</p>
+                </div>
+
+                <!-- Card 5 -->
+                <div class="glass-panel p-8 rounded-2xl hover:border-orange-500/30 transition-all duration-500 group reveal hover:-translate-y-1">
+                    <div class="w-12 h-12 bg-neutral-900 rounded-lg flex items-center justify-center mb-6 border border-white/5 group-hover:border-orange-500/30 transition-colors">
+                        <span class="iconify text-white" data-icon="lucide:pen-tool" data-width="24"></span>
+                    </div>
+                    <h4 class="text-xl font-medium mb-3">Blogging & Content</h4>
+                    <p class="text-sm text-neutral-400 leading-relaxed">Content that search engines trust. Blogs built to rank, earn backlinks, and establish authority.</p>
+                </div>
+
+                <!-- Card 6 -->
+                <div class="glass-panel p-8 rounded-2xl hover:border-orange-500/30 transition-all duration-500 group reveal hover:-translate-y-1">
+                    <div class="w-12 h-12 bg-neutral-900 rounded-lg flex items-center justify-center mb-6 border border-white/5 group-hover:border-orange-500/30 transition-colors">
+                        <span class="iconify text-white" data-icon="lucide:bar-chart-2" data-width="24"></span>
+                    </div>
+                    <h4 class="text-xl font-medium mb-3">Data-Driven Growth</h4>
+                    <p class="text-sm text-neutral-400 leading-relaxed">I measure everything. Data decides what scales. If it works, we double down. If not, we pivot.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-32 px-6">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-20 reveal">
+                <h2 class="text-xs text-orange-200 font-medium tracking-widest uppercase mb-4">Portfolio</h2>
+                <h3 class="text-4xl md:text-5xl font-medium tracking-tight mb-6">Projects & Practical Work</h3>
+                <p class="text-neutral-400 max-w-2xl mx-auto">Examples of how I apply development, SEO, and content strategy to solve real digital challenges.</p>
+            </div>
+
+            <!-- Category 1 -->
+            <div class="mb-20 reveal">
+                <h4 class="text-2xl font-light mb-8 flex items-center gap-4">
+                    <span class="w-8 h-[1px] bg-orange-500"></span>
+                    Real Client Portfolios
+                </h4>
+                <div class="grid md:grid-cols-2 gap-8">
+                    <!-- Project 1 -->
+                    <div class="group relative glass-panel rounded-2xl overflow-hidden hover:border-white/20 transition-all duration-500 p-8">
+                        <div class="flex justify-between items-start mb-6">
+                            <div>
+                                <h5 class="text-2xl font-medium mb-2 group-hover:text-orange-200 transition-colors">Amisha</h5>
+                                <p class="text-sm text-neutral-500">Graphic Designer Portfolio</p>
+                            </div>
+                            <a href="https://amisha-graphic-designer.yashvsr2010.workers.dev/" target="_blank" class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-white text-white hover:text-black transition-all">
+                                <span class="iconify" data-icon="lucide:arrow-up-right" data-width="20"></span>
+                            </a>
+                        </div>
+                        <p class="text-sm text-neutral-400 mb-6 line-clamp-2">Needed a clean, professional portfolio to attract clients. Built a visually-focused, fast-loading site.</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-3 py-1 text-xs border border-white/5 bg-white/5 rounded-full text-neutral-300">Full Stack</span>
+                            <span class="px-3 py-1 text-xs border border-white/5 bg-white/5 rounded-full text-neutral-300">UI Structuring</span>
+                        </div>
+                    </div>
+                    <!-- Project 2 -->
+                    <div class="group relative glass-panel rounded-2xl overflow-hidden hover:border-white/20 transition-all duration-500 p-8">
+                        <div class="flex justify-between items-start mb-6">
+                            <div>
+                                <h5 class="text-2xl font-medium mb-2 group-hover:text-orange-200 transition-colors">Rohit Mukherjee</h5>
+                                <p class="text-sm text-neutral-500">Advertising & Content Portfolio</p>
+                            </div>
+                            <a href="https://www.myadvertisingfolio.com/" target="_blank" class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-white text-white hover:text-black transition-all">
+                                <span class="iconify" data-icon="lucide:arrow-up-right" data-width="20"></span>
+                            </a>
+                        </div>
+                        <p class="text-sm text-neutral-400 mb-6 line-clamp-2">A personal brand site communicating credibility. Content-first layout with SEO-friendly structure.</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-3 py-1 text-xs border border-white/5 bg-white/5 rounded-full text-neutral-300">SEO Basics</span>
+                            <span class="px-3 py-1 text-xs border border-white/5 bg-white/5 rounded-full text-neutral-300">Positioning</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Category 2 -->
+            <div class="mb-20 reveal">
+                <h4 class="text-2xl font-light mb-8 flex items-center gap-4">
+                    <span class="w-8 h-[1px] bg-orange-500"></span>
+                    Business & Institutional
+                </h4>
+                <div class="grid md:grid-cols-2 gap-8">
+                    <!-- Project 3 -->
+                    <div class="group relative glass-panel rounded-2xl overflow-hidden hover:border-white/20 transition-all duration-500 p-8">
+                        <div class="flex justify-between items-start mb-6">
+                            <div>
+                                <h5 class="text-2xl font-medium mb-2 group-hover:text-orange-200 transition-colors">Central Academy</h5>
+                                <p class="text-sm text-neutral-500">Evening Academy Website</p>
+                            </div>
+                            <a href="https://cais3.vercel.app/" target="_blank" class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-white text-white hover:text-black transition-all">
+                                <span class="iconify" data-icon="lucide:arrow-up-right" data-width="20"></span>
+                            </a>
+                        </div>
+                        <p class="text-sm text-neutral-400 mb-6">Accessible, informative website for students and parents with clear hierarchy.</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-3 py-1 text-xs border border-white/5 bg-white/5 rounded-full text-neutral-300">UX Structuring</span>
+                            <span class="px-3 py-1 text-xs border border-white/5 bg-white/5 rounded-full text-neutral-300">Responsive</span>
+                        </div>
+                    </div>
+                    <!-- Project 4 -->
+                    <div class="group relative glass-panel rounded-2xl overflow-hidden hover:border-white/20 transition-all duration-500 p-8">
+                        <div class="flex justify-between items-start mb-6">
+                            <div>
+                                <h5 class="text-2xl font-medium mb-2 group-hover:text-orange-200 transition-colors">Prominence Football</h5>
+                                <p class="text-sm text-neutral-500">Academy Website</p>
+                            </div>
+                            <a href="https://pfa1.vercel.app/" target="_blank" class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-white text-white hover:text-black transition-all">
+                                <span class="iconify" data-icon="lucide:arrow-up-right" data-width="20"></span>
+                            </a>
+                        </div>
+                        <p class="text-sm text-neutral-400 mb-6">Online identity for a sports academy aligned with an energetic brand.</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-3 py-1 text-xs border border-white/5 bg-white/5 rounded-full text-neutral-300">Branding</span>
+                            <span class="px-3 py-1 text-xs border border-white/5 bg-white/5 rounded-full text-neutral-300">Content Layout</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Category 3 -->
+            <div class="mb-20 reveal">
+                <h4 class="text-2xl font-light mb-8 flex items-center gap-4">
+                    <span class="w-8 h-[1px] bg-orange-500"></span>
+                    Systems & Web Apps
+                </h4>
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div class="group relative glass-panel rounded-2xl overflow-hidden hover:border-white/20 transition-all duration-500 p-8">
+                        <div class="flex justify-between items-start mb-6">
+                            <div>
+                                <h5 class="text-2xl font-medium mb-2 group-hover:text-orange-200 transition-colors">Gym Management</h5>
+                                <p class="text-sm text-neutral-500">System Web App</p>
+                            </div>
+                            <a href="https://gym-system-five.vercel.app/" target="_blank" class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-white text-white hover:text-black transition-all">
+                                <span class="iconify" data-icon="lucide:arrow-up-right" data-width="20"></span>
+                            </a>
+                        </div>
+                        <p class="text-sm text-neutral-400 mb-6">Centralized management system replacing inefficient manual operations.</p>
+                    </div>
+                    <div class="group relative glass-panel rounded-2xl overflow-hidden hover:border-white/20 transition-all duration-500 p-8">
+                        <div class="flex justify-between items-start mb-6">
+                            <div>
+                                <h5 class="text-2xl font-medium mb-2 group-hover:text-orange-200 transition-colors">Sport Buddy</h5>
+                                <p class="text-sm text-neutral-500">Event Organizing System</p>
+                            </div>
+                            <a href="https://sport-buddy-sepia.vercel.app/" target="_blank" class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-white text-white hover:text-black transition-all">
+                                <span class="iconify" data-icon="lucide:arrow-up-right" data-width="20"></span>
+                            </a>
+                        </div>
+                        <p class="text-sm text-neutral-400 mb-6">Digitized event management workflows with a user-friendly interface.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Category 4: Samples -->
+            <div class="reveal">
+                <h4 class="text-2xl font-light mb-8 flex items-center gap-4">
+                    <span class="w-8 h-[1px] bg-orange-500"></span>
+                    Industry Samples
+                </h4>
+                <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+                    <a href="https://yashveer-makeup-artist-sample-site.netlify.app/" target="_blank" class="p-4 text-center glass-panel rounded-xl hover:bg-white/5 transition-colors group">
+                        <span class="iconify mx-auto mb-2 text-neutral-500 group-hover:text-white" data-icon="lucide:palette" data-width="20"></span>
+                        <span class="text-xs">Makeup Artist</span>
+                    </a>
+                    <a href="https://clothe-ten.vercel.app/" target="_blank" class="p-4 text-center glass-panel rounded-xl hover:bg-white/5 transition-colors group">
+                        <span class="iconify mx-auto mb-2 text-neutral-500 group-hover:text-white" data-icon="lucide:shopping-bag" data-width="20"></span>
+                        <span class="text-xs">Clothing Store</span>
+                    </a>
+                    <a href="https://eyewear-puce.vercel.app/" target="_blank" class="p-4 text-center glass-panel rounded-xl hover:bg-white/5 transition-colors group">
+                        <span class="iconify mx-auto mb-2 text-neutral-500 group-hover:text-white" data-icon="lucide:glasses" data-width="20"></span>
+                        <span class="text-xs">Eyewear</span>
+                    </a>
+                    <a href="https://gold-nine-woad.vercel.app/" target="_blank" class="p-4 text-center glass-panel rounded-xl hover:bg-white/5 transition-colors group">
+                        <span class="iconify mx-auto mb-2 text-neutral-500 group-hover:text-white" data-icon="lucide:coins" data-width="20"></span>
+                        <span class="text-xs">Gold Exchange</span>
+                    </a>
+                    <a href="https://abacus-cyan.vercel.app/" target="_blank" class="p-4 text-center glass-panel rounded-xl hover:bg-white/5 transition-colors group">
+                        <span class="iconify mx-auto mb-2 text-neutral-500 group-hover:text-white" data-icon="lucide:calculator" data-width="20"></span>
+                        <span class="text-xs">Abacus</span>
+                    </a>
+                    <a href="https://rankboard-app.vercel.app/" target="_blank" class="p-4 text-center glass-panel rounded-xl hover:bg-white/5 transition-colors group">
+                        <span class="iconify mx-auto mb-2 text-neutral-500 group-hover:text-white" data-icon="lucide:trophy" data-width="20"></span>
+                        <span class="text-xs">Rankboard</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mindset Section -->
+    <section id="mindset" class="py-32 px-6 border-t border-white/5">
+        <div class="max-w-4xl mx-auto text-center reveal">
+            <h2 class="text-xs text-orange-200 font-medium tracking-widest uppercase mb-4">Philosophy</h2>
+            <h3 class="text-4xl md:text-5xl font-medium tracking-tight mb-8">My Approach Is Different.</h3>
+            <div class="glass-panel p-10 rounded-3xl relative overflow-hidden">
+                <div class="absolute top-0 right-0 p-32 bg-orange-500/10 blur-[100px] rounded-full"></div>
+                <p class="text-lg text-neutral-300 font-light leading-relaxed mb-6">
+                    Most solopreneurs try to sell everything to everyone. I don't. <br><br>
+                    If your business lacks an Instagram presence, I won’t push a website. If YouTube is your bottleneck, I won’t distract you with Instagram. First, I analyze. Then, I recommend only what moves the needle.
+                </p>
+                <div class="inline-block px-4 py-2 bg-white/5 rounded-full text-sm text-orange-200/80">
+                    No Upsells. No Fluff. No Ego Projects.
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Process Section -->
+    <section id="process" class="py-32 px-6 bg-neutral-900/30">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16 reveal">
+                <h2 class="text-xs text-orange-200 font-medium tracking-widest uppercase mb-4">Workflow</h2>
+                <h3 class="text-4xl font-medium tracking-tight">How We Work Together</h3>
+            </div>
+            
+            <div class="grid md:grid-cols-5 gap-4 reveal">
+                <div class="p-6 border-l border-white/10 relative hover:border-orange-500/50 transition-colors">
+                    <span class="text-4xl font-thin text-white/10 mb-4 block">01</span>
+                    <h4 class="font-medium mb-2">Audit</h4>
+                    <p class="text-xs text-neutral-400">Deep analysis of business model and competitors.</p>
+                </div>
+                <div class="p-6 border-l border-white/10 relative hover:border-orange-500/50 transition-colors">
+                    <span class="text-4xl font-thin text-white/10 mb-4 block">02</span>
+                    <h4 class="font-medium mb-2">Identify</h4>
+                    <p class="text-xs text-neutral-400">Finding the exact weak points holding you back.</p>
+                </div>
+                <div class="p-6 border-l border-white/10 relative hover:border-orange-500/50 transition-colors">
+                    <span class="text-4xl font-thin text-white/10 mb-4 block">03</span>
+                    <h4 class="font-medium mb-2">Strategy</h4>
+                    <p class="text-xs text-neutral-400">Custom plan tailored to your actual needs.</p>
+                </div>
+                <div class="p-6 border-l border-white/10 relative hover:border-orange-500/50 transition-colors">
+                    <span class="text-4xl font-thin text-white/10 mb-4 block">04</span>
+                    <h4 class="font-medium mb-2">Execute</h4>
+                    <p class="text-xs text-neutral-400">Development, content, and rigorous testing.</p>
+                </div>
+                <div class="p-6 border-l border-white/10 relative hover:border-orange-500/50 transition-colors">
+                    <span class="text-4xl font-thin text-white/10 mb-4 block">05</span>
+                    <h4 class="font-medium mb-2">Scale</h4>
+                    <p class="text-xs text-neutral-400">Monitor results, double down on what works.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing & Achievements Grid -->
+    <section class="py-32 px-6" id="pricing">
+        <div class="max-w-6xl mx-auto grid lg:grid-cols-2 gap-12">
+            
+            <!-- Pricing -->
+            <div class="reveal">
+                <h2 class="text-xs text-orange-200 font-medium tracking-widest uppercase mb-4">Pricing Philosophy</h2>
+                <h3 class="text-3xl font-medium tracking-tight mb-6">No Cookie-Cutter Pricing.</h3>
+                <p class="text-neutral-400 font-light leading-relaxed mb-6">
+                    Every business is unique. Pricing is determined only after understanding your goals, presence, and what you actually need to grow.
+                </p>
+                <div class="p-6 glass-panel rounded-2xl border-l-2 border-orange-500">
+                    <p class="text-white font-medium">You pay only for what drives growth. Nothing extra.</p>
+                </div>
+            </div>
+
+            <!-- Achievements -->
+            <div class="reveal">
+                <h2 class="text-xs text-orange-200 font-medium tracking-widest uppercase mb-4">Credibility Boosters</h2>
+                <h3 class="text-3xl font-medium tracking-tight mb-6">Proven Expertise</h3>
                 
-                const toggleTheme = () => {
-                    isDark.value = !isDark.value;
-                    if (isDark.value) {
-                        document.documentElement.classList.add('dark');
-                    } else {
-                        document.documentElement.classList.remove('dark');
-                    }
-                };
+                <div class="space-y-4 mb-8">
+                    <a href="https://ik.imagekit.io/yashveer/3.png?updatedAt=1763388716213" target="_blank" class="flex items-center justify-between p-4 glass-panel rounded-xl hover:bg-white/5 transition-colors group">
+                        <div class="flex items-center gap-3">
+                            <span class="iconify text-green-500" data-icon="lucide:check-circle" data-width="20"></span>
+                            <span class="text-sm">Full Stack Development Certificate</span>
+                        </div>
+                        <span class="iconify text-neutral-500 group-hover:text-white" data-icon="lucide:external-link" data-width="16"></span>
+                    </a>
+                    <a href="https://ik.imagekit.io/yashveer/1.png?updatedAt=1763388038277" target="_blank" class="flex items-center justify-between p-4 glass-panel rounded-xl hover:bg-white/5 transition-colors group">
+                        <div class="flex items-center gap-3">
+                            <span class="iconify text-green-500" data-icon="lucide:check-circle" data-width="20"></span>
+                            <span class="text-sm">Social Media Management</span>
+                        </div>
+                        <span class="iconify text-neutral-500 group-hover:text-white" data-icon="lucide:external-link" data-width="16"></span>
+                    </a>
+                </div>
 
-                onMounted(() => {
-                    // Default to Dark Mode
-                    document.documentElement.classList.add('dark');
-                    
-                    // --- BOLD CINEMATIC CURSOR ---
-                    const canvas = document.getElementById('cursor-canvas');
-                    const ctx = canvas.getContext('2d');
-                    let width = window.innerWidth;
-                    let height = window.innerHeight;
-                    canvas.width = width;
-                    canvas.height = height;
+                <div class="flex flex-wrap gap-2 text-xs text-neutral-500">
+                    <span class="px-2 py-1 bg-white/5 rounded">VS Code</span>
+                    <span class="px-2 py-1 bg-white/5 rounded">Vercel</span>
+                    <span class="px-2 py-1 bg-white/5 rounded">Hostinger</span>
+                    <span class="px-2 py-1 bg-white/5 rounded">OpenAI</span>
+                    <span class="px-2 py-1 bg-white/5 rounded">Git</span>
+                    <span class="px-2 py-1 bg-white/5 rounded">Shopify</span>
+                </div>
+            </div>
+        </div>
+    </section>
 
-                    const mouse = { x: width / 2, y: height / 2 };
-                    const trail = [];
-                    // Longer trail for cinematic feel
-                    const maxTrail = 40; 
-                    // Palette: Black, White, Silver, Gold, Grey, Charcoal
-                    const colors = ['#000000', '#FFFFFF', '#C0C0C0', '#FFD700', '#808080', '#36454F'];
+    <!-- Future Section -->
+    <section class="py-20 px-6 bg-gradient-to-b from-neutral-900/50 to-neutral-950 border-y border-white/5">
+        <div class="max-w-4xl mx-auto text-center reveal">
+            <h2 class="text-3xl font-medium tracking-tight mb-4">Future-Ready Mindset</h2>
+            <p class="text-neutral-400 font-light">
+                Search is evolving. I optimize for both today and the future — with GEO & AEO strategies ensuring your business stays visible in the age of AI answers and voice search.
+            </p>
+        </div>
+    </section>
 
-                    window.addEventListener('resize', () => {
-                        width = window.innerWidth;
-                        height = window.innerHeight;
-                        canvas.width = width;
-                        canvas.height = height;
-                    });
+    <!-- Contact Section -->
+    <section id="contact" class="py-32 px-6 relative overflow-hidden">
+        <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-orange-900/10 via-neutral-950 to-neutral-950"></div>
+        <div class="max-w-3xl mx-auto text-center relative z-10 reveal">
+            <h2 class="text-xs text-orange-200 font-medium tracking-widest uppercase mb-4">Get Started</h2>
+            <h3 class="text-5xl md:text-7xl font-medium tracking-tight mb-8">Let's Talk Business.</h3>
+            <p class="text-neutral-400 mb-12 text-lg font-light">
+                If you’re serious about building a strong online presence, let’s discuss your current status and what your business truly needs.
+            </p>
+            <a href="https://wa.me/9310572076" target="_blank" class="inline-flex items-center gap-3 px-8 py-4 bg-white text-neutral-950 font-medium rounded-full hover:bg-neutral-200 transition-all hover:scale-105 shadow-[0_0_20px_rgba(255,255,255,0.3)]">
+                <span class="iconify" data-icon="lucide:message-circle" data-width="20"></span>
+                <span>Request Business Analysis</span>
+            </a>
+        </div>
+    </section>
 
-                    window.addEventListener('mousemove', (e) => {
-                        mouse.x = e.clientX;
-                        mouse.y = e.clientY;
-                    });
+    <!-- Footer -->
+    <footer class="py-10 px-6 border-t border-white/5 bg-neutral-950">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
+            <div class="text-sm text-neutral-500">
+                © 2024 Yashveer Singh Rajpoot. All rights reserved.
+            </div>
+            <div class="flex items-center gap-6">
+                <a href="#" class="text-neutral-500 hover:text-white transition-colors">
+                    <span class="iconify" data-icon="lucide:github" data-width="20"></span>
+                </a>
+                <a href="#" class="text-neutral-500 hover:text-white transition-colors">
+                    <span class="iconify" data-icon="lucide:linkedin" data-width="20"></span>
+                </a>
+                <a href="#" class="text-neutral-500 hover:text-white transition-colors">
+                    <span class="iconify" data-icon="lucide:twitter" data-width="20"></span>
+                </a>
+            </div>
+        </div>
+    </footer>
 
-                    function animateCursor() {
-                        ctx.clearRect(0, 0, width, height);
-                        
-                        // Select color based on time/position for variation
-                        const colorIndex = Math.floor(Date.now() / 200) % colors.length;
-                        const currentColor = colors[colorIndex];
+    <script>
+        // Mobile Menu Logic
+        const mobileToggle = document.getElementById('mobile-toggle');
+        const mobileClose = document.getElementById('mobile-close');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
 
-                        trail.push({ x: mouse.x, y: mouse.y, color: currentColor });
-                        if (trail.length > maxTrail) trail.shift();
+        function toggleMenu() {
+            mobileMenu.classList.toggle('translate-x-full');
+            document.body.classList.toggle('overflow-hidden');
+        }
 
-                        if (trail.length > 1) {
-                            ctx.lineCap = 'round';
-                            ctx.lineJoin = 'round';
-                            
-                            // Draw glowing trail
-                            ctx.shadowBlur = 15;
-                            
-                            for (let i = 0; i < trail.length - 1; i++) {
-                                const point = trail[i];
-                                const nextPoint = trail[i + 1];
-                                
-                                ctx.beginPath();
-                                ctx.moveTo(point.x, point.y);
-                                ctx.lineTo(nextPoint.x, nextPoint.y);
-                                
-                                // Tapering thick bold stroke
-                                const size = (i / trail.length) * 12; 
-                                ctx.lineWidth = size;
-                                ctx.strokeStyle = point.color;
-                                ctx.shadowColor = point.color;
-                                ctx.stroke();
-                            }
-                        }
-                        requestAnimationFrame(animateCursor);
-                    }
-                    animateCursor();
-                });
+        mobileToggle.addEventListener('click', toggleMenu);
+        mobileClose.addEventListener('click', toggleMenu);
+        
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', toggleMenu);
+        });
 
-                return {
-                    isDark,
-                    isMobileMenuOpen,
-                    toggleTheme,
-                    projects,
-                    socials
-                }
+        // 3D Canvas Background (Network/Constellation Effect)
+        const canvas = document.getElementById('hero-canvas');
+        const ctx = canvas.getContext('2d');
+        let width, height;
+        let particles = [];
+
+        function resize() {
+            width = canvas.width = window.innerWidth;
+            height = canvas.height = window.innerHeight;
+        }
+
+        class Particle {
+            constructor() {
+                this.x = Math.random() * width;
+                this.y = Math.random() * height;
+                this.vx = (Math.random() - 0.5) * 0.5;
+                this.vy = (Math.random() - 0.5) * 0.5;
+                this.size = Math.random() * 2;
             }
-        }).mount('#app');
+            update() {
+                this.x += this.vx;
+                this.y += this.vy;
+                if (this.x < 0 || this.x > width) this.vx *= -1;
+                if (this.y < 0 || this.y > height) this.vy *= -1;
+            }
+            draw() {
+                ctx.fillStyle = 'rgba(255, 255, 255, 0.2)';
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+
+        function initParticles() {
+            particles = [];
+            for (let i = 0; i < 60; i++) particles.push(new Particle());
+        }
+
+        function animate() {
+            ctx.clearRect(0, 0, width, height);
+            
+            particles.forEach((p, index) => {
+                p.update();
+                p.draw();
+                
+                // Connections
+                for (let j = index + 1; j < particles.length; j++) {
+                    const p2 = particles[j];
+                    const dist = Math.hypot(p.x - p2.x, p.y - p2.y);
+                    if (dist < 150) {
+                        ctx.strokeStyle = `rgba(255, 255, 255, ${0.1 * (1 - dist/150)})`;
+                        ctx.lineWidth = 0.5;
+                        ctx.beginPath();
+                        ctx.moveTo(p.x, p.y);
+                        ctx.lineTo(p2.x, p2.y);
+                        ctx.stroke();
+                    }
+                }
+            });
+            requestAnimationFrame(animate);
+        }
+
+        window.addEventListener('resize', () => { resize(); initParticles(); });
+        resize();
+        initParticles();
+        animate();
+
+        // Scroll Reveal Animation
+        const observerOptions = { threshold: 0.1 };
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+        // Sticky Nav Blur Effect on Scroll
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                nav.classList.add('border-white/10');
+            } else {
+                nav.classList.remove('border-white/10');
+            }
+        });
     </script>
 </body>
 </html>
-
+    
